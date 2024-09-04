@@ -1,5 +1,6 @@
 @use "../../styles/partials/mixins.scss" as *;
 @use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/typography.scss/" as *;
 
 .delete-wm {
   position: absolute;
@@ -72,13 +73,17 @@
   }
   &__button-1 {
     @include button-secondary;
-    width: 45%;
+    & {
+      width: 45%;
+    }
     @include tablet-breakpoint {
       margin-right: 1rem;
     }
   }
   &__button-2 {
     @include button-delete;
-    width: 45%;
+    & {
+      width: 45%;
+    }
   }
 }
