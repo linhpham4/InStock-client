@@ -11,3 +11,11 @@
         @content;
     }
 }
+
+// Mobile styles 
+@mixin labels-buttons-mobile {
+    font-family: "Titillium Web", sans-serif;
+    font-size: 0.8235rem;
+    line-height: 1.375rem;
+    font-weight: 500;
+}
