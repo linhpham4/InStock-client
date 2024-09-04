@@ -185,3 +185,20 @@
   background-position: 98% 50%;
   @include text-field;
 }
+
+//this styling is for "This field is required" error message for incomplete fields
+//set visibility: hidden when field is not in error state
+@mixin field-error {
+  color: $red;
+  display: relative;
+  @include mobile-labels-links-buttons;
+  @include tablet {
+    @include labels-links-buttons;
+  }
+  &::before {
+    content: url(./assets/icons/error-24px.svg);
+    margin-right: 0.25rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
