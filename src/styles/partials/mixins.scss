@@ -142,9 +142,46 @@
     content: url(./assets/icons/chevron_right-24px.svg);
     position: absolute;
     top: 0%;
-    margin-left: 4px;
+    margin-left: 0.25rem;
   }
   &:hover {
     text-decoration: underline;
   }
+}
+
+//input styling=============================================================
+@mixin text-field {
+  padding: 0.5rem 1rem;
+  width: 100%;
+  border-radius: 20px;
+  margin-top: 0.25rem;
+  border: 1px solid $cloud;
+  position: relative;
+  @include mobile-labels-links-buttons;
+  @include tablet {
+    @include labels-links-buttons;
+  }
+  &::placeholder {
+    color: $slate;
+  }
+  &:focus-visible {
+    outline-color: $instock-indigo;
+  }
+  &:invalid {
+    outline-color: $red;
+  }
+}
+
+@mixin dropdown {
+  background-image: url(./assets/icons/arrow_drop_down-24px.svg);
+  background-repeat: no-repeat;
+  background-position: 98% 50%;
+  @include text-field;
+}
+
+@mixin search-field {
+  background-image: url(./assets/icons/search-24px.svg);
+  background-repeat: no-repeat;
+  background-position: 98% 50%;
+  @include text-field;
 }
