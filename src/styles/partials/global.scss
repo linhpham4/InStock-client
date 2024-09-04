@@ -1,4 +1,13 @@
+@use './typography.scss' as *;
+
 * {
     box-sizing: border-box;
     margin: 0;
 }
+
+// body {
+//     font-family: "Titillium Web", sans-serif;
+//     margin: 0;
+//     padding: 0;
+
+// }
