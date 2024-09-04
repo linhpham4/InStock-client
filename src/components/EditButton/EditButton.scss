@@ -3,6 +3,7 @@
 @use '../../styles/partials/variables.scss'as *;
 
 .button {
+    @include text-link;
     background-color:$instock-indigo;
     display: flex;
     align-items: center;

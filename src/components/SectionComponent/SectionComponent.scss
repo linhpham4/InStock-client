@@ -10,6 +10,11 @@
     margin: 1em auto;
     padding: 1em;
 
+    &__heading {
+        @include page-header;
+        font-weight: 600;
+    }
+    
     &__inputs {
         display: flex;
         width: 50vw;

@@ -9,6 +9,8 @@
     gap: 1em;
     border: none;
     position: relative;
+    max-height: 47px;
+    border: none;
 
 
     &__field {
@@ -16,7 +18,8 @@
         @include mobile-subheader;
         padding: 0.51em 1em;
         border-radius: 1.7em;
-
+        border: solid 1px $cloud;
+        min-width: 300px;
     }
 
     &__icon {
@@ -26,7 +29,7 @@
         right: 1em;
     }
 
-    ::placeholder {
-        color: red;
-    }
+    // ::placeholder {
+    //     color: red;
+    // }
 }
