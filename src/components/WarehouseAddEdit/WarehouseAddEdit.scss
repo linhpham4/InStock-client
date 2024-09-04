@@ -1,0 +1,86 @@
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/typography.scss/" as *;
+
+.warehouseAE {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  &__header-container {
+    display: flex;
+    align-items: center;
+    margin: 2rem 1.5rem 1.5rem;
+    @include desktop-breakpoint {
+      margin: 2rem 2.5rem 1.5rem;
+    }
+  }
+  &__icon {
+    width: 30px;
+    margin-right: 0.5rem;
+  }
+  &__title {
+    font-weight: 600;
+    @include mobile-page-header;
+    @include tablet-breakpoint {
+      @include page-header;
+    }
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1.5rem;
+    @include tablet-breakpoint {
+      flex-direction: row;
+      padding: 0 2rem;
+    }
+    @include desktop-breakpoint {
+      padding: 0 2.5rem;
+    }
+  }
+  &__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 1.5rem 0;
+    @include tablet-breakpoint {
+      margin: 2rem 0;
+    }
+  }
+  &__sub-title {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    @include mobile-subheader;
+    @include tablet-breakpoint {
+      @include subheader;
+    }
+  }
+  &__label {
+    margin-top: 1rem;
+    font-weight: 600;
+    @include mobile-labels-links-buttons;
+    @include tablet-breakpoint {
+      margin-top: 1.5rem;
+      @include labels-links-buttons;
+    }
+  }
+  &__input {
+    @include text-field;
+  }
+  &__button-container {
+    background-color: $light-grey;
+    border-radius: 4px;;
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    @include tablet-breakpoint {
+      justify-content: flex-end;
+      padding: 1rem 2rem;
+    }
+  }
+  &__button {
+    @include button-primary;
+    &--cancel {
+      @include button-secondary;
+    }
+  }
+}
