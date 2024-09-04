@@ -1,0 +1,32 @@
+@use '../../styles/partials/mixins.scss'as *;
+@use '../../styles/partials/typography.scss'as *;
+@use '../../styles/partials/variables.scss'as *;
+
+.searchField {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+    border: none;
+    position: relative;
+
+
+    &__field {
+        color: $white;
+        @include mobile-subheader;
+        padding: 0.51em 1em;
+        border-radius: 1.7em;
+
+    }
+
+    &__icon {
+        color: $white;
+        @include mobile-subheader;
+        position: absolute;
+        right: 1em;
+    }
+
+    ::placeholder {
+        color: red;
+    }
+}

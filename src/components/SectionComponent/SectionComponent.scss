@@ -1,0 +1,21 @@
+@use '../../styles/partials/mixins.scss'as *;
+@use '../../styles/partials/typography.scss'as *;
+@use '../../styles/partials/variables.scss'as *;
+
+.warehouse-header {
+    display: flex;
+    width: 100vw;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1em auto;
+    padding: 1em;
+
+    &__inputs {
+        display: flex;
+        width: 50vw;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 1em;
+        gap: 2em;
+    }
+}
