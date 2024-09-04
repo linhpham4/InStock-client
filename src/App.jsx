@@ -8,13 +8,15 @@ import InventoryListPage from "./pages/InventoryListPage/InventoryListPage";
 import InventoryDetailsPage from "./pages/InventoryDetailsPage/InventoryDetailsPage";
 import InventoryEditPage from "./pages/InventoryEditPage/InventoryEditPage";
 import InventoryAddPage from "./pages/InventoryAddPage/InventoryAddPage";
-import Header from "./components/Header/Header";
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
+
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Header></Header>
+       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/warehouse" element={<WarehouseListPage />} />
           <Route
@@ -42,6 +44,7 @@ function App() {
           />
           <Route path="/inventory/add" element={<InventoryAddPage />} />
         </Routes>
+       <Footer />
       </BrowserRouter>
     </>
   );
