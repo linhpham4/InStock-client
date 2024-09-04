@@ -1,0 +1,78 @@
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
+
+.background {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  box-shadow: 0px 2px 5px 0px #13182c1a;
+}
+
+.warehouse {
+    border-bottom: 1px solid #bdc5d5;
+    padding-bottom: 1.5rem;
+
+    &__headings {
+        display: none;
+
+        @include tablet-breakpoint {
+        @include mobile-body-small;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        height: 40px;
+        background-color: $light-grey;
+
+        }
+    }
+
+  &__card {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+
+    @include mobile-body-small;
+  }
+
+  &__label {
+    color: $slate;
+    font-family: "Titillium Web";
+    font-weight: 600;
+
+    @include tablet-breakpoint {
+        display: none;
+    }
+  }
+
+  &__name {
+    &--blue {
+      color: $instock-indigo;
+    }
+  }
+
+  &__na {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 45%;
+    // padding-left: 1rem;
+    // padding-right: 1rem;
+  }
+
+  &__contact {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 45%;
+    // padding-left: 1rem;
+    // padding-right: 1rem;
+  }
+
+  &__icons {
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+}
