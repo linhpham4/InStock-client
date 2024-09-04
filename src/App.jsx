@@ -11,12 +11,14 @@ import InventoryAddPage from "./pages/InventoryAddPage/InventoryAddPage";
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import SectionComponent from "./components/SectionComponent/SectionComponent";
+import SectionComponent2 from "./components/SectionComponent2/SectionComponent2";
 
 function App() {
   return (
     <>
     <Header />
     <SectionComponent />
+    <SectionComponent2 />
       <Footer />
     </>
   );
