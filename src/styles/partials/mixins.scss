@@ -1,13 +1,13 @@
 @use "./variables.scss" as *;
 
 //media queries=============================================================
-@mixin tablet {
+@mixin tablet-breakpoint {
   @media (min-width: $tablet-breakpoint) {
     @content;
   }
 }
 
-@mixin desktop {
+@mixin desktop-breakpoint {
   @media (min-width: $desktop-breakpoint) {
     @content;
   }
@@ -88,16 +88,16 @@
 //button styling=============================================================
 @mixin button-base {
   @include mobile-labels-links-buttons;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   width: 100%;
   border-radius: 20px;
-  @include tablet {
+  @include tablet-breakpoint {
     @include labels-links-buttons;
-    padding: 0.5rem 1rem;
     width: auto;
   }
   &:hover {
     transition: 0.3s;
+    cursor: pointer;
   }
 }
 
@@ -146,6 +146,7 @@
   }
   &:hover {
     text-decoration: underline;
+    cursor: pointer;
   }
 }
 
@@ -158,7 +159,7 @@
   border: 1px solid $cloud;
   position: relative;
   @include mobile-labels-links-buttons;
-  @include tablet {
+  @include tablet-breakpoint {
     @include labels-links-buttons;
   }
   &::placeholder {
