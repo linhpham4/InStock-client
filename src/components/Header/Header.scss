@@ -1,6 +1,6 @@
 @use "../../styles/partials/variables.scss" as *;
-@use "../../styles/partials/global.scss" as *;
 @use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/typography.scss" as *;
 
 .header {
   display: flex;
@@ -15,14 +15,11 @@
   &__background {
     height: 200px;
     width: 100%;
-  
-    //Partials
-    background-color: #232940;
-  
+    background-color: $graphite;
     padding-top: 1.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
-  
+
     @include desktop-breakpoint {
       padding-left: 6rem;
       padding-right: 6rem;
@@ -32,37 +29,34 @@
   &__logo {
     width: 8.06rem;
     height: auto;
-    color: white;
+    color: $white;
   }
 
   &__container {
     display: flex;
     margin-top: 1.5rem;
+    width: 100%;
 
     @include tablet-breakpoint {
       margin-top: 0;
+      width: 13rem;
+      justify-content: flex-end;
     }
   }
 
   &__buttons {
-    @include labels-buttons-mobile;
-    width: 10.25rem;
-    height: 2.25rem;
-    border-radius: 20px;
-    //Partials
-    background-color: #232940;
-    color: white;
-
+    background-color: $graphite;
+    color: $cloud;
     border: none;
-
-    @include tablet-breakpoint {
-      width: 107px;
-      height: 38px;
-    }
+    @include button-base;
 
     &:active {
-      background-color: #13182c;
-      font-weight: 600;
+      background-color: $instock-black;
+      color: $white;
+    }
+    &:hover {
+      text-decoration: underline;
+      color: $white;
     }
   }
 }
