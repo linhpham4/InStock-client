@@ -70,8 +70,8 @@ const WarehouseList = () => {
 
 
   return (
-    <>
-    <div className='background'>
+    
+    <main>
 
     <div className='warehouse__headings'>
         <div className='warehouse__title'>
@@ -165,8 +165,8 @@ const WarehouseList = () => {
         ))}
 
     
-    </div>
-    </>
+    </main>
+   
   )
 }
 

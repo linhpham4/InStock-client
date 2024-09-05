@@ -1,10 +1,11 @@
 import "./WarehouseAddPage.scss";
+import WarehouseAddEdit from "../../components/WarehouseAddEdit/WarehouseAddEdit";
 
 function WarehouseAddPage() {
   return (
-    <>
-      <h1>Warehouse Add Page</h1>
-    </>
+    <main>
+      <WarehouseAddEdit actionType="Add New"/>
+    </main>
   );
 }
 
