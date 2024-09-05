@@ -2,6 +2,7 @@ import React from 'react'
 import './WarehouseList.scss'
 import deleteIcon from '../../assets/icons/delete_outline-24px.svg'
 import editIcon from '../../assets/icons/edit-24px.svg'
+import sortIcon from '../../assets/icons/sort-24px.svg'
 
 const WarehouseList = () => {
 
@@ -64,11 +65,26 @@ const WarehouseList = () => {
     <div className='background'>
 
     <div className='warehouse__headings'>
-        <p>WAREHOUSE</p>
-        <p>ADDRESS</p>
-        <p>CONTACT NAME</p>
-        <p>CONTACT INFORMATION</p>
-        <p>ACTIONS</p>
+        <div className='warehouse__title'>
+            <p>WAREHOUSE</p>
+            <img className='warehouse__icon' src={sortIcon} alt="sort" />
+        </div>
+        <div className='warehouse__title'>
+            <p>ADDRESS</p>
+            <img className='warehouse__icon' src={sortIcon} alt="sort" />
+        </div>
+        <div className='warehouse__title'>
+            <p>CONTACT NAME</p>
+            <img className='warehouse__icon' src={sortIcon} alt="sort" />
+        </div>
+        <div className='warehouse__title'>
+            <p>CONTACT INFORMATION</p>
+            <img className='warehouse__icon' src={sortIcon} alt="sort" />
+        </div>
+        <div className='warehouse__title'>
+            <p className='warehouse__title--padding'>ACTIONS</p>
+            <img className='warehouse__icon' src={sortIcon} alt="sort" />
+        </div>
     </div>
 
 
@@ -78,7 +94,24 @@ const WarehouseList = () => {
                 
             <div className='warehouse__card'>
 
-                <div className='warehouse__na'>
+                {/* This code will render at tablet/desktop breakpoints */}
+                <p className='warehouse__name warehouse__name--blue toggle-tabletdesktop'>{warehouse.warehouse}</p>
+                <p className='warehouse__address toggle-tabletdesktop'>{warehouse.address}</p>
+                <p className='warehouse__name toggle-tabletdesktop'>{warehouse.contact}</p>
+                <div className='warehouse__container toggle-tabletdesktop'>
+                    <p className='warehouse__address'>{warehouse.number}</p>
+                    <p className='warehouse__address'>{warehouse.email}</p>
+                </div>
+                <div className='warehouse__alticons toggle-tabletdesktop'>
+                    <img className='warehouse__altimages' src={deleteIcon} alt="delete" />
+                    <img className='images' src={editIcon} alt="edit" />
+                </div>
+                {/* ---------------------------------------------------- */}
+
+
+
+                {/* This code will render at mobile breakpoints */}
+                <div className='warehouse__na toggle-mobile'>
                     <div className='warehouse__container'>
                         <p className='warehouse__label'>WAREHOUSE</p>
                         <p className='warehouse__name warehouse__name--blue'>{warehouse.warehouse}</p>
@@ -89,7 +122,7 @@ const WarehouseList = () => {
                     </div>
                 </div>
 
-                <div className='warehouse__contact'>
+                <div className='warehouse__contact toggle-mobile'>
 
                     <div className='warehouse__container'>
                         <p className='warehouse__label'>CONTACT NAME</p>
@@ -102,10 +135,11 @@ const WarehouseList = () => {
                     </div>
 
                 </div>
+                {/* ---------------------------------------------------- */}
 
             </div>
 
-            <div className='warehouse__icons'>
+            <div className='warehouse__icons toggle-mobile'>
 
                 <img src={deleteIcon} alt="delete" />
                 <img src={editIcon} alt="edit" />
