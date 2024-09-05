@@ -10,6 +10,8 @@ import InventoryEditPage from "./pages/InventoryEditPage/InventoryEditPage";
 import InventoryAddPage from "./pages/InventoryAddPage/InventoryAddPage";
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
+import SectionComponent from "./components/SectionComponent/SectionComponent";
+import SectionComponent2 from "./components/SectionComponent2/SectionComponent2";
 
 
 function App() {
@@ -44,6 +46,10 @@ function App() {
           />
           <Route path="/inventory/add" element={<InventoryAddPage />} />
         </Routes>
+
+        <SectionComponent />
+        <SectionComponent2 />
+
        <Footer />
       </BrowserRouter>
     </>
