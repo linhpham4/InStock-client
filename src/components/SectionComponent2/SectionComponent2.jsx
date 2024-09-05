@@ -1,25 +1,31 @@
-import "./SectionComponent2.scss"
+import "./SectionComponent2.scss";
+import editIcon from "../../assets/icons/edit-white-24px.svg";
+import backArrow from "../../assets/icons/arrow_back-24px.svg";
 
+import React from "react";
 
-
-import React from 'react'
-import Button from "../EditButton/EditButton"
-import backArrow from '../../assets/icons/arrow_back-24px.svg'
-
-function SectionComponent2() {
+function SectionComponent() {
   return (
-    <div className='warehouse-header'>
-      <div className="warehouse-header__location">
-      <img src={backArrow} alt="back arrow icon" className="warehouse-header__arrow" />
-        <h2 className='warehouse-header__heading'>Washington</h2>        
+    <div className="washington-header">
+      <div className="washington-header__location">
+        <img src={backArrow} alt="" />
+
+        <h2 className="washington-header__heading">Washington</h2>
       </div>
 
-        <div className="warehouse-header__inputs">
-        <Button />
-        </div>
-
+      <button className="washington-header__button2">
+        <img src={editIcon} alt="" className="washington-header__btn-icon"/>
+        <p className="washington-header__btn-text">Edit</p>
+      </button>
     </div>
-  )
+  );
 }
 
-export default SectionComponent2
+export default SectionComponent;
+
+{
+  /* <SearchField /> */
+}
+{
+  /* <AddWarehouseButton />             */
+}

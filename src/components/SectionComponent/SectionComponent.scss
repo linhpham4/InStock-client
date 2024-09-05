@@ -3,24 +3,119 @@
 @use '../../styles/partials/variables.scss'as *;
 
 .warehouse-header {
-    display: flex;
     width: 100vw;
-    align-items: center;
-    justify-content: space-between;
-    margin: 1em auto;
-    padding: 1em 2em;
+    display: flex;
+    flex-direction: column;
+    padding: 0 3em;
+    position: relative;
+
+
+    @include tablet-breakpoint {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1em 3em;
+    }
 
     &__heading {
-        @include page-header;
+        font-size: 2.5rem;
         font-weight: 600;
+        padding: 0.51em 0;
+
+        @include tablet-breakpoint {
+        }
     }
 
     &__inputs {
-        display: flex;
-        width: 50vw;
-        align-items: center;
-        justify-content: flex-end;
-        padding: 0 1em;
-        gap: 2em;
+        width: 100%;
+
+        @include tablet-breakpoint {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 60%;
+            gap: 2em;
+        }
+
+        @include desktop-breakpoint {
+            width: 45%;
+
+        }
     }
+
+    &__searchField {
+
+        @include tablet-breakpoint {
+            display: flex;
+            width: 60%;
+            max-width: 450px;
+
+            position: relative;
+        }
+    }
+
+    &__field {
+
+        width: 100%;
+        font-size: 1.1rem;
+        padding: 1.1em 1.5em;
+        border-radius: 1.7em;
+        border: solid 1px $cloud;
+        min-width: 150px;
+        max-height: 47px;
+        margin-bottom: 1.5em;
+
+
+        @include tablet-breakpoint {
+            margin: 0;
+        }
+
+
+    }
+
+
+    &__button2 {
+        background-color: $instock-indigo;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1em;
+        border-radius: 2em;
+        border: none;
+        min-width: 47px;
+        max-height: 47px;
+        width: 100%;
+        min-width: 200px;
+
+
+        @include tablet-breakpoint {
+            width: 40%;
+        }
+
+    }
+
+    &__btn-text {
+        color: $white;
+        font-size: 1.25rem;
+        padding: 1rem;
+
+        @include tablet-breakpoint {
+            font-size: 1rem;
+        }
+    }
+
+
+    &__icon {
+        color: $white;
+        @include mobile-subheader;
+        position: absolute;
+        right: 3.5em;
+        bottom: 4.1em;
+
+        @include tablet-breakpoint {
+            bottom: 0.5em;
+            right: 1em;
+
+        }
+    }
+
 }
