@@ -11,6 +11,7 @@ const WarehouseList = () => {
     const warehouses = [
         {
             warehouse: "Manhattan",
+            id: 1,
             address: "503 Broadway, New York, USA",
             contact: "Parmin Aujla",
             number: "+1 (629) 555-0129",
@@ -18,6 +19,7 @@ const WarehouseList = () => {
         },
         {
             warehouse: "Washington",
+            id: 2,
             address: "33 Pearl Street SW, Washington, USA",
             contact: "Graeme Lyon",
             number: "+1 (647) 504-0911",
@@ -25,6 +27,7 @@ const WarehouseList = () => {
         },
         {
             warehouse: "Jersey",
+            id: 3,
             address: "300 Main Street, New Jersey, USA",
             contact: "Brad MacDonald",
             number: "+1 (401) 377-2337",
@@ -32,6 +35,7 @@ const WarehouseList = () => {
         },
         {
             warehouse: "San Fran",
+            id: 4,
             address: "890 Brannan Street, San Francisco, USA",
             contact: "Gary Wong",
             number: "+1 (239) 555-0108",
@@ -39,6 +43,7 @@ const WarehouseList = () => {
         },
         {
             warehouse: "Santa Monica",
+            id: 5,
             address: "520 Broadway, Santa Monica, USA",
             contact: "Sharon Ng",
             number: "+1 (270) 555-0117",
@@ -46,6 +51,7 @@ const WarehouseList = () => {
         },
         {
             warehouse: "Seattle",
+            id: 6,
             address: "1201 Third Avenue, Seattle, USA",
             contact: "Daniel Bachu",
             number: "+1 (480) 555-0103",
@@ -53,6 +59,7 @@ const WarehouseList = () => {
         },
         {
             warehouse: "Miami",
+            id: 7,
             address: "2650 NW 5th Avenue, Miami, USA",
             contact: "Alana Thomas",
             number: "+1 (647) 832-2065",
@@ -97,7 +104,7 @@ const WarehouseList = () => {
             <div className='warehouse__card'>
 
                 {/* This code will render at tablet/desktop breakpoints */}
-                <Link className='warehouse__link toggle-tabletdesktop'>
+                <Link className='warehouse__link toggle-tabletdesktop' to={`/warehouse/${warehouse.id}`}>
                     <p className='warehouse__name--blue '>{warehouse.warehouse}</p>
                     <img className='warehouse__chevron' src={chevron} alt="chevron" />
                 </Link>
@@ -119,7 +126,7 @@ const WarehouseList = () => {
                 <div className='warehouse__na toggle-mobile'>
                     <div className='warehouse__container'>
                         <p className='warehouse__label'>WAREHOUSE</p>
-                        <Link className='warehouse__link'>
+                        <Link className='warehouse__link' to={`/warehouse/${warehouse.id}`}> 
                             <p className='warehouse__name--blue'>{warehouse.warehouse}</p>
                             <img className='warehouse__chevron' src={chevron} alt="chevron" />
                         </Link>
