@@ -1,4 +1,5 @@
 @use "./variables.scss" as *;
+@use "./typography.scss" as *;
 
 //media queries=============================================================
 @mixin tablet-breakpoint {
@@ -114,11 +115,12 @@
 
 @mixin button-secondary {
   color: $slate;
-  background-color: $light-grey;
+  background-color: $white;
   border: 1px solid $cloud;
   @include button-base;
   &:hover {
     color: $instock-indigo;
+    background-color: $white;
     border-color: $instock-indigo;
   }
 }
@@ -139,7 +141,7 @@
   color: $instock-indigo;
   position: relative;
   &::after {
-    content: url(./assets/icons/chevron_right-24px.svg);
+    content: url("../../assets/icons/chevron_right-24px.svg");
     position: absolute;
     top: 0%;
     margin-left: 0.25rem;
@@ -174,31 +176,32 @@
 }
 
 @mixin dropdown {
-  background-image: url(./assets/icons/arrow_drop_down-24px.svg);
+  background-image: url("../../assets/icons/arrow_drop_down-24px.svg");
   background-repeat: no-repeat;
   background-position: 98% 50%;
   @include text-field;
 }
 
 @mixin search-field {
-  background-image: url(./assets/icons/search-24px.svg);
+  background-image: url("../../assets/icons/search-24px.svg");
   background-repeat: no-repeat;
   background-position: 98% 50%;
   @include text-field;
 }
 
-//this styling is for "This field is required" error message for incomplete fields
-//set visibility: hidden when field is not in error state
+//This styling is for "This field is required" error message for incomplete fields
+//Look in WarehouseAddEdit for example of how to use
 @mixin field-error {
   color: $red;
-  display: relative;
-  @include mobile-labels-links-buttons;
-  @include tablet {
-    @include labels-links-buttons;
+  margin-bottom: -1rem;
+  @include mobile-body-small;
+  @include tablet-breakpoint {
+    margin-bottom: -1.5rem;
+    @include body-small;
   }
   &::before {
-    content: url(./assets/icons/error-24px.svg);
-    margin-right: 0.25rem;
+    content: url("../../assets/icons/error-24px.svg");
+    transform: scale(0.65);
     display: inline-block;
     vertical-align: middle;
   }

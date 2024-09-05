@@ -20,9 +20,13 @@
     padding-left: 1rem;
     padding-right: 1rem;
 
+    @include tablet-breakpoint {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
     @include desktop-breakpoint {
-      padding-left: 6rem;
-      padding-right: 6rem;
+      padding-left: 8.125rem;
+      padding-right: 8.125rem;
     }
   }
 

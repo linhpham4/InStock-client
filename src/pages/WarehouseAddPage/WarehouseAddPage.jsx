@@ -1,13 +1,15 @@
 import SectionComponent from "../../components/SectionComponent/SectionComponent";
 import "./WarehouseAddPage.scss";
+import WarehouseAddEdit from "../../components/WarehouseAddEdit/WarehouseAddEdit";
 
 function WarehouseAddPage() {
   return (
-    <>
-      {/* <h1>Warehouse Add Page</h1> */}
 
+    <main>
       <SectionComponent />
-    </>
+      <WarehouseAddEdit actionType="Add New"/>
+    </main>
+
   );
 }
 
