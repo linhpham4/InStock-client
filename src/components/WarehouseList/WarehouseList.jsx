@@ -3,6 +3,8 @@ import './WarehouseList.scss'
 import deleteIcon from '../../assets/icons/delete_outline-24px.svg'
 import editIcon from '../../assets/icons/edit-24px.svg'
 import sortIcon from '../../assets/icons/sort-24px.svg'
+import chevron from "../../assets/icons/chevron_right-24px.svg"
+import { Link } from 'react-router-dom'
 
 const WarehouseList = () => {
 
@@ -95,7 +97,10 @@ const WarehouseList = () => {
             <div className='warehouse__card'>
 
                 {/* This code will render at tablet/desktop breakpoints */}
-                <p className='warehouse__name warehouse__name--blue toggle-tabletdesktop'>{warehouse.warehouse}</p>
+                <Link className='warehouse__link toggle-tabletdesktop'>
+                    <p className='warehouse__name--blue '>{warehouse.warehouse}</p>
+                    <img className='warehouse__chevron' src={chevron} alt="chevron" />
+                </Link>
                 <p className='warehouse__address toggle-tabletdesktop'>{warehouse.address}</p>
                 <p className='warehouse__name toggle-tabletdesktop'>{warehouse.contact}</p>
                 <div className='warehouse__container toggle-tabletdesktop'>
@@ -114,7 +119,10 @@ const WarehouseList = () => {
                 <div className='warehouse__na toggle-mobile'>
                     <div className='warehouse__container'>
                         <p className='warehouse__label'>WAREHOUSE</p>
-                        <p className='warehouse__name warehouse__name--blue'>{warehouse.warehouse}</p>
+                        <Link className='warehouse__link'>
+                            <p className='warehouse__name--blue'>{warehouse.warehouse}</p>
+                            <img className='warehouse__chevron' src={chevron} alt="chevron" />
+                        </Link>
                     </div>
                     <div className='warehouse__container'>
                         <p className='warehouse__label'>ADDRESS</p>
@@ -130,8 +138,8 @@ const WarehouseList = () => {
                     </div>
                     <div className='warehouse__container'>
                         <p className='warehouse__label'>CONTACT INFORMATION</p>
-                        <p className='warehouse__address'>{warehouse.number}</p>
-                        <p className='warehouse__address'>{warehouse.email}</p>
+                        <p className='warehouse__info'>{warehouse.number}</p>
+                        <p className='warehouse__info'>{warehouse.email}</p>
                     </div>
 
                 </div>
