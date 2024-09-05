@@ -17,6 +17,8 @@
   &__icon {
     width: 30px;
     margin-right: 0.5rem;
+    display: flex;
+    align-self: center;
   }
   &__title {
     font-weight: 600;

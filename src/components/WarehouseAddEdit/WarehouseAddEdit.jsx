@@ -1,6 +1,7 @@
 import "./WarehouseAddEdit.scss";
 import arrow from "../../assets/icons/arrow_back-24px.svg";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 //actionType is passed down from 2 different pages:
 //WarehouseEditPage passes down a value of "Edit"
@@ -78,7 +79,9 @@ const WarehouseAddEdit = ({ actionType }) => {
     <>
       <div className="warehouseAE">
         <div className="warehouseAE__header-container">
-          <img className="warehouseAE__icon" src={arrow} alt="" />
+          <Link to={"/warehouse"} className="warehouseAE__link">
+            <img className="warehouseAE__icon" src={arrow} alt="back arrow" />
+          </Link>
           <h1 className="warehouseAE__title">{`${actionType}`} Warehouse</h1>
         </div>
         <hr className="divider"></hr>
