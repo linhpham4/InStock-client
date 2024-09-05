@@ -6,8 +6,10 @@ import arrow from "../../assets/icons/arrow_back-24px.svg";
 //WarehouseAddPage passes down a value of "Add New"
 
 const WarehouseAddEdit = ( {actionType} ) => {
+
+
   return (
-    <main>
+    <>
       <div className="warehouseAE">
         <div className="warehouseAE__header-container">
           <img className="warehouseAE__icon" src={arrow} alt="" />
@@ -30,6 +32,10 @@ const WarehouseAddEdit = ( {actionType} ) => {
               name="warehouse-name"
               placeholder="Warehouse Name"
             ></input>
+            <p className="warehouseAE__error">This field is required</p>
+            {/* This p tag will stay hidden unless field is not filled in */}
+            {/* Apply warehouseAE__error--show class for error message to show up */}
+
             {/* Address */}
             <label className="warehouseAE__label" htmlFor="address">
               Street Address
@@ -41,6 +47,7 @@ const WarehouseAddEdit = ( {actionType} ) => {
               name="address"
               placeholder="Street Address"
             ></input>
+            <p className="warehouseAE__error">This field is required</p>
             {/* City */}
             <label className="warehouseAE__label" htmlFor="city">
               City
@@ -52,6 +59,7 @@ const WarehouseAddEdit = ( {actionType} ) => {
               name="city"
               placeholder="City"
             ></input>
+            <p className="warehouseAE__error">This field is required</p>
             {/* Country */}
             <label className="warehouseAE__label" htmlFor="country">
               Country
@@ -63,6 +71,7 @@ const WarehouseAddEdit = ( {actionType} ) => {
               name="country"
               placeholder="Country"
             ></input>
+            <p className="warehouseAE__error">This field is required</p>
           </div>
 
           <hr className="divider divider--vertical"></hr>
@@ -80,6 +89,7 @@ const WarehouseAddEdit = ( {actionType} ) => {
               name="contact-name"
               placeholder="Contact Name"
             ></input>
+            <p className="warehouseAE__error">This field is required</p>
             {/* Position */}
             <label className="warehouseAE__label" htmlFor="position">
               Position
@@ -91,6 +101,7 @@ const WarehouseAddEdit = ( {actionType} ) => {
               name="position"
               placeholder="Position"
             ></input>
+            <p className="warehouseAE__error">This field is required</p>
             {/* Phone Number */}
             <label className="warehouseAE__label" htmlFor="phone-number">
               Phone Number
@@ -102,6 +113,7 @@ const WarehouseAddEdit = ( {actionType} ) => {
               name="phone-number"
               placeholder="Phone Number"
             ></input>
+            <p className="warehouseAE__error">This field is required</p>
             {/* Email */}
             <label className="warehouseAE__label" htmlFor="email">
               Email
@@ -113,6 +125,7 @@ const WarehouseAddEdit = ( {actionType} ) => {
               name="email"
               placeholder="Email"
             ></input>
+            <p className="warehouseAE__error">This field is required</p>
           </div>
         </form>
 
@@ -122,7 +135,7 @@ const WarehouseAddEdit = ( {actionType} ) => {
           <button className="warehouseAE__button">Save</button>
         </div>
       </div>
-    </main>
+    </>
   );
 };
 

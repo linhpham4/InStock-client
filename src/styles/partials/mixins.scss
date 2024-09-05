@@ -1,4 +1,5 @@
 @use "./variables.scss" as *;
+@use "./typography.scss" as *;
 
 //media queries=============================================================
 @mixin tablet-breakpoint {
@@ -139,7 +140,7 @@
   color: $instock-indigo;
   position: relative;
   &::after {
-    content: url(./assets/icons/chevron_right-24px.svg);
+    content: url("../../assets/icons/chevron_right-24px.svg");
     position: absolute;
     top: 0%;
     margin-left: 0.25rem;
@@ -174,31 +175,35 @@
 }
 
 @mixin dropdown {
-  background-image: url(./assets/icons/arrow_drop_down-24px.svg);
+  background-image: url("../../assets/icons/arrow_drop_down-24px.svg");
   background-repeat: no-repeat;
   background-position: 98% 50%;
   @include text-field;
 }
 
 @mixin search-field {
-  background-image: url(./assets/icons/search-24px.svg);
+  background-image: url("../../assets/icons/search-24px.svg");
   background-repeat: no-repeat;
   background-position: 98% 50%;
   @include text-field;
 }
 
-//this styling is for "This field is required" error message for incomplete fields
-//set visibility: hidden when field is not in error state
+//This styling is for "This field is required" error message for incomplete fields
+//Put this under the input field: <p className="component__error">This field is required</p>
+//Include this mixin for that class in your scss
+//Make a modifier class like component__error--show and set visibility: visible
+//You can apply the modifier class to the <p> tag when an input field is not filled in
 @mixin field-error {
+  visibility: hidden;
   color: $red;
-  display: relative;
-  @include mobile-labels-links-buttons;
-  @include tablet {
-    @include labels-links-buttons;
+  margin: -0.25rem;
+  @include mobile-body-small;
+  @include tablet-breakpoint {
+    @include body-small;
   }
   &::before {
-    content: url(./assets/icons/error-24px.svg);
-    margin-right: 0.25rem;
+    content: url("../../assets/icons/error-24px.svg");
+    transform: scale(0.65);
     display: inline-block;
     vertical-align: middle;
   }
