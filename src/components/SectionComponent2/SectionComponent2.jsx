@@ -22,10 +22,3 @@ function SectionComponent() {
 }
 
 export default SectionComponent;
-
-{
-  /* <SearchField /> */
-}
-{
-  /* <AddWarehouseButton />             */
-}

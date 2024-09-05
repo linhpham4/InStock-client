@@ -17,8 +17,6 @@ function App() {
   return (
     <>
     <Header />
-    {/* <SectionComponent /> */}
-    <SectionComponent2 />
       <Footer />
     </>
   );
