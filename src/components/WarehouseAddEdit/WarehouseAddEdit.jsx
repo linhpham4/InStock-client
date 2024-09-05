@@ -1,12 +1,78 @@
 import "./WarehouseAddEdit.scss";
 import arrow from "../../assets/icons/arrow_back-24px.svg";
+import { useState } from "react";
 
 //actionType is passed down from 2 different pages:
 //WarehouseEditPage passes down a value of "Edit"
 //WarehouseAddPage passes down a value of "Add New"
+const WarehouseAddEdit = ({ actionType }) => {
+  //state variable for form input values with inital state of "" for all
+  const initialInput = {
+    warehouseName: "",
+    address: "",
+    city: "",
+    country: "",
+    contactName: "",
+    position: "",
+    phoneNumber: "",
+    email: "",
+  };
+  const [userInput, setUserInput] = useState(initialInput);
 
-const WarehouseAddEdit = ( {actionType} ) => {
+  //state variable for validation errors
+  const [errors, setErrors] = useState({});
 
+  //update state variable for changes made in any input field
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    setUserInput((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleCancel = (event) => {
+    setUserInput(initialInput);
+    setErrors(initialInput);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    let validationErrors = {};
+
+    //check that input in Phone Number field is a number
+    //phoneNumber key with value of the error message will be added to validationErrors if not a number
+    const phoneInput = userInput.phoneNumber;
+    if (phoneInput && Number(phoneInput) != phoneInput) {
+      validationErrors.phoneNumber = "Must be a number";
+    }
+
+    //check that input in Email field is a valid email
+    //email key with value of the error message will be added to validationErrors if not valid email
+    const emailInput = userInput.email;
+    if (
+      emailInput &&
+      (!emailInput.includes("@") || !emailInput.includes("."))
+    ) {
+      validationErrors.email = "Must include @ and .";
+    }
+
+    //loop through state variable and check for any key with an empty value
+    //any key with an empty value will be put into validationErrors with a value of the error message
+    for (const key in userInput) {
+      if (!userInput[key]) {
+        validationErrors[key] = "This field is required";
+      }
+    }
+
+    //if a key exists in validationErrors, update the errors state variable
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+  };
 
   return (
     <>
@@ -16,123 +82,163 @@ const WarehouseAddEdit = ( {actionType} ) => {
           <h1 className="warehouseAE__title">{`${actionType}`} Warehouse</h1>
         </div>
         <hr className="divider"></hr>
-        
-        {/* Form */}
-        <form className="warehouseAE__form">
+
+        {/* Form ========================================================  */}
+        <form
+          className="warehouseAE__form"
+          id="warehouseAE"
+          onSubmit={handleSubmit}
+        >
           <div className="warehouseAE__container">
             <h2 className="warehouseAE__sub-title">Warehouse Details</h2>
-            {/* Warehouse Name */}
-            <label className="warehouseAE__label" htmlFor="warehouse-name">
+
+            {/* Warehouse Name ======================================================== */}
+            <label className="warehouseAE__label" htmlFor="warehouseName">
               Warehouse Name
             </label>
             <input
-              className="warehouseAE__input"
+              // If form is empty on submit, modified class will be added to turn border red
+              className={`warehouseAE__input ${errors.warehouseName && "warehouseAE__input--invalid"}`}
               type="text"
-              id="warehouse-name"
-              name="warehouse-name"
+              id="warehouseName"
+              name="warehouseName"
               placeholder="Warehouse Name"
+              value={userInput.warehouseName}
+              onChange={handleChange}
             ></input>
-            <p className="warehouseAE__error">This field is required</p>
-            {/* This p tag will stay hidden unless field is not filled in */}
-            {/* Apply warehouseAE__error--show class for error message to show up */}
+            {/* If form is empty on submit, error message will show up below input field */}
+            {errors.warehouseName && <p className="warehouseAE__error">{errors.warehouseName}</p>}
 
-            {/* Address */}
+            {/* Address  ======================================================== */}
             <label className="warehouseAE__label" htmlFor="address">
               Street Address
             </label>
             <input
-              className="warehouseAE__input"
+              className={`warehouseAE__input ${errors.address && "warehouseAE__input--invalid"}`}
               type="text"
               id="address"
               name="address"
               placeholder="Street Address"
+              value={userInput.address}
+              onChange={handleChange}
             ></input>
-            <p className="warehouseAE__error">This field is required</p>
-            {/* City */}
+            {errors.address && <p className="warehouseAE__error">{errors.address}</p>}
+
+            {/* City  ======================================================== */}
             <label className="warehouseAE__label" htmlFor="city">
               City
             </label>
             <input
-              className="warehouseAE__input"
+              className={`warehouseAE__input ${errors.city && "warehouseAE__input--invalid"}`}
               type="text"
               id="city"
               name="city"
               placeholder="City"
+              value={userInput.city}
+              onChange={handleChange}
             ></input>
-            <p className="warehouseAE__error">This field is required</p>
-            {/* Country */}
+            {errors.city && <p className="warehouseAE__error">{errors.city}</p>}
+
+            {/* Country  ======================================================== */}
             <label className="warehouseAE__label" htmlFor="country">
               Country
             </label>
             <input
-              className="warehouseAE__input"
+              className={`warehouseAE__input ${errors.country && "warehouseAE__input--invalid"}`}
               type="text"
               id="country"
               name="country"
               placeholder="Country"
+              value={userInput.country}
+              onChange={handleChange}
             ></input>
-            <p className="warehouseAE__error">This field is required</p>
+            {errors.country && <p className="warehouseAE__error">{errors.country}</p>}
           </div>
 
           <hr className="divider divider--vertical"></hr>
 
           <div className="warehouseAE__container">
             <h2 className="warehouseAE__sub-title">Contact Details</h2>
-            {/* Contact Name */}
-            <label className="warehouseAE__label" htmlFor="contact-name">
+
+            {/* Contact Name  ======================================================== */}
+            <label className="warehouseAE__label" htmlFor="contactName">
               Contact Name
             </label>
             <input
-              className="warehouseAE__input"
+              className={`warehouseAE__input ${errors.contactName && "warehouseAE__input--invalid"}`}
               type="text"
-              id="contact-name"
-              name="contact-name"
+              id="contactName"
+              name="contactName"
               placeholder="Contact Name"
+              value={userInput.contactName}
+              onChange={handleChange}
             ></input>
-            <p className="warehouseAE__error">This field is required</p>
-            {/* Position */}
+            {errors.contactName && <p className="warehouseAE__error">{errors.contactName}</p>}
+
+            {/* Position  ======================================================== */}
             <label className="warehouseAE__label" htmlFor="position">
               Position
             </label>
             <input
-              className="warehouseAE__input"
+              className={`warehouseAE__input ${errors.position && "warehouseAE__input--invalid"}`}
               type="text"
               id="position"
               name="position"
               placeholder="Position"
+              value={userInput.position}
+              onChange={handleChange}
             ></input>
-            <p className="warehouseAE__error">This field is required</p>
-            {/* Phone Number */}
-            <label className="warehouseAE__label" htmlFor="phone-number">
+            {errors.position && <p className="warehouseAE__error">{errors.position}</p>}
+
+            {/* Phone Number  ======================================================== */}
+            <label className="warehouseAE__label" htmlFor="phoneNumber">
               Phone Number
             </label>
             <input
-              className="warehouseAE__input"
+              className={`warehouseAE__input ${errors.phoneNumber && "warehouseAE__input--invalid"}`}
               type="text"
-              id="phone-number"
-              name="phone-number"
+              id="phoneNumber"
+              name="phoneNumber"
               placeholder="Phone Number"
+              value={userInput.phoneNumber}
+              onChange={handleChange}
             ></input>
-            <p className="warehouseAE__error">This field is required</p>
-            {/* Email */}
+            {errors.phoneNumber && <p className="warehouseAE__error">{errors.phoneNumber}</p>}
+
+            {/* Email  ======================================================== */}
             <label className="warehouseAE__label" htmlFor="email">
               Email
             </label>
             <input
-              className="warehouseAE__input"
+              className={`warehouseAE__input ${errors.email && "warehouseAE__input--invalid"}`}
               type="text"
               id="email"
               name="email"
               placeholder="Email"
+              value={userInput.email}
+              onChange={handleChange}
             ></input>
-            <p className="warehouseAE__error">This field is required</p>
+            {errors.email && <p className="warehouseAE__error">{errors.email}</p>}
           </div>
         </form>
 
-        {/* Buttons */}
+        {/* Buttons ========================================================  */}
         <div className="warehouseAE__button-container">
-          <button className="warehouseAE__button warehouseAE__button--cancel">Cancel</button>
-          <button className="warehouseAE__button">Save</button>
+          <button
+            className="warehouseAE__button warehouseAE__button--cancel"
+            type="reset"
+            form="warehouseAE"
+            onClick={handleCancel}
+          >
+            Cancel
+          </button>
+          <button
+            className="warehouseAE__button"
+            type="submit"
+            form="warehouseAE"
+          >
+            Save
+          </button>
         </div>
       </div>
     </>

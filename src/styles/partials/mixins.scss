@@ -120,6 +120,7 @@
   @include button-base;
   &:hover {
     color: $instock-indigo;
+    background-color: $white;
     border-color: $instock-indigo;
   }
 }
@@ -189,16 +190,13 @@
 }
 
 //This styling is for "This field is required" error message for incomplete fields
-//Put this under the input field: <p className="component__error">This field is required</p>
-//Include this mixin for that class in your scss
-//Make a modifier class like component__error--show and set visibility: visible
-//You can apply the modifier class to the <p> tag when an input field is not filled in
+//Look in WarehouseAddEdit for example of how to use
 @mixin field-error {
-  visibility: hidden;
   color: $red;
-  margin: -0.25rem;
+  margin-bottom: -1rem;
   @include mobile-body-small;
   @include tablet-breakpoint {
+    margin-bottom: -1.5rem;
     @include body-small;
   }
   &::before {
