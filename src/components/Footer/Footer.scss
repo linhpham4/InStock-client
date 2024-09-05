@@ -1,28 +1,25 @@
-@use '../../styles/partials/mixins.scss'as *;
-@use '../../styles/partials/typography.scss'as *;
-@use '../../styles/partials/variables.scss'as *;
-
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/typography.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
 
 .footer {
-
-    width: 100vw;
-    padding: 1em;
-
-    &__copy {
-        display: flex;
-        justify-content: center;
-        font-size: 0.7rem;
-        padding: 1em;
-        margin: 2em auto;
-        min-width: 250px;
-        max-width: 350px;
-        
-        @include tablet-breakpoint {
-            font-size: 0.8rem;
-        }
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__copy {
+    margin: 2.5rem;
+    color: $slate;
+    @include mobile-body-small;
+    @include tablet-breakpoint {
+      @include body-small;
     }
-
-    &__copyright-icon {
-        font-size: 0.6rem;
+  }
+  &__copyright-icon {
+    color: $slate;
+    @include mobile-body-small;
+    @include tablet-breakpoint {
+      @include body-small;
     }
+  }
 }
