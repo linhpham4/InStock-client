@@ -48,8 +48,8 @@ function App() {
         </Routes>
 
 
-        <SectionComponent />
-        <SectionComponent2 />
+        {/* <SectionComponent /> */}
+        {/* <SectionComponent2 /> */}
 
        <Footer />
 
