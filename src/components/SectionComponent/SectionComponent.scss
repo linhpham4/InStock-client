@@ -91,6 +91,13 @@
             width: 40%;
         }
 
+        &:hover {
+            background-color: $graphite;
+            border-color: $graphite;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
     }
 
     &__btn-text {

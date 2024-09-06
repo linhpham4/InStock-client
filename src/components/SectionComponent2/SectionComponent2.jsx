@@ -7,8 +7,9 @@ import { Link } from "react-router-dom";
 // title="<header title>"
 // backLink="</route to go when back arrow is clicked>"
 // buttonDisplay="hidden" if you need to hide the button, don't pass anything if you don't need to hide
+// buttonLink="</route to go when button is clicked>"
 
-function SectionComponent({ title, backLink, buttonDisplay }) {
+function SectionComponent({ title, backLink, buttonDisplay, buttonLink }) {
   return (
     <>
       <div className="washington-header">
@@ -19,10 +20,12 @@ function SectionComponent({ title, backLink, buttonDisplay }) {
           <h2 className="washington-header__heading">{title}</h2>
         </div>
 
+        <Link to={buttonLink} >
         <button className={`washington-header__button2 washington-header__button2--${buttonDisplay}`}>
           <img src={editIcon} alt="" className="washington-header__btn-icon" />
           <p className="washington-header__btn-text">Edit</p>
         </button>
+        </Link>
       </div>
       <hr className="divider"></hr>
     </>
