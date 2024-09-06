@@ -6,8 +6,9 @@ import SectionComponent2 from "../SectionComponent2/SectionComponent2";
 // title="<header title>" --> pass on to SectionComponent2
 // backLink="</route to go when back arrow is clicked>" --> pass on to SectionComponent2
 // buttonText="<button text>" 
+// buttonDisplay="hidden" --> pass on to SectionComponent2
 
-const WarehouseAddEdit = ({ title, backLink, buttonText }) => {
+const WarehouseAddEdit = ({ title, backLink, buttonText, buttonDisplay }) => {
   //state variable for form input values with inital state of "" for all
   const initialInput = {
     warehouseName: "",
@@ -78,7 +79,7 @@ const WarehouseAddEdit = ({ title, backLink, buttonText }) => {
 
   return (
     <>
-    <SectionComponent2 title={title} backLink={backLink} />
+    <SectionComponent2 title={title} backLink={backLink} buttonDisplay={buttonDisplay} />
       <div className="warehouseAE">
         <form
           className="warehouseAE__form"
