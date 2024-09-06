@@ -3,41 +3,38 @@
 @use '../../styles/partials/variables.scss'as *;
 
 .washington-header {
-    width: 100vw;
+    width: 100%;
     display: flex;
-    padding: 1em 3em;
+    padding: 2rem 1.5rem 1.5rem;
     align-items: center;
     justify-content: space-between;
-    position: relative;
-
 
     @include tablet-breakpoint {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 1em 3em;
+        padding: 2rem 2.5rem 1.5rem;
     }
 
     &__heading {
-        font-size: 2.5rem;
         font-weight: 600;
+        @include mobile-page-header;
 
-        @include tablet-breakpoint {}
+        @include tablet-breakpoint {
+            @include page-header;
+        }
     }
 
     &__location {
         display: flex;
-        gap: 1em;
-
+        gap: 0.5rem;
     }
-
-
 
     &__button2 {
         background-color: $instock-indigo;
         padding: 0.7em;
         border-radius: 50%;
         border: none;
-
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         @include tablet-breakpoint {
             display: flex;
@@ -46,13 +43,18 @@
             padding: 0.7em 1.5em;
             gap: 0.5em;
             border-radius: 2em;
-
         }
 
         &--hidden {
             display: none;
           }
 
+        &:hover {
+            background-color: $graphite;
+            border-color: $graphite;
+            transition: 0.3s;
+            cursor: pointer;
+        }
     }
 
     &__btn-text {
@@ -60,10 +62,13 @@
 
         @include tablet-breakpoint {
             display: inline-block;
-            font-size: 1rem;
             color: $white;
-            font-size: 1.25rem;
+            @include labels-links-buttons;
         }
+    }
+
+    &__btn-icon {
+        width: 20px;
     }
 
     &__link{

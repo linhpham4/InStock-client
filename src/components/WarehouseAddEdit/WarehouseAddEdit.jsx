@@ -1,7 +1,5 @@
 import "./WarehouseAddEdit.scss";
-import arrow from "../../assets/icons/arrow_back-24px.svg";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import SectionComponent2 from "../SectionComponent2/SectionComponent2";
 
 // pass as props when calling this component WarehouseAddPage & WarehouseEditPage:
@@ -80,7 +78,7 @@ const WarehouseAddEdit = ({ title, backLink, buttonText }) => {
 
   return (
     <>
-    <SectionComponent2 title={title} backLink={backLink} buttonDisplay="hidden"/>
+    <SectionComponent2 title={title} backLink={backLink} />
       <div className="warehouseAE">
         <form
           className="warehouseAE__form"
