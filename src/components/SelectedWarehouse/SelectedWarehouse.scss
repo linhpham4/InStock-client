@@ -3,35 +3,38 @@
 @use '../../styles/partials/variables.scss'as *;
 
 .selectedWarehouse {
+
+    font-size: 1em;
     background-color: $light-grey;
-    width: 100%;
     padding: 1em 2em;
     border: 1px solid $cloud;
     border-radius: 4px;
 
-    &--vertical {
-        margin: 0 -1.5rem;
-
-        @include tablet-breakpoint {
-            margin: 1.5rem 2rem;
-        }
-
-        @include desktop-breakpoint {
-            margin: 1.5rem 2.5rem;
-        }
+    @include tablet-breakpoint {
+        display: flex;
+        justify-content: space-between;
+        @include mobile-body-large;
     }
 
-    &__location {
-        // display: flex;
+    @include desktop-breakpoint {
+        @include body-large;
     }
 
-    &__location-heading {
+    &__heading {
         padding-bottom: 0.51em;
+        font-weight: 700;
+        color: $slate;
     }
 
     &__full-address {
         display: flex;
         padding-bottom: 2em;
+
+        @include tablet-breakpoint {
+            flex-direction: column;
+            width: 100%;
+            padding: 0;
+        }
 
     }
 
@@ -40,13 +43,26 @@
         margin-left: 0.2em;
     }
 
-
-
     &__point-info {
         display: flex;
-        width: 100%;
-        gap: 2em;
-        // justify-content: space-between;
 
+        @include tablet-breakpoint {
+            width: 60%;
+            border-left: solid 1px $cloud;
+            padding-left: 2em;
+        }
+
+    }
+
+    &__point {
+
+        @include tablet-breakpoint {
+            margin-left: 1em;
+
+        }
+    }
+
+    &__info {
+        margin-left: 3em;
     }
 }

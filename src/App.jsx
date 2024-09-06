@@ -47,15 +47,6 @@ function App() {
           />
           <Route path="/inventory/add" element={<InventoryAddPage />} />
         </Routes>
-        
-        {/* <WarehouseDetailsPage /> */}
-{/* ========================================= */}
-        {/* <WarehouseDetails /> */}
-
-        {/* <WarehouseList /> */}
-
-        
-
 
        <Footer />
 

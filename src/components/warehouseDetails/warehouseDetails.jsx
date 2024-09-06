@@ -20,8 +20,8 @@ function WarehouseDetails() {
 
     const getWarehouseDetails = async () => {
         try {
-            // const results = await axios.get(`${URL}/warehouses/${warehouseId}`);
-            const results = await axios.get(`${URL}/warehouses/1`);
+            const results = await axios.get(`${URL}/warehouses/${warehouseId}`);
+            // const results = await axios.get(`${URL}/warehouses/2`);
             const selectedWarehouse = results.data
             setSelectedWarehouse(selectedWarehouse)
             // console.log(results)
