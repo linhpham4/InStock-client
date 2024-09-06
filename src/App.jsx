@@ -10,6 +10,8 @@ import InventoryEditPage from "./pages/InventoryEditPage/InventoryEditPage";
 import InventoryAddPage from "./pages/InventoryAddPage/InventoryAddPage";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import WarehouseDetails from "./components/warehouseDetails/warehouseDetails";
+// import WarehouseList from "./components/WarehouseList/WarehouseList";
 
 
 
@@ -47,6 +49,12 @@ function App() {
         </Routes>
         
         <WarehouseDetailsPage />
+{/* ========================================= */}
+        <WarehouseDetails />
+
+        {/* <WarehouseList /> */}
+
+        
 
 
        <Footer />

@@ -1,83 +1,60 @@
-import './warehouseDetails.scss'
+import React from 'react';
+
+
+import './warehouseDetails.scss';
+import { useState, useEffect } from 'react';
+// import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
+import SelectedWarehouse from '../SelectedWarehouse/SelectedWarehouse';
 
 const URL = import.meta.env.VITE_APP_BASE_URL;
 
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+function WarehouseDetails() {
+    // const navigate = useNavigate();
 
+    // const { id } = useParams();
+    const [selectedWarehouse, setSelectedWarehouse] = useState(null);
 
-
-function WarehaouseDetails() {
-
-
-    const { id } = useParams();
-    // console.log(id)
-    const [videos, setVideos] = useState([]);
-    const [selectedWarehouse, setSelectedWarehouse] = useState();
-
-    const getVideos = async () => {
-        try {
-            const results = await axios.get(`${URL}/warehouses`);
-            const videos = results.data;
-            console.log(videos)
-            setVideos(videos);
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     const getWarehouseDetails = async () => {
-    // const getWarehouseDetails = async (warehousId) => {
+    // const getWarehouseDetails = async (warehouseId) => {
         try {
-            const results = await axios.get(`${URL}/warehouses/${}`);
-            // const results = await axios.get(`${URL}/warehouses/${warehousId}`);
-            console.log(results)
-            const WarehouseDetails = results.data;
-            console.log(WarehouseDetails)
-            setSelectedWarehouse(WarehouseDetails);
+            // const results = await axios.get(`${URL}/warehouses/${warehouseId}`);
+            const results = await axios.get(`${URL}/warehouses/1`);
+            const selectedWarehouse = results.data
+            setSelectedWarehouse(selectedWarehouse)
+                        console.log(results)
+
         } catch (error) {
-            console.log(error);
+            console.error('unable to get warehouse details:', error);
         }
-    }
+    };
 
     useEffect(() => {
-        getWarehouseDetails();
-
-
+        // if (id && warehouses.length > 0) {
+        //     getWarehouseDetails(id);
+            getWarehouseDetails();
+    // }, [id, warehouses]);
     }, []);
-
-
-
-    // useEffect(() => {
-    //     if (videos.length > 0) {
-    //         const warehouseId = id ? id : videos[0].id;
-    //         getWarehouseDetails(warehouseId)
-
-    //     }
-
-    // }, [id, videos]);
-
-    if (selectedWarehouse === undefined) {
-        return <>
-            <main className='main'>Loading...</main>
-        </>
-    }
-    // console.log(selectedVideo)
-
-    // const filteredVideoList = videos.filter(video => video.id !== selectedVideo.id)
 
     return (
         <div className='container'>
             <div className="container__main-content">
-                <selectedWarehouse selectedWarehouse={selectedWarehouse} />
-            <p>
-                `WAREHOUSE NAME ${}`
-            </p>
+                <SelectedWarehouse selectedWarehouse={selectedWarehouse} />
             </div>
 
+            {/* <button className="back-button" onClick={() => navigate('/warehouses')}>
+        &larr; Back to Warehouse List
+      </button> */}
         </div>
     );
 }
 
-export default WarehaouseDetails;
+
+
+
+
+
+export default WarehouseDetails;
