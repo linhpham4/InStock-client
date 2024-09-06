@@ -50,7 +50,7 @@ function App() {
         
         {/* <WarehouseDetailsPage /> */}
 {/* ========================================= */}
-        <WarehouseDetails />
+        {/* <WarehouseDetails /> */}
 
         {/* <WarehouseList /> */}
 
