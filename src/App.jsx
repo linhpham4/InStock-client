@@ -48,7 +48,7 @@ function App() {
           <Route path="/inventory/add" element={<InventoryAddPage />} />
         </Routes>
         
-        <WarehouseDetailsPage />
+        {/* <WarehouseDetailsPage /> */}
 {/* ========================================= */}
         <WarehouseDetails />
 

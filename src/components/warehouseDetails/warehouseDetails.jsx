@@ -3,7 +3,7 @@ import React from 'react';
 
 import './warehouseDetails.scss';
 import { useState, useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
@@ -14,15 +14,15 @@ const URL = import.meta.env.VITE_APP_BASE_URL;
 function WarehouseDetails() {
     // const navigate = useNavigate();
 
-    // const { id } = useParams();
-    const [selectedWarehouse, setSelectedWarehouse] = useState(null);
+    const { warehouseId } = useParams();
+    console.log(warehouseId)
+    const [selectedWarehouse, setSelectedWarehouse] = useState([]);
 
 
     const getWarehouseDetails = async () => {
-    // const getWarehouseDetails = async (warehouseId) => {
         try {
-            // const results = await axios.get(`${URL}/warehouses/${warehouseId}`);
-            const results = await axios.get(`${URL}/warehouses/1`);
+            const results = await axios.get(`${URL}/warehouses/${warehouseId}`);
+            // const results = await axios.get(`${URL}/warehouses/1`);
             const selectedWarehouse = results.data
             setSelectedWarehouse(selectedWarehouse)
                         console.log(results)
@@ -33,11 +33,10 @@ function WarehouseDetails() {
     };
 
     useEffect(() => {
-        // if (id && warehouses.length > 0) {
-        //     getWarehouseDetails(id);
             getWarehouseDetails();
-    // }, [id, warehouses]);
-    }, []);
+            // getWarehouseDetails(warehouseId);
+    // }, []);
+    }, [warehouseId]);
 
     return (
         <div className='container'>
@@ -51,10 +50,5 @@ function WarehouseDetails() {
         </div>
     );
 }
-
-
-
-
-
 
 export default WarehouseDetails;
