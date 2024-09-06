@@ -1,0 +1,230 @@
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
+
+.background {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  box-shadow: 0px 2px 5px 0px #13182c1a;
+}
+
+.warehouse {
+  border-bottom: 1px solid #bdc5d5;
+  padding-bottom: 1.5rem;
+
+  @include tablet-breakpoint {
+    padding-top: 1.5rem;
+  }
+
+  &__link {
+    display: flex;
+
+    @include tablet-breakpoint {
+        justify-content: flex-start;
+    }
+  }
+
+  &__chevron {
+    height: 20px;
+    width: 20px;
+
+    @include tablet-breakpoint {
+        height: 22px;
+    }
+  }
+
+  &__alticons {
+    @include tablet-breakpoint {
+      padding-left: 2rem;
+      gap: 0.5rem;
+    }
+
+    @include desktop-breakpoint {
+      padding-left: 4rem;
+    }
+  }
+
+  &__altimages {
+    @include tablet-breakpoint {
+      height: 24px;
+      width: 24px;
+    }
+  }
+
+  &__title {
+    width: 8.25rem; // Controls spacing for header-card alignment
+    display: flex;
+
+    @include desktop-breakpoint {
+      width: 11rem;
+    }
+
+    &--padding {
+      padding-left: 2rem;
+
+      @include desktop-breakpoint {
+        padding-left: 4rem;
+      }
+    }
+  }
+
+  &__icon {
+    height: 16px;
+    width: 16px;
+  }
+
+  &__container {
+    @include tablet-breakpoint {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  &__headings {
+    display: none;
+    border-radius: 4px 4px 0 0;
+
+    @include tablet-breakpoint {
+      @include mobile-body-small;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 100%;
+      height: 40px;
+      background-color: $light-grey;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    @include desktop-breakpoint {
+      gap: 2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  &__card {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem;
+
+    @include mobile-body-small;
+
+    @include tablet-breakpoint {
+      gap: 0.5rem;
+      padding: 0 1rem;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    @include desktop-breakpoint {
+      gap: 2rem;
+      padding: 0 2rem;
+    }
+  }
+
+  &__icons {
+    width: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    display: flex;
+    justify-content: space-between;
+
+    @include tablet-breakpoint {
+      display: none;
+    }
+
+    &--tabletdesktop {
+      display: none;
+
+      @include tablet-breakpoint {
+        display: flex;
+      }
+    }
+  }
+
+  &__label {
+    color: $slate;
+    font-weight: 600;
+    @include mobile-table-header;
+
+    @include tablet-breakpoint {
+      display: none;
+    }
+  }
+
+  &__address {
+    @include mobile-body-medium;
+
+    @include tablet-breakpoint {
+      @include body-medium;
+    }
+  }
+
+  &__info {
+    @include mobile-body-medium;
+
+    @include tablet-breakpoint {
+      @include body-medium;
+    }
+  }
+
+  &__name {
+    @include mobile-body-medium;
+
+    @include tablet-breakpoint {
+      @include body-medium;
+    }
+
+    &--blue {
+      @include mobile-labels-links-buttons;
+      color: $instock-indigo;
+
+      @include tablet-breakpoint {
+        @include labels-links-buttons;
+      }
+    }
+  }
+
+  &__na {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 45%;
+
+    @include tablet-breakpoint {
+      flex-direction: row;
+    }
+  }
+
+  &__contact {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 45%;
+
+    @include tablet-breakpoint {
+      flex-direction: row;
+    }
+  }
+}
+
+.toggle-mobile {
+  @include tablet-breakpoint {
+    display: none;
+  }
+}
+
+.toggle-tabletdesktop {
+  display: none;
+
+  @include tablet-breakpoint {
+    display: flex;
+    width: 8.25rem; // Controls spacing for header-card alignment
+  }
+
+  @include desktop-breakpoint {
+    width: 11rem;
+  }
+}
