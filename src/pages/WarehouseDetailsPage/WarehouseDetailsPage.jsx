@@ -4,6 +4,7 @@ import WarehouseDetails from "../../components/warehouseDetails/warehouseDetails
 import WarehouseList from "../../components/WarehouseList/WarehouseList";
 
 function WarehouseDetailsPage() {
+
   return (
     <div className="warehouseDetailsPage">
       {/* <h1>Warehouse Details Page</h1> */}
@@ -14,6 +15,7 @@ function WarehouseDetailsPage() {
     </div>
   );
 }
+
 
 export default WarehouseDetailsPage;
 
