@@ -2,11 +2,14 @@ import "./WarehouseAddEdit.scss";
 import arrow from "../../assets/icons/arrow_back-24px.svg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SectionComponent2 from "../SectionComponent2/SectionComponent2";
 
-//actionType is passed down from 2 different pages:
-//WarehouseEditPage passes down a value of "Edit"
-//WarehouseAddPage passes down a value of "Add New"
-const WarehouseAddEdit = ({ actionType }) => {
+// pass as props when calling this component WarehouseAddPage & WarehouseEditPage:
+// title="<header title>" --> pass on to SectionComponent2
+// backLink="</route to go when back arrow is clicked>" --> pass on to SectionComponent2
+// buttonText="<button text>" 
+
+const WarehouseAddEdit = ({ title, backLink, buttonText }) => {
   //state variable for form input values with inital state of "" for all
   const initialInput = {
     warehouseName: "",
@@ -77,16 +80,8 @@ const WarehouseAddEdit = ({ actionType }) => {
 
   return (
     <>
+    <SectionComponent2 title={title} backLink={backLink} buttonDisplay="hidden"/>
       <div className="warehouseAE">
-        <div className="warehouseAE__header-container">
-          <Link to={"/warehouse"} className="warehouseAE__link">
-            <img className="warehouseAE__icon" src={arrow} alt="back arrow" />
-          </Link>
-          <h1 className="warehouseAE__title">{`${actionType}`} Warehouse</h1>
-        </div>
-        <hr className="divider"></hr>
-
-        {/* Form ========================================================  */}
         <form
           className="warehouseAE__form"
           id="warehouseAE"
@@ -240,7 +235,7 @@ const WarehouseAddEdit = ({ actionType }) => {
             type="submit"
             form="warehouseAE"
           >
-            Save
+            {buttonText}
           </button>
         </div>
       </div>
