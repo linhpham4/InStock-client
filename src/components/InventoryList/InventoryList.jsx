@@ -18,7 +18,7 @@ const InventoryList = () => {
     const { warehouseId } = useParams();
 
     async function getInventoryByWarehouse() {
-        const inventory = await axios.get(`${baseUrl}/stock/warehouses/${warehouseId}/inventories`)
+        const inventory = await axios.get(`${baseUrl}/stock/inventories`)
         setInventory(inventory.data)
     }
 
@@ -54,6 +54,10 @@ const InventoryList = () => {
             <img className='inventory__icon' src={sortIcon} alt="sort" />
         </div>
         <div className='inventory__title'>
+            <p>WAREHOUSE</p>
+            <img className='inventory__icon' src={sortIcon} alt="sort" />
+        </div>
+        <div className='inventory__title'>
             <p className='inventory__title--padding'>ACTIONS</p>
         </div>
     </div>
@@ -74,6 +78,9 @@ const InventoryList = () => {
                 <p className='inventory__name toggle-tabletdesktop'>{item.status}</p>
                 <div className='inventory__container toggle-tabletdesktop'>
                     <p className='inventory__address'>{item.quantity}</p>
+                </div>
+                <div className='inventory__container toggle-tabletdesktop'>
+                    <p className='inventory__address'>{item.warehouse_name}</p>
                 </div>
                 <div className='inventory__alticons toggle-tabletdesktop'>
                     <img className='inventory__altimages' src={deleteIcon} alt="delete" />
@@ -107,6 +114,10 @@ const InventoryList = () => {
                     <div className='inventory__container'>
                         <p className='inventory__label'>QTY</p>
                         <p className='inventory__info'>{item.quantity}</p>
+                    </div>
+                    <div className='inventory__container'>
+                        <p className='inventory__label'>WAREHOUSE</p>
+                        <p className='inventory__info'>{item.warehouse_name}</p>
                     </div>
 
                 </div>

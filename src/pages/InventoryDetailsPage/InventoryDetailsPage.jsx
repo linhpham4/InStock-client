@@ -1,11 +1,12 @@
 import "./InventoryDetailsPage.scss";
+import InventoryList from "../../components/InventoryList/InventoryList";
 
 function InventoryDetailsPage() {
   return (
     <>
-      <h1>Inventory Details Page</h1>
+      <InventoryList />
     </>
-  );
+  )
 }
 
 export default InventoryDetailsPage;
