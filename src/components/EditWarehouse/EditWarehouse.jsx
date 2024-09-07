@@ -2,6 +2,7 @@ import "./EditWarehouse.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const EditWarehouse = () => {
 
@@ -21,6 +22,7 @@ const EditWarehouse = () => {
   const [userInput, setUserInput] = useState(initialInput);
   const [notFound, setNotFound] = useState(null);
   const baseUrl = import.meta.env.VITE_APP_BASE_URL;
+  const navigate = useNavigate();
 
   // get data for the warehouse with id matching warehouseId
   const getWarehouse = async () => {
