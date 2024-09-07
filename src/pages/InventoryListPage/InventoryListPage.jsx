@@ -9,7 +9,7 @@ function InventoryListPage() {
     <div className="test">
       <h1>Inventory List Page</h1>
       <SectionComponent />
-      {/* <WarehouseInventoryList /> */}
+      <WarehouseInventoryList />
       <DeleteInventoryModal />
     </div>
   );

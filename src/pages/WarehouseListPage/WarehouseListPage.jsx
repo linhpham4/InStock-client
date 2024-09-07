@@ -5,7 +5,7 @@ import SectionComponent from "../../components/SectionComponent/SectionComponent
 function WarehouseListPage() {
   return (
     <>
-    <SectionComponent />
+    {/* <SectionComponent /> */}
       <WarehouseList />
     </>
   );
