@@ -69,105 +69,105 @@ const WarehouseList = () => {
 
 
 
-  return (
-    
-    <main>
+    return (
 
-    <div className='warehouse__headings'>
-        <div className='warehouse__title'>
-            <p>WAREHOUSE</p>
-            <img className='warehouse__icon' src={sortIcon} alt="sort" />
-        </div>
-        <div className='warehouse__title'>
-            <p>ADDRESS</p>
-            <img className='warehouse__icon' src={sortIcon} alt="sort" />
-        </div>
-        <div className='warehouse__title'>
-            <p>CONTACT NAME</p>
-            <img className='warehouse__icon' src={sortIcon} alt="sort" />
-        </div>
-        <div className='warehouse__title'>
-            <p>CONTACT INFORMATION</p>
-            <img className='warehouse__icon' src={sortIcon} alt="sort" />
-        </div>
-        <div className='warehouse__title'>
-            <p className='warehouse__title--padding'>ACTIONS</p>
-            <img className='warehouse__icon' src={sortIcon} alt="sort" />
-        </div>
-    </div>
+        <main className='warehouse__m'>
 
-
-    {warehouses.map(warehouse => (
-
-        <div className='warehouse'>
-                
-            <div className='warehouse__card'>
-
-                {/* This code will render at tablet/desktop breakpoints */}
-                <Link className='warehouse__link toggle-tabletdesktop' to={`/warehouse/${warehouse.id}`}>
-                    <p className='warehouse__name--blue '>{warehouse.warehouse}</p>
-                    <img className='warehouse__chevron' src={chevron} alt="chevron" />
-                </Link>
-                <p className='warehouse__address toggle-tabletdesktop'>{warehouse.address}</p>
-                <p className='warehouse__name toggle-tabletdesktop'>{warehouse.contact}</p>
-                <div className='warehouse__container toggle-tabletdesktop'>
-                    <p className='warehouse__address'>{warehouse.number}</p>
-                    <p className='warehouse__address'>{warehouse.email}</p>
+            <div className='warehouse__headings'>
+                <div className='warehouse__title'>
+                    <p>WAREHOUSE</p>
+                    <img className='warehouse__icon' src={sortIcon} alt="sort" />
                 </div>
-                <div className='warehouse__alticons toggle-tabletdesktop'>
-                    <img className='warehouse__altimages' src={deleteIcon} alt="delete" />
-                    <img className='images' src={editIcon} alt="edit" />
+                <div className='warehouse__title'>
+                    <p>ADDRESS</p>
+                    <img className='warehouse__icon' src={sortIcon} alt="sort" />
                 </div>
-                {/* ---------------------------------------------------- */}
+                <div className='warehouse__title'>
+                    <p>CONTACT NAME</p>
+                    <img className='warehouse__icon' src={sortIcon} alt="sort" />
+                </div>
+                <div className='warehouse__title'>
+                    <p>CONTACT INFORMATION</p>
+                    <img className='warehouse__icon' src={sortIcon} alt="sort" />
+                </div>
+                <div className='warehouse__title'>
+                    <p className='warehouse__title--padding'>ACTIONS</p>
+                    <img className='warehouse__icon' src={sortIcon} alt="sort" />
+                </div>
+            </div>
 
 
+            {warehouses.map(warehouse => (
 
-                {/* This code will render at mobile breakpoints */}
-                <div className='warehouse__na toggle-mobile'>
-                    <div className='warehouse__container'>
-                        <p className='warehouse__label'>WAREHOUSE</p>
-                        <Link className='warehouse__link' to={`/warehouse/${warehouse.id}`}> 
-                            <p className='warehouse__name--blue'>{warehouse.warehouse}</p>
+                <div className='warehouse'>
+
+                    <div className='warehouse__card'>
+
+                        {/* This code will render at tablet/desktop breakpoints */}
+                        <Link className='warehouse__link toggle-tabletdesktop' to={`/warehouse/${warehouse.id}`}>
+                            <p className='warehouse__name--blue '>{warehouse.warehouse}</p>
                             <img className='warehouse__chevron' src={chevron} alt="chevron" />
                         </Link>
+                        <p className='warehouse__address toggle-tabletdesktop'>{warehouse.address}</p>
+                        <p className='warehouse__name toggle-tabletdesktop'>{warehouse.contact}</p>
+                        <div className='warehouse__container toggle-tabletdesktop'>
+                            <p className='warehouse__address'>{warehouse.number}</p>
+                            <p className='warehouse__address'>{warehouse.email}</p>
+                        </div>
+                        <div className='warehouse__alticons toggle-tabletdesktop'>
+                            <img className='warehouse__altimages' src={deleteIcon} alt="delete" />
+                            <img className='images' src={editIcon} alt="edit" />
+                        </div>
+                        {/* ---------------------------------------------------- */}
+
+
+
+                        {/* This code will render at mobile breakpoints */}
+                        <div className='warehouse__na toggle-mobile'>
+                            <div className='warehouse__container'>
+                                <p className='warehouse__label'>WAREHOUSE</p>
+                                <Link className='warehouse__link' to={`/warehouse/${warehouse.id}`}>
+                                    <p className='warehouse__name--blue'>{warehouse.warehouse}</p>
+                                    <img className='warehouse__chevron' src={chevron} alt="chevron" />
+                                </Link>
+                            </div>
+                            <div className='warehouse__container'>
+                                <p className='warehouse__label'>ADDRESS</p>
+                                <p className='warehouse__address'>{warehouse.address}</p>
+                            </div>
+                        </div>
+
+                        <div className='warehouse__contact toggle-mobile'>
+
+                            <div className='warehouse__container'>
+                                <p className='warehouse__label'>CONTACT NAME</p>
+                                <p className='warehouse__name'>{warehouse.contact}</p>
+                            </div>
+                            <div className='warehouse__container'>
+                                <p className='warehouse__label'>CONTACT INFORMATION</p>
+                                <p className='warehouse__info'>{warehouse.number}</p>
+                                <p className='warehouse__info'>{warehouse.email}</p>
+                            </div>
+
+                        </div>
+                        {/* ---------------------------------------------------- */}
+
                     </div>
-                    <div className='warehouse__container'>
-                        <p className='warehouse__label'>ADDRESS</p>
-                        <p className='warehouse__address'>{warehouse.address}</p>
+
+                    <div className='warehouse__icons toggle-mobile'>
+
+                        <img src={deleteIcon} alt="delete" />
+                        <img src={editIcon} alt="edit" />
+
                     </div>
+
                 </div>
+            ))}
 
-                <div className='warehouse__contact toggle-mobile'>
 
-                    <div className='warehouse__container'>
-                        <p className='warehouse__label'>CONTACT NAME</p>
-                        <p className='warehouse__name'>{warehouse.contact}</p>
-                    </div>
-                    <div className='warehouse__container'>
-                        <p className='warehouse__label'>CONTACT INFORMATION</p>
-                        <p className='warehouse__info'>{warehouse.number}</p>
-                        <p className='warehouse__info'>{warehouse.email}</p>
-                    </div>
+        </main>
 
-                </div>
-                {/* ---------------------------------------------------- */}
-
-            </div>
-
-            <div className='warehouse__icons toggle-mobile'>
-
-                <img src={deleteIcon} alt="delete" />
-                <img src={editIcon} alt="edit" />
-
-            </div>
-
-        </div>
-        ))}
-
-    
-    </main>
-   
-  )
+    )
 }
 
 export default WarehouseList

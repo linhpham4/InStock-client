@@ -18,7 +18,7 @@ const WarehouseInventoryList = () => {
     const { warehouseId } = useParams();
 
     async function getInventoryByWarehouse() {
-        const inventory = await axios.get(`${baseUrl}/stock/warehouses/${warehouseId}/inventories`)
+        const inventory = await axios.get(`${baseUrl}warehouses/${warehouseId}/inventories`)
         setInventory(inventory.data)
     }
 
