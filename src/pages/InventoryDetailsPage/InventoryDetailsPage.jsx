@@ -1,9 +1,12 @@
 import "./InventoryDetailsPage.scss";
+import InventoryDetails from "../../components/InventoryDetails/InventoryDetails.jsx";
 
 function InventoryDetailsPage() {
   return (
     <>
-      <h1>Inventory Details Page</h1>
+      <main>
+        <InventoryDetails />
+      </main>
     </>
   );
 }
