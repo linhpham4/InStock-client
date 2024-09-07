@@ -1,6 +1,7 @@
 import "./AddInventoryComponent.scss";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AddInventoryComponent() {
   const [warehouseId, setWarehouseId] = useState("");
@@ -10,6 +11,13 @@ function AddInventoryComponent() {
   const [itemQuantity, setItemQuantity] = useState("");
   const [stockStatus, setStockStatus] = useState("");
   const [hideQuantity, setHideQuantity] = useState(false);
+  const [warehouseInvalid, setWarehouseInvalid] = useState("");
+  const [itemInvalid, setItemInvalid] = useState("");
+  const [descriptionInvalid, setDescriptionInvalid] = useState("");
+  const [categoryInvalid, setCategoryInvalid] = useState("");
+  const [quantityInvalid, setQuantityInvalid] = useState("");
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const formData = {
     warehouse_id: warehouseId,
@@ -36,8 +44,14 @@ function AddInventoryComponent() {
     }
   }, [stockStatus]);
 
+  const handleCancel = (event) => {
+    navigate("/inventory");
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    let validationErrors = {};
+
     // Convert warehouse name to warehouse ID
     const warehouseKey = {
       manhattan: 1,
@@ -49,11 +63,60 @@ function AddInventoryComponent() {
       miami: 7,
     };
 
-    setWarehouseId(warehouseKey[event.target.warehouseName.value]);
-    setItemName(event.target.itemName.value);
-    setItemDescription(event.target.description.value);
-    setItemCategory(event.target.category.value);
-    setItemQuantity(Number(event.target.quantity.value));
+    // check for valid inputs in all fields
+    const warehouseField = event.target.warehouseName.value;
+    if (!warehouseField) {
+      setWarehouseInvalid("addInventory-form__input--invalid");
+      validationErrors.warehouseField = "This field is required";
+    } else {
+      setWarehouseInvalid("");
+    }
+
+    const itemField = event.target.itemName.value;
+    if (!itemField) {
+      setItemInvalid("addInventory-form__input--invalid");
+      validationErrors.itemField = "This field is required";
+    } else {
+      setItemInvalid("");
+    }
+
+    const descriptionField = event.target.description.value;
+    if (!descriptionField) {
+      setDescriptionInvalid("addInventory-form__input--invalid");
+      validationErrors.descriptionField = "This field is required";
+    } else {
+      setDescriptionInvalid("");
+    }
+
+    const categoryField = event.target.category.value;
+    if (!categoryField) {
+      validationErrors.categoryField = "This field is required";
+    }
+
+    const statusField = stockStatus;
+    if (!statusField) {
+      validationErrors.statusField = "This field is required";
+    }
+
+    const quantityField = event.target.quantity.value;
+    if (!quantityField && stockStatus !== "Out of Stock") {
+      validationErrors.quantityField = "This field is required";
+    }
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    setWarehouseId(warehouseKey[warehouseField]);
+    setItemName(itemField);
+    setItemDescription(descriptionField);
+    setItemCategory(categoryField);
+    setItemQuantity(Number(quantityField));
+
+    setErrors({});
+    event.target.reset();
+    navigate("/inventory");
   };
 
   useEffect(() => {
@@ -81,12 +144,15 @@ function AddInventoryComponent() {
             >
               Item Name
               <input
-                className="addInventory-form__input addInventory-form__input--1"
+                className={`addInventory-form__input addInventory-form__input--1 ${itemInvalid}`}
                 placeholder="Item Name"
                 id="itemName"
                 type="text"
                 htmlFor="description"
               />
+              {errors.itemField && (
+                <p className="addInventory-form__error">{errors.itemField}</p>
+              )}
             </label>
             <label
               className="addInventory-form__label addInventory-form__label--2"
@@ -94,12 +160,17 @@ function AddInventoryComponent() {
             >
               Description
               <textarea
-                className="addInventory-form__input addInventory-form__input--2"
+                className={`addInventory-form__input addInventory-form__input--2 ${descriptionInvalid}`}
                 type="text"
                 id="description"
                 placeholder="Please enter a brief description..."
                 rows="4"
               />
+              {errors.descriptionField && (
+                <p className="addInventory-form__error">
+                  {errors.descriptionField}
+                </p>
+              )}
             </label>
             <label
               className="addInventory-form__label addInventory-form__label--3"
@@ -126,6 +197,11 @@ function AddInventoryComponent() {
                 <option value="gear">Gear</option>
                 <option value="health">Health</option>
               </select>
+              {errors.categoryField && (
+                <p className="addInventory-form__error">
+                  {errors.categoryField}
+                </p>
+              )}
             </label>
           </div>
           <div className="addInventory-form__container addInventory-form__container--2">
@@ -164,6 +240,9 @@ function AddInventoryComponent() {
                   Out of Stock
                 </label>
               </div>
+              {errors.statusField && (
+                <p className="addInventory-form__error">{errors.statusField}</p>
+              )}
               <label
                 className="addInventory-form__label addInventory-form__label--7"
                 htmlFor="quantity"
@@ -176,6 +255,11 @@ function AddInventoryComponent() {
                   id="quantity"
                   placeholder="0"
                 />
+                {errors.quantityField && (
+                  <p className="addInventory-form__error">
+                    {errors.quantityField}
+                  </p>
+                )}
               </label>
             </div>
             <label
@@ -184,7 +268,7 @@ function AddInventoryComponent() {
             >
               Warehouse
               <select
-                className="addInventory-form__input addInventory-form__input--5"
+                className={`addInventory-form__input addInventory-form__input--5 ${warehouseInvalid}`}
                 id="warehouseName"
                 name="warehouseName"
                 defaultValue=""
@@ -200,11 +284,22 @@ function AddInventoryComponent() {
                 <option value="seattle">Seattle</option>
                 <option value="miami">Miami</option>
               </select>
+              {errors.warehouseField && (
+                <p className="addInventory-form__error">
+                  {errors.warehouseField}
+                </p>
+              )}
             </label>
           </div>
         </div>
         <div className="addInventory-form__button-container">
-          <button className="addInventory-form__button-cancel">Cancel</button>
+          <button
+            className="addInventory-form__button-cancel"
+            onClick={handleCancel}
+            type="reset"
+          >
+            Cancel
+          </button>
           <button className="addInventory-form__button-add" type="submit">
             + Add Item
           </button>
