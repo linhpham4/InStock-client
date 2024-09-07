@@ -17,5 +17,3 @@ function WarehouseDetailsPage() {
 
 
 export default WarehouseDetailsPage;
-
-      
