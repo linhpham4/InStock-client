@@ -1,25 +1,25 @@
-import "./WarehouseAddEdit.scss";
+import "./AddWarehouse.scss";
+import axios from "axios";
 import { useState } from "react";
-import SectionComponent2 from "../SectionComponent2/SectionComponent2";
+import { useNavigate } from "react-router-dom";
 
-// pass as props when calling this component WarehouseAddPage & WarehouseEditPage:
-// title="<header title>" --> pass on to SectionComponent2
-// backLink="</route to go when back arrow is clicked>" --> pass on to SectionComponent2
-// buttonText="<button text>" 
-// buttonDisplay="hidden" --> pass on to SectionComponent2
+const AddWarehouse = () => {
 
-const WarehouseAddEdit = ({ title, backLink, buttonText, buttonDisplay }) => {
+  const baseUrl = import.meta.env.VITE_APP_BASE_URL;
+  const navigate = useNavigate();
+
   //state variable for form input values with inital state of "" for all
   const initialInput = {
-    warehouseName: "",
+    warehouse_name: "",
     address: "",
     city: "",
     country: "",
-    contactName: "",
-    position: "",
-    phoneNumber: "",
-    email: "",
+    contact_name: "",
+    contact_position: "",
+    contact_phone: "",
+    contact_email: ""
   };
+
   const [userInput, setUserInput] = useState(initialInput);
 
   //state variable for validation errors
@@ -46,19 +46,19 @@ const WarehouseAddEdit = ({ title, backLink, buttonText, buttonDisplay }) => {
     let validationErrors = {};
 
     //check that input in Phone Number field is in the correct phone number format using regex.test()
-    //phoneNumber key with value of the error message will be added to validationErrors if not a number
-    const phoneInput = userInput.phoneNumber;
-    const phoneFormat = /^\+[0-9]\s*\([0-9]{3}\)\s*[0-9]{3}\s*-\s*[0-9]{4}$/;
+    //contact_phone key with value of the error message will be added to validationErrors if not a number
+    const phoneInput = userInput.contact_phone;
+    const phoneFormat = /^\s*\+[0-9]\s*\([0-9]{3}\)\s*[0-9]{3}\s*-\s*[0-9]{4}\s*$/;
     if (phoneInput && !phoneFormat.test(phoneInput)) {
-      validationErrors.phoneNumber = "Must be in +X (XXX) XXX-XXXX format";
+      validationErrors.contact_phone = "Must be in +X (XXX) XXX-XXXX format";
     }
 
     //check that input in Email field is a valid email using regex.test()
-    //email key with value of the error message will be added to validationErrors if not valid email
-    const emailInput = userInput.email;
+    //contact_email key with value of the error message will be added to validationErrors if not valid email
+    const emailInput = userInput.contact_email;
     const emailFormat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/;
     if (emailInput && !emailFormat.test(emailInput)) {
-      validationErrors.email = "Must be in email format";
+      validationErrors.contact_email = "Must be in email format";
     }
 
     //loop through state variable and check for any key with an empty value
@@ -74,11 +74,27 @@ const WarehouseAddEdit = ({ title, backLink, buttonText, buttonDisplay }) => {
       setErrors(validationErrors);
       return;
     }
+
+    setErrors({});
+
+// uncomment after back end is finished
+    //post new warehouse object to server 
+    // const postWarehouse = async () => {
+    //   try {
+    //     await axios.post(`${baseUrl}/stock/warehouses`, userInput);
+    //     alert("Warehouse has been successfully added!");
+    //     navigate("/warehouse");
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // }
+
+    // postWarehouse ();
+    
   };
 
   return (
     <>
-    <SectionComponent2 title={title} backLink={backLink} buttonDisplay={buttonDisplay} />
       <div className="warehouseAE">
         <form
           className="warehouseAE__form"
@@ -89,21 +105,21 @@ const WarehouseAddEdit = ({ title, backLink, buttonText, buttonDisplay }) => {
             <h2 className="warehouseAE__sub-title">Warehouse Details</h2>
 
             {/* Warehouse Name ======================================================== */}
-            <label className="warehouseAE__label" htmlFor="warehouseName">
+            <label className="warehouseAE__label" htmlFor="warehouse_name">
               Warehouse Name
             </label>
             <input
               // If form is empty on submit, modified class will be added to turn border red
-              className={`warehouseAE__input ${errors.warehouseName && "warehouseAE__input--invalid"}`}
+              className={`warehouseAE__input ${errors.warehouse_name && "warehouseAE__input--invalid"}`}
               type="text"
-              id="warehouseName"
-              name="warehouseName"
+              id="warehouse_name"
+              name="warehouse_name"
               placeholder="Warehouse Name"
-              value={userInput.warehouseName}
+              value={userInput.warehouse_name}
               onChange={handleChange}
             ></input>
             {/* If form is empty on submit, error message will show up below input field */}
-            {errors.warehouseName && <p className="warehouseAE__error">{errors.warehouseName}</p>}
+            {errors.warehouse_name && <p className="warehouseAE__error">{errors.warehouse_name}</p>}
 
             {/* Address  ======================================================== */}
             <label className="warehouseAE__label" htmlFor="address">
@@ -157,64 +173,64 @@ const WarehouseAddEdit = ({ title, backLink, buttonText, buttonDisplay }) => {
             <h2 className="warehouseAE__sub-title">Contact Details</h2>
 
             {/* Contact Name  ======================================================== */}
-            <label className="warehouseAE__label" htmlFor="contactName">
+            <label className="warehouseAE__label" htmlFor="contact_name">
               Contact Name
             </label>
             <input
-              className={`warehouseAE__input ${errors.contactName && "warehouseAE__input--invalid"}`}
+              className={`warehouseAE__input ${errors.contact_name && "warehouseAE__input--invalid"}`}
               type="text"
-              id="contactName"
-              name="contactName"
+              id="contact_name"
+              name="contact_name"
               placeholder="Contact Name"
-              value={userInput.contactName}
+              value={userInput.contact_name}
               onChange={handleChange}
             ></input>
-            {errors.contactName && <p className="warehouseAE__error">{errors.contactName}</p>}
+            {errors.contact_name && <p className="warehouseAE__error">{errors.contact_name}</p>}
 
             {/* Position  ======================================================== */}
-            <label className="warehouseAE__label" htmlFor="position">
+            <label className="warehouseAE__label" htmlFor="contact_position">
               Position
             </label>
             <input
-              className={`warehouseAE__input ${errors.position && "warehouseAE__input--invalid"}`}
+              className={`warehouseAE__input ${errors.contact_position && "warehouseAE__input--invalid"}`}
               type="text"
-              id="position"
-              name="position"
+              id="contact_position"
+              name="contact_position"
               placeholder="Position"
-              value={userInput.position}
+              value={userInput.contact_position}
               onChange={handleChange}
             ></input>
-            {errors.position && <p className="warehouseAE__error">{errors.position}</p>}
+            {errors.contact_position && <p className="warehouseAE__error">{errors.contact_position}</p>}
 
             {/* Phone Number  ======================================================== */}
-            <label className="warehouseAE__label" htmlFor="phoneNumber">
+            <label className="warehouseAE__label" htmlFor="contact_phone">
               Phone Number
             </label>
             <input
-              className={`warehouseAE__input ${errors.phoneNumber && "warehouseAE__input--invalid"}`}
+              className={`warehouseAE__input ${errors.contact_phone && "warehouseAE__input--invalid"}`}
               type="text"
-              id="phoneNumber"
-              name="phoneNumber"
+              id="contact_phone"
+              name="contact_phone"
               placeholder="Phone Number"
-              value={userInput.phoneNumber}
+              value={userInput.contact_phone}
               onChange={handleChange}
             ></input>
-            {errors.phoneNumber && <p className="warehouseAE__error">{errors.phoneNumber}</p>}
+            {errors.contact_phone && <p className="warehouseAE__error">{errors.contact_phone}</p>}
 
             {/* Email  ======================================================== */}
-            <label className="warehouseAE__label" htmlFor="email">
+            <label className="warehouseAE__label" htmlFor="contact_email">
               Email
             </label>
             <input
-              className={`warehouseAE__input ${errors.email && "warehouseAE__input--invalid"}`}
+              className={`warehouseAE__input ${errors.contact_email && "warehouseAE__input--invalid"}`}
               type="text"
-              id="email"
-              name="email"
+              id="contact_email"
+              name="contact_email"
               placeholder="Email"
-              value={userInput.email}
+              value={userInput.contact_email}
               onChange={handleChange}
             ></input>
-            {errors.email && <p className="warehouseAE__error">{errors.email}</p>}
+            {errors.contact_email && <p className="warehouseAE__error">{errors.contact_email}</p>}
           </div>
         </form>
 
@@ -233,7 +249,7 @@ const WarehouseAddEdit = ({ title, backLink, buttonText, buttonDisplay }) => {
             type="submit"
             form="warehouseAE"
           >
-            {buttonText}
+            + Add Warehouse
           </button>
         </div>
       </div>
@@ -241,4 +257,4 @@ const WarehouseAddEdit = ({ title, backLink, buttonText, buttonDisplay }) => {
   );
 };
 
-export default WarehouseAddEdit;
+export default AddWarehouse;
