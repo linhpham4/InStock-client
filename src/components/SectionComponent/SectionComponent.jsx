@@ -2,11 +2,6 @@ import "./SectionComponent.scss"
 import searchIcon from '../../assets/icons/search-24px.svg'
 import { Link } from "react-router-dom"
 
-// pass as props when you call this component from the parent component:
-// title="<header title>"
-// buttonText="+<button text>"
-// buttonLink="</route to go when button is clicked>"
-
 function SectionComponent({ title, buttonText, buttonLink }) {
   return (
 
