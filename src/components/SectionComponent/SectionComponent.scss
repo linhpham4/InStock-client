@@ -6,8 +6,9 @@
     width: 100vw;
     display: flex;
     flex-direction: column;
-    padding: 0 3em;
+    padding: 0 3em 1em;
     position: relative;
+    border-bottom: solid 1px $cloud;
 
 
     @include tablet-breakpoint {

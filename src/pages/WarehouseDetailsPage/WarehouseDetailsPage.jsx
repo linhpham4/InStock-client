@@ -10,7 +10,7 @@ function WarehouseDetailsPage() {
 
       <SectionComponent2 />
       <WarehouseDetails />
-      <WarehouseInventoryList />
+      {/* <WarehouseInventoryList /> */}
     </div>
   );
 }
