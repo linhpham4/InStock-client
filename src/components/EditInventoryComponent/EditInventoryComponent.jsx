@@ -1,7 +1,7 @@
 import "./EditInventoryComponent.scss";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 function EditInventoryComponent() {
   const [warehouseId, setWarehouseId] = useState("");
