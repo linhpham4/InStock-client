@@ -36,54 +36,54 @@ const InventoryList = () => {
 
     <main>
     
-    <div className='inventory__headings'>
-        <div className='inventory__title'>
+    <div className='inv__headings'>
+        <div className='inv__title'>
             <p>INVENTORY ITEM</p>
-            <img className='inventory__icon' src={sortIcon} alt="sort" />
+            <img className='inv__icon' src={sortIcon} alt="sort" />
         </div>
-        <div className='inventory__title'>
+        <div className='inv__title'>
             <p>CATEGORY</p>
-            <img className='inventory__icon' src={sortIcon} alt="sort" />
+            <img className='inv__icon' src={sortIcon} alt="sort" />
         </div>
-        <div className='inventory__title'>
+        <div className='inv__title'>
             <p>STATUS</p>
-            <img className='inventory__icon' src={sortIcon} alt="sort" />
+            <img className='inv__icon' src={sortIcon} alt="sort" />
         </div>
-        <div className='inventory__title'>
+        <div className='inv__title'>
             <p>QUANTITY</p>
-            <img className='inventory__icon' src={sortIcon} alt="sort" />
+            <img className='inv__icon' src={sortIcon} alt="sort" />
         </div>
-        <div className='inventory__title'>
+        <div className='inv__title'>
             <p>WAREHOUSE</p>
-            <img className='inventory__icon' src={sortIcon} alt="sort" />
+            <img className='inv__icon' src={sortIcon} alt="sort" />
         </div>
-        <div className='inventory__title'>
-            <p className='inventory__title--padding'>ACTIONS</p>
+        <div className='inv__title'>
+            <p className='inv__title--padding'>ACTIONS</p>
         </div>
     </div>
 
 
     {inventory.map(item => (
 
-        <div key={item.id} className='inventory'>
+        <div key={item.id} className='inv'>
                 
-            <div className='inventory__card'>
+            <div className='inv__card'>
 
                 {/* This code will render at tablet/desktop breakpoints */}
-                <Link className='inventory__link toggle-tabletdesktop' to={`/inventory/${item.id}`}>
-                    <p className='inventory__name--blue '>{item.item_name}</p>
-                    <img className='inventory__chevron' src={chevron} alt="chevron" />
+                <Link className='inv__link toggle-tabletdesktop' to={`/inventory/${item.id}`}>
+                    <p className='inv__name--blue '>{item.item_name}</p>
+                    <img className='inv__chevron' src={chevron} alt="chevron" />
                 </Link>
-                <p className='inventory__address toggle-tabletdesktop'>{item.category}</p>
-                <p className='inventory__name toggle-tabletdesktop'>{item.status}</p>
-                <div className='inventory__container toggle-tabletdesktop'>
-                    <p className='inventory__address'>{item.quantity}</p>
+                <p className='inv__address toggle-tabletdesktop'>{item.category}</p>
+                <p className='inv__name toggle-tabletdesktop'>{item.status}</p>
+                <div className='inv__container toggle-tabletdesktop'>
+                    <p className='inv__address'>{item.quantity}</p>
                 </div>
-                <div className='inventory__container toggle-tabletdesktop'>
-                    <p className='inventory__address'>{item.warehouse_name}</p>
+                <div className='inv__container toggle-tabletdesktop'>
+                    <p className='inv__address'>{item.warehouse_name}</p>
                 </div>
-                <div className='inventory__alticons toggle-tabletdesktop'>
-                    <img className='inventory__altimages' src={deleteIcon} alt="delete" />
+                <div className='inv__alticons toggle-tabletdesktop'>
+                    <img className='inv__altimages' src={deleteIcon} alt="delete" />
                     <img className='images' src={editIcon} alt="edit" />
                 </div>
                 {/* ---------------------------------------------------- */}
@@ -91,33 +91,33 @@ const InventoryList = () => {
 
 
                 {/* This code will render at mobile breakpoints */}
-                <div className='inventory__na toggle-mobile'>
-                    <div className='inventory__container'>
-                        <p className='inventory__label'>INVENTORY ITEM</p>
-                        <Link className='inventory__link' to={`/inventory/${item.id}`}> 
-                            <p className='inventory__name--blue'>{item.item_name}</p>
-                            <img className='inventory__chevron' src={chevron} alt="chevron" />
+                <div className='inv__na toggle-mobile'>
+                    <div className='inv__container'>
+                        <p className='inv__label'>INVENTORY ITEM</p>
+                        <Link className='inv__link' to={`/inventory/${item.id}`}> 
+                            <p className='inv__name--blue'>{item.item_name}</p>
+                            <img className='inv__chevron' src={chevron} alt="chevron" />
                         </Link>
                     </div>
-                    <div className='inventory__container'>
-                        <p className='inventory__label'>CATEGORY</p>
-                        <p className='inventory__address'>{item.category}</p>
+                    <div className='inv__container'>
+                        <p className='inv__label'>CATEGORY</p>
+                        <p className='inv__address'>{item.category}</p>
                     </div>
                 </div>
 
-                <div className='inventory__contact toggle-mobile'>
+                <div className='inv__contact toggle-mobile'>
 
-                    <div className='inventory__container'>
-                        <p className='inventory__label'>STATUS</p>
-                        <p className='inventory__name'>{item.status}</p>
+                    <div className='inv__container'>
+                        <p className='inv__label'>STATUS</p>
+                        <p className='inv__name'>{item.status}</p>
                     </div>
-                    <div className='inventory__container'>
-                        <p className='inventory__label'>QTY</p>
-                        <p className='inventory__info'>{item.quantity}</p>
+                    <div className='inv__container'>
+                        <p className='inv__label'>QTY</p>
+                        <p className='inv__info'>{item.quantity}</p>
                     </div>
-                    <div className='inventory__container'>
-                        <p className='inventory__label'>WAREHOUSE</p>
-                        <p className='inventory__info'>{item.warehouse_name}</p>
+                    <div className='inv__container'>
+                        <p className='inv__label'>WAREHOUSE</p>
+                        <p className='inv__info'>{item.warehouse_name}</p>
                     </div>
 
                 </div>
@@ -125,7 +125,7 @@ const InventoryList = () => {
 
             </div>
 
-            <div className='inventory__icons toggle-mobile'>
+            <div className='inv__icons toggle-mobile'>
 
                 <img src={deleteIcon} alt="delete" />
                 <img src={editIcon} alt="edit" />
