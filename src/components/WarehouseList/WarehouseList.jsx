@@ -75,7 +75,6 @@ const WarehouseList = () => {
 
     async function getWarehouseList() {
         const warehouseList = await axios.get(`${baseUrl}/stock/warehouses`)
-        console.log(warehouseList.data)
         setWarehouses(warehouseList.data)
     }
 
@@ -120,7 +119,7 @@ const WarehouseList = () => {
                     <div className='warehouse__card'>
 
                         {/* This code will render at tablet/desktop breakpoints */}
-                        <Link className='warehouse__link toggle-tabletdesktop' to={`/warehouse/${warehouse.id}`}>
+                        <Link className='warehouse__link toggle-tabletdesktop' to={`/warehouse/${warehouse.id}`}> 
                             <p className='warehouse__name--blue '>{warehouse.warehouse_name}</p>
                             <img className='warehouse__chevron' src={chevron} alt="chevron" />
                         </Link>

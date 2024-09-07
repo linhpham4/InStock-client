@@ -6,12 +6,12 @@ import WarehouseInventoryList from "../../components/WarehouseInventoryList/Ware
 function WarehouseDetailsPage() {
 
   return (
-    <div className="warehouseDetailsPage">
+    <>
 
-      <SectionComponent2 />
-      <WarehouseDetails />
-      {/* <WarehouseInventoryList /> */}
-    </div>
+      {/* <SectionComponent2 />
+      <WarehouseDetails /> */}
+      <WarehouseInventoryList />
+    </>
   );
 }
 

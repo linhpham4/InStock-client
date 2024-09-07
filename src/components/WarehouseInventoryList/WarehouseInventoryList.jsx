@@ -64,6 +64,7 @@ if (!inventory) {
             <div key={item.id} className='inventory'>
                     
                 <div className='inventory__card'>
+                    
     
                     {/* This code will render at tablet/desktop breakpoints */}
                     <Link className='inventory__link toggle-tabletdesktop' to={`/inventory/${item.id}`}>
