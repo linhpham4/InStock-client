@@ -20,7 +20,7 @@ const EditWarehouse = () => {
   const { warehouseId } = useParams();
   const [userInput, setUserInput] = useState(initialInput);
   const [notFound, setNotFound] = useState(null);
-  const baseUrl = import.meta.env.VITE_APP_URL;
+  const baseUrl = import.meta.env.VITE_APP_BASE_URL;
 
   // get data for the warehouse with id matching warehouseId
   const getWarehouse = async () => {

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const AddWarehouse = () => {
 
-  const baseUrl = import.meta.env.VITE_APP_URL;
+  const baseUrl = import.meta.env.VITE_APP_BASE_URL;
   const navigate = useNavigate();
 
   //state variable for form input values with inital state of "" for all
