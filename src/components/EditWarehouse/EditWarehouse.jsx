@@ -4,18 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const EditWarehouse = () => {
-//test data - delete after back end is finished
-  // const dummyWarehouse = {
-  //   warehouse_name: "Chicago",
-  //   address: "3218 Guess Rd",
-  //   city: "Chicago",
-  //   country: "USA",
-  //   contact_name: "Jameson Schuppe",
-  //   contact_position: "Warehouse Manager",
-  //   contact_phone: "+1 (919) 797-2875",
-  //   contact_email: "jschuppe@instock.com"
-  // };
-  
+
   //state variable for form input values with inital state of "" for all
   const initialInput = {
     warehouse_name: "",
@@ -30,6 +19,7 @@ const EditWarehouse = () => {
 
   const { warehouseId } = useParams();
   const [userInput, setUserInput] = useState(initialInput);
+  const [notFound, setNotFound] = useState(null);
   const baseUrl = import.meta.env.VITE_APP_URL;
 
   // get data for the warehouse with id matching warehouseId
@@ -102,6 +92,14 @@ const EditWarehouse = () => {
     }
 
     setErrors({});
+  };
+
+  if (userInput === initialInput) {
+    return <h1>Loading...</h1>
+  }
+
+  if (notFound) {
+    return <h1>{`Warehouse with ID ${warehouseId} cannot be found`}</h1>
   };
 
   return (
