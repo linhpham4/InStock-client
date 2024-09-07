@@ -2,6 +2,7 @@ import "./EditInventoryComponent.scss";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 
 function EditInventoryComponent() {
   const [warehouseId, setWarehouseId] = useState("");
@@ -28,6 +29,18 @@ function EditInventoryComponent() {
     quantity: itemQuantity,
   };
 
+  // Convert warehouse name to warehouse ID
+  const warehouseKey = {
+    manhattan: 1,
+    washington: 2,
+    jersey: 3,
+    sf: 4,
+    santaMonica: 5,
+    seattle: 6,
+    miami: 7,
+    boston: 8
+  };
+
 //NEW CODE FOR EditInventoryComponent - KEEP WORKING IN THIS SECTION----------------------------  
   const { itemId } = useParams();
   const [notFound, setNotFound] = useState(null);
@@ -37,7 +50,9 @@ function EditInventoryComponent() {
   const getItem = async () => {
     try {
       const response = await axios.get(`${baseUrl}/stock/inventories/${itemId}`);
-      setWarehouseId(response.data.warehouse_id);
+      const warehouseId = response.data.warehouse_id;
+      const warehouseName = warehouseKey[warehouseId];
+      setWarehouseId(warehouseName);
       setItemName(response.data.item_name);
       setItemDescription(response.data.description);
       setItemCategory(response.data.category);
@@ -53,7 +68,6 @@ function EditInventoryComponent() {
     getItem();
   },[itemId]);
 
-//-----------------------------------------------------------------------------------------
   // Function to access choice from radio and assign value
   const statusChange = (event) => {
     setStockStatus(
@@ -78,16 +92,7 @@ function EditInventoryComponent() {
     event.preventDefault();
     let validationErrors = {};
 
-    // Convert warehouse name to warehouse ID
-    const warehouseKey = {
-      manhattan: 1,
-      washington: 2,
-      jersey: 3,
-      sf: 4,
-      santaMonica: 5,
-      seattle: 6,
-      miami: 7,
-    };
+    
 
     // check for valid inputs in all fields
     const warehouseField = event.target.warehouseName.value;
@@ -192,7 +197,7 @@ function EditInventoryComponent() {
           </Link>
 
           <h2 className="addInventory-header__heading">
-            Add New Inventory Item
+            Edit Inventory Item
           </h2>
         </div>
       </div>
@@ -345,6 +350,7 @@ function EditInventoryComponent() {
                 <option value="santaMonica">Santa Monica</option>
                 <option value="seattle">Seattle</option>
                 <option value="miami">Miami</option>
+                <option value="boston">Boston</option>
               </select>
               {errors.warehouseField && (
                 <p className="addInventory-form__error">
@@ -363,7 +369,7 @@ function EditInventoryComponent() {
             Cancel
           </button>
           <button className="addInventory-form__button-add" type="submit">
-            + Add Item
+            Save
           </button>
         </div>
       </form>
