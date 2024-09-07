@@ -2,15 +2,14 @@ import DeleteInventoryModal from "../../components/DeleteInventoryModal/DeleteIn
 import SectionComponent from "../../components/SectionComponent/SectionComponent";
 import WarehouseInventoryList from "../../components/WarehouseInventoryList/WarehouseInventoryList";
 import "./InventoryListPage.scss";
-import InventoryList from "../../components/InventoryList/InventoryList";
+import '../../App.scss'
 
 function InventoryListPage() {
   return (
-    <div className="test">
-      <h1>Inventory List Page</h1>
-      <SectionComponent />
-      {/* <WarehouseInventoryList /> */}
-    </div>
+    <main className="">
+      <SectionComponent title={"Inventory"} buttonLink={"/inventory/add"} buttonText={" Add New Item"}/>
+      <WarehouseInventoryList />
+    </main>
   );
 }
 
