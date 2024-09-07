@@ -21,35 +21,41 @@ function InventoryDetails() {
   const quantity = 500;
   const warehouse = "Manhattan";
 
-  //   const getInventoryDetails = async () => {
-  //     try {
-  //       const results = await axios.get(`${URL}/stock/inventories/${inventoryId}`);
-  //       setSelectedInventory(results.data);
-  //     } catch (error) {
-  //       setError("Unable to get inventory details");
-  //       console.error("Unable to get inventory details:", error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
+  const getInventoryDetails = async () => {
+    try {
+      const results = await axios.get(`${URL}/stock/inventories/${itemId}`);
+      setSelectedInventory(results.data);
+    } catch (error) {
+      setError("Unable to get inventory details");
+      console.error("Unable to get inventory details:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  //   useEffect(() => {
-  //     if (inventoryId) {
-  //       getInventoryDetails();
-  //     }
-  //   }, [inventoryId]);
+  getInventoryDetails;
 
-  //   if (loading) {
-  //     return <div>Loading...</div>;
-  //   }
+  useEffect(() => {
+    if (itemId) {
+      getInventoryDetails();
+    }
+  }, [itemId]);
 
-  //   if (error) {
-  //     return <div>{error}</div>;
-  //   }
+  useEffect(() => {
+    console.log(selectedInventory);
+  }, [selectedInventory]);
 
-  //   if (!selectedInventory) {
-  //     return <div>No inventory details available.</div>;
-  //   }
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!selectedInventory) {
+    return <div>No inventory details available.</div>;
+  }
 
   return (
     <>
@@ -60,7 +66,9 @@ function InventoryDetails() {
               <img src={backArrow} alt="back arrow" />
             </Link>
 
-            <h2 className="inventory-details__title">{Item}</h2>
+            <h2 className="inventory-details__title">
+              {selectedInventory.item_name}
+            </h2>
           </div>
           <div className="inventory-details__wrapper-2">
             <Link
@@ -91,7 +99,7 @@ function InventoryDetails() {
               ITEM DESCRIPTION:
             </h3>
             <p className="inventory-body__text inventory-body__description-text">
-              {itemDescription}
+              {selectedInventory.description}
             </p>
           </div>
           <div className="inventory-body__category-wrapper">
@@ -99,7 +107,7 @@ function InventoryDetails() {
               CATEGORY:
             </h3>
             <p className="inventory-body__text inventory-body__category-text">
-              {categoryDescription}
+              {selectedInventory.category}
             </p>
           </div>
         </div>
@@ -109,14 +117,29 @@ function InventoryDetails() {
               <h3 className="inventory-body__title inventory-body__status-title">
                 STATUS:
               </h3>
-              <button className="inventory-body__status-button">{stock}</button>
+              <button
+                className="inventory-body__status-button"
+                style={
+                  selectedInventory.status === "In Stock"
+                    ? {
+                        color: "rgb(16, 149, 78)",
+                        backgroundColor: "rgba(227, 235, 227, 0.871)",
+                      }
+                    : {
+                        color: "rgb(183, 52, 35)",
+                        backgroundColor: "rgba(243, 217, 212, 0.831)",
+                      }
+                }
+              >
+                {selectedInventory.status.toUpperCase()}
+              </button>
             </div>
             <div className="inventory-body__quantity-wrapper">
               <h3 className="inventory-body__title inventory-body__quantity-title">
                 QUANTITY:
               </h3>
               <p className="inventory-body__text inventory-body__quantity-text">
-                {quantity}
+                {selectedInventory.quantity}
               </p>
             </div>
           </div>
@@ -125,7 +148,7 @@ function InventoryDetails() {
               WAREHOUSE:
             </h3>
             <p className="inventory-body__text inventory-body__warehouse-text">
-              {warehouse}
+              {selectedInventory.warehouse_name}
             </p>
           </div>
         </div>
