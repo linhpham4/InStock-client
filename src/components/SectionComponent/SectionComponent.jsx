@@ -22,7 +22,7 @@ function SectionComponent({ title, buttonText, buttonLink }) {
 
         <Link to={buttonLink} className="warehouse-header__link">
           <button className='warehouse-header__button2'>
-            <p className='warehouse-header__btn-text'>{buttonText}</p>
+            <p className='warehouse-header__btn-text'>+{buttonText}</p>
           </button>
         </Link>
 

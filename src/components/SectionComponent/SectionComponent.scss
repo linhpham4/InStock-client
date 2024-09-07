@@ -3,10 +3,12 @@
 @use '../../styles/partials/variables.scss'as *;
 
 .warehouse-header {
-    width: 100vw;
+    width: 90%;
     display: flex;
     flex-direction: column;
-    padding: 0 3em 1em;
+    align-items: center;
+    margin: 0 auto;
+    padding: 1em 0;
     position: relative;
     border-bottom: solid 1px $cloud;
 
@@ -14,7 +16,12 @@
     @include tablet-breakpoint {
         flex-direction: row;
         justify-content: space-between;
-        padding: 1em 3em;
+    }
+
+    @include tablet-breakpoint {
+        padding: 1em 0;
+        // margin-left: 2em;
+        width: 80%;
     }
 
     &__heading {
@@ -35,10 +42,12 @@
             justify-content: space-between;
             width: 60%;
             gap: 2em;
+            margin-right: 3em;
         }
 
         @include desktop-breakpoint {
             width: 45%;
+            margin: 0;
 
         }
     }
@@ -116,8 +125,8 @@
         color: $white;
         @include mobile-subheader;
         position: absolute;
-        right: 3.5em;
-        bottom: 4.1em;
+        right: 1em;
+        bottom: 5em;
 
         @include tablet-breakpoint {
             bottom: 0.5em;

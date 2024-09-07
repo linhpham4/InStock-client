@@ -9,7 +9,6 @@ function InventoryListPage() {
       <h1>Inventory List Page</h1>
       <SectionComponent />
       {/* <WarehouseInventoryList /> */}
-      <DeleteInventoryModal />
     </div>
   );
 }
