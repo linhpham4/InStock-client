@@ -1,21 +1,77 @@
 import "./AddInventoryComponent.scss";
-import editIcon from "../../assets/icons/edit-white-24px.svg";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
-import SectionComponent2 from "../../components/SectionComponent2/SectionComponent2";
+import { useState, useEffect } from "react";
 
 function AddInventoryComponent() {
+  const [warehouseId, setWarehouseId] = useState("");
+  const [itemName, setItemName] = useState("");
+  const [itemDescription, setItemDescription] = useState("");
+  const [itemCategory, setItemCategory] = useState("");
+  const [itemQuantity, setItemQuantity] = useState("");
+  const [stockStatus, setStockStatus] = useState("");
+  const [hideQuantity, setHideQuantity] = useState(false);
+
+  const formData = {
+    warehouse_id: warehouseId,
+    item_name: itemName,
+    description: itemDescription,
+    category: itemCategory,
+    status: stockStatus,
+    quantity: itemQuantity,
+  };
+
+  // Function to access choice from radio and assign value
+  const statusChange = (event) => {
+    setStockStatus(
+      event.target.value === "inStock" ? "In Stock" : "Out of Stock"
+    );
+  };
+
+  // Changes status depending on which stock status is selected to hide quantity as per style guide
+  useEffect(() => {
+    if (stockStatus === "Out of Stock") {
+      setHideQuantity(true);
+    } else {
+      setHideQuantity(false);
+    }
+  }, [stockStatus]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Convert warehouse name to warehouse ID
+    const warehouseKey = {
+      manhattan: 1,
+      washington: 2,
+      jersey: 3,
+      sf: 4,
+      santaMonica: 5,
+      seattle: 6,
+      miami: 7,
+    };
+
+    setWarehouseId(warehouseKey[event.target.warehouseName.value]);
+    setItemName(event.target.itemName.value);
+    setItemDescription(event.target.description.value);
+    setItemCategory(event.target.category.value);
+    setItemQuantity(Number(event.target.quantity.value));
+  };
+
+  useEffect(() => {
+    console.log(formData);
+  }, [warehouseId]);
+
   return (
     <>
       <div className="addInventory-header">
         <div className="addInventory-header__location">
-          <img src={backArrow} alt="" />
+          <img src={backArrow} alt="back arrow" />
 
           <h2 className="addInventory-header__heading">
             Add New Inventory Item
           </h2>
         </div>
       </div>
-      <form className="addInventory-form" onSubmit="">
+      <form className="addInventory-form" onSubmit={handleSubmit}>
         <div className="addInventory-form__container-wrapper">
           <div className="addInventory-form__container addInventory-form__container--1">
             <h3 className="addInventory-form__title">Item Details</h3>
@@ -32,7 +88,10 @@ function AddInventoryComponent() {
                 htmlFor="description"
               />
             </label>
-            <label className="addInventory-form__label addInventory-form__label--2">
+            <label
+              className="addInventory-form__label addInventory-form__label--2"
+              htmlFor="description"
+            >
               Description
               <textarea
                 className="addInventory-form__input addInventory-form__input--2"
@@ -40,7 +99,6 @@ function AddInventoryComponent() {
                 id="description"
                 placeholder="Please enter a brief description..."
                 rows="4"
-                // cols="40"
               />
             </label>
             <label
@@ -50,10 +108,11 @@ function AddInventoryComponent() {
               Category
               <select
                 className="addInventory-form__input addInventory-form__input--3"
-                type="dropdown"
                 id="category"
+                name="category"
+                defaultValue=""
               >
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Please select
                 </option>
                 <option
@@ -83,26 +142,34 @@ function AddInventoryComponent() {
                   <input
                     className="addInventory-form__radio addInventory-form__radio--inStock"
                     type="radio"
-                    id="inStock"
-                    name="stock"
+                    name="status"
+                    value="inStock"
+                    checked={stockStatus === "In Stock"}
+                    onChange={statusChange}
                   />
                   In Stock
                 </label>
                 <label
                   className="addInventory-form__label addInventory-form__label--6"
-                  htmlFor="OutOfStock"
+                  htmlFor="outOfStock"
                 >
                   <input
                     className="addInventory-form__radio addInventory-form__radio--outOfStock"
                     type="radio"
-                    id="OutOfStock"
-                    name="stock"
+                    name="status"
+                    value="outOfStock"
+                    checked={stockStatus === "Out of Stock"}
+                    onChange={statusChange}
                   />
                   Out of Stock
                 </label>
               </div>
-              <label className="addInventory-form__label addInventory-form__label--7">
-                Qunatity
+              <label
+                className="addInventory-form__label addInventory-form__label--7"
+                htmlFor="quantity"
+                style={{ display: hideQuantity ? "none" : "block" }}
+              >
+                Quantity
                 <input
                   className="addInventory-form__input addInventory-form__input--4"
                   type="text"
@@ -111,14 +178,18 @@ function AddInventoryComponent() {
                 />
               </label>
             </div>
-            <label className="addInventory-form__label addInventory-form__label--8">
+            <label
+              className="addInventory-form__label addInventory-form__label--8"
+              htmlFor="warehouseName"
+            >
               Warehouse
               <select
                 className="addInventory-form__input addInventory-form__input--5"
-                type="dropdown"
                 id="warehouseName"
+                name="warehouseName"
+                defaultValue=""
               >
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Please select
                 </option>
                 <option value="manhattan">Manhattan</option>
@@ -128,14 +199,15 @@ function AddInventoryComponent() {
                 <option value="santaMonica">Santa Monica</option>
                 <option value="seattle">Seattle</option>
                 <option value="miami">Miami</option>
-                <option value="boston">Boston</option>
               </select>
             </label>
           </div>
         </div>
         <div className="addInventory-form__button-container">
           <button className="addInventory-form__button-cancel">Cancel</button>
-          <button className="addInventory-form__button-add">+ Add Item</button>
+          <button className="addInventory-form__button-add" type="submit">
+            + Add Item
+          </button>
         </div>
       </form>
     </>
