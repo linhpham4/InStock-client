@@ -45,21 +45,20 @@ const WarehouseAddEdit = ({ title, backLink, buttonText, buttonDisplay }) => {
     event.preventDefault();
     let validationErrors = {};
 
-    //check that input in Phone Number field is a number
+    //check that input in Phone Number field is in the correct phone number format using regex.test()
     //phoneNumber key with value of the error message will be added to validationErrors if not a number
     const phoneInput = userInput.phoneNumber;
-    if (phoneInput && Number(phoneInput) != phoneInput) {
-      validationErrors.phoneNumber = "Must be a number";
+    const phoneFormat = /^\+[0-9]\s*\([0-9]{3}\)\s*[0-9]{3}\s*-\s*[0-9]{4}$/;
+    if (phoneInput && !phoneFormat.test(phoneInput)) {
+      validationErrors.phoneNumber = "Must be in +X (XXX) XXX-XXXX format";
     }
 
-    //check that input in Email field is a valid email
+    //check that input in Email field is a valid email using regex.test()
     //email key with value of the error message will be added to validationErrors if not valid email
     const emailInput = userInput.email;
-    if (
-      emailInput &&
-      (!emailInput.includes("@") || !emailInput.includes("."))
-    ) {
-      validationErrors.email = "Must include @ and .";
+    const emailFormat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/;
+    if (emailInput && !emailFormat.test(emailInput)) {
+      validationErrors.email = "Must be in email format";
     }
 
     //loop through state variable and check for any key with an empty value
