@@ -1,9 +1,12 @@
 import "./InventoryAddPage.scss";
+import AddInventoryComponent from "../../components/AddInventoryComponent/AddInventoryComponent.jsx";
 
 function InventoryAddPage() {
   return (
     <>
-      <h1>Inventory Add Page</h1>
+      <main className="inventoryAddPage">
+        <AddInventoryComponent />
+      </main>
     </>
   );
 }

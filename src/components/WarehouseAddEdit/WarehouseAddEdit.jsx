@@ -1,12 +1,14 @@
 import "./WarehouseAddEdit.scss";
-import arrow from "../../assets/icons/arrow_back-24px.svg";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import SectionComponent2 from "../SectionComponent2/SectionComponent2";
 
-//actionType is passed down from 2 different pages:
-//WarehouseEditPage passes down a value of "Edit"
-//WarehouseAddPage passes down a value of "Add New"
-const WarehouseAddEdit = ({ actionType }) => {
+// pass as props when calling this component WarehouseAddPage & WarehouseEditPage:
+// title="<header title>" --> pass on to SectionComponent2
+// backLink="</route to go when back arrow is clicked>" --> pass on to SectionComponent2
+// buttonText="<button text>" 
+// buttonDisplay="hidden" --> pass on to SectionComponent2
+
+const WarehouseAddEdit = ({ title, backLink, buttonText, buttonDisplay }) => {
   //state variable for form input values with inital state of "" for all
   const initialInput = {
     warehouseName: "",
@@ -43,21 +45,20 @@ const WarehouseAddEdit = ({ actionType }) => {
     event.preventDefault();
     let validationErrors = {};
 
-    //check that input in Phone Number field is a number
+    //check that input in Phone Number field is in the correct phone number format using regex.test()
     //phoneNumber key with value of the error message will be added to validationErrors if not a number
     const phoneInput = userInput.phoneNumber;
-    if (phoneInput && Number(phoneInput) != phoneInput) {
-      validationErrors.phoneNumber = "Must be a number";
+    const phoneFormat = /^\+[0-9]\s*\([0-9]{3}\)\s*[0-9]{3}\s*-\s*[0-9]{4}$/;
+    if (phoneInput && !phoneFormat.test(phoneInput)) {
+      validationErrors.phoneNumber = "Must be in +X (XXX) XXX-XXXX format";
     }
 
-    //check that input in Email field is a valid email
+    //check that input in Email field is a valid email using regex.test()
     //email key with value of the error message will be added to validationErrors if not valid email
     const emailInput = userInput.email;
-    if (
-      emailInput &&
-      (!emailInput.includes("@") || !emailInput.includes("."))
-    ) {
-      validationErrors.email = "Must include @ and .";
+    const emailFormat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/;
+    if (emailInput && !emailFormat.test(emailInput)) {
+      validationErrors.email = "Must be in email format";
     }
 
     //loop through state variable and check for any key with an empty value
@@ -77,16 +78,8 @@ const WarehouseAddEdit = ({ actionType }) => {
 
   return (
     <>
+    <SectionComponent2 title={title} backLink={backLink} buttonDisplay={buttonDisplay} />
       <div className="warehouseAE">
-        <div className="warehouseAE__header-container">
-          <Link to={"/warehouse"} className="warehouseAE__link">
-            <img className="warehouseAE__icon" src={arrow} alt="back arrow" />
-          </Link>
-          <h1 className="warehouseAE__title">{`${actionType}`} Warehouse</h1>
-        </div>
-        <hr className="divider"></hr>
-
-        {/* Form ========================================================  */}
         <form
           className="warehouseAE__form"
           id="warehouseAE"
@@ -240,7 +233,7 @@ const WarehouseAddEdit = ({ actionType }) => {
             type="submit"
             form="warehouseAE"
           >
-            Save
+            {buttonText}
           </button>
         </div>
       </div>
