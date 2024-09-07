@@ -162,6 +162,21 @@ function EditInventoryComponent() {
     console.log(formData);
   }, [warehouseId]);
 
+// DO PUT REQUEST HERE -----------------------------------------------------------------
+//I'm pretty sure this works, but I haven't tested yet
+
+//   const editItem = async () => {
+//     try {
+//       await axios.put(`${baseUrl}/stock/inventories/${itemId}`);
+//       alert("Item has been successfully updated!");
+//       navigate("/inventory");
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   }
+
+//   editItem();
+//-----------------------------------------------------------------
 
   // Will render if axios call cannot find item
   if (notFound) {
