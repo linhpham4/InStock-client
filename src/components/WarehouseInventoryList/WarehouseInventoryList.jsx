@@ -11,14 +11,14 @@ import { useParams } from 'react-router-dom'
 
 const WarehouseInventoryList = () => {
 
-    const baseUrl = import.meta.env.VITE_API_URL
+    const baseUrl = import.meta.env.VITE_APP_BASE_URL
 
     const [inventory, setInventory] = useState([])
 
     const { warehouseId } = useParams();
 
     async function getInventoryByWarehouse() {
-        const inventory = await axios.get(`${baseUrl}/stock/warehouses/${warehouseId}/inventories`)
+        const inventory = await axios.get(`${baseUrl}warehouses/${warehouseId}/inventories`)
         setInventory(inventory.data)
     }
 

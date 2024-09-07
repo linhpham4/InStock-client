@@ -1,6 +1,7 @@
 import "./InventoryDetailsPage.scss";
 import InventoryDetails from "../../components/InventoryDetails/InventoryDetails.jsx";
 
+
 function InventoryDetailsPage() {
   return (
     <>
@@ -8,7 +9,7 @@ function InventoryDetailsPage() {
         <InventoryDetails />
       </main>
     </>
-  );
+  )
 }
 
 export default InventoryDetailsPage;
