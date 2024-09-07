@@ -1,7 +1,21 @@
 import "./EditWarehouse.scss";
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const EditWarehouse = () => {
+//test data - delete after back end is finished
+  // const dummyWarehouse = {
+  //   warehouse_name: "Chicago",
+  //   address: "3218 Guess Rd",
+  //   city: "Chicago",
+  //   country: "USA",
+  //   contact_name: "Jameson Schuppe",
+  //   contact_position: "Warehouse Manager",
+  //   contact_phone: "+1 (919) 797-2875",
+  //   contact_email: "jschuppe@instock.com"
+  // };
+  
   //state variable for form input values with inital state of "" for all
   const initialInput = {
     warehouse_name: "",
@@ -14,7 +28,25 @@ const EditWarehouse = () => {
     contact_email: ""
   };
 
+  const { warehouseId } = useParams();
   const [userInput, setUserInput] = useState(initialInput);
+  const baseUrl = import.meta.env.VITE_APP_URL;
+
+  // get data for the warehouse with id matching warehouseId
+  const getWarehouse = async () => {
+    try {
+      const response = await axios.get(`${baseUrl}/stock/warehouses/${warehouseId}`);
+      setUserInput(response.data);
+    } catch (error) {
+      setNotFound(true);
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    getWarehouse();
+  },[warehouseId]);
+
 
   //state variable for validation errors
   const [errors, setErrors] = useState({});
