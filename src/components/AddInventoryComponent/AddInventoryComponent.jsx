@@ -1,7 +1,7 @@
 import "./AddInventoryComponent.scss";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function AddInventoryComponent() {
   const [warehouseId, setWarehouseId] = useState("");
@@ -90,7 +90,10 @@ function AddInventoryComponent() {
 
     const categoryField = event.target.category.value;
     if (!categoryField) {
+      setCategoryInvalid("addInventory-form__input--invalid");
       validationErrors.categoryField = "This field is required";
+    } else {
+      setCategoryInvalid("");
     }
 
     const statusField = stockStatus;
@@ -98,27 +101,37 @@ function AddInventoryComponent() {
       validationErrors.statusField = "This field is required";
     }
 
+    // Also checks if it is a number
     const quantityField = event.target.quantity.value;
     if (!quantityField && stockStatus !== "Out of Stock") {
+      setQuantityInvalid("addInventory-form__input--invalid");
       validationErrors.quantityField = "This field is required";
+    } else if (stockStatus !== "Out of Stock" && isNaN(quantityField)) {
+      setQuantityInvalid("addInventory-form__input--invalid");
+      validationErrors.quantityField = "Must be a number";
+    } else {
+      setQuantityInvalid("");
     }
 
+    //if a key exists in validationErrors, update the errors state variable
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
 
+    // update object with all values
     setWarehouseId(warehouseKey[warehouseField]);
     setItemName(itemField);
     setItemDescription(descriptionField);
     setItemCategory(categoryField);
     setItemQuantity(Number(quantityField));
 
+    //reset from and remove errors
     setErrors({});
     event.target.reset();
-    navigate("/inventory");
   };
 
+  // To check object to ensure correct post request ****REMOVE BEFORE SUBMISSION****
   useEffect(() => {
     console.log(formData);
   }, [warehouseId]);
@@ -127,7 +140,9 @@ function AddInventoryComponent() {
     <>
       <div className="addInventory-header">
         <div className="addInventory-header__location">
-          <img src={backArrow} alt="back arrow" />
+          <Link className="addInventory-header__link" to="/inventory">
+            <img src={backArrow} alt="back arrow" />
+          </Link>
 
           <h2 className="addInventory-header__heading">
             Add New Inventory Item
