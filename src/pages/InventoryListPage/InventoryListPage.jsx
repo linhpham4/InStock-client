@@ -2,6 +2,7 @@ import DeleteInventoryModal from "../../components/DeleteInventoryModal/DeleteIn
 import SectionComponent from "../../components/SectionComponent/SectionComponent";
 import WarehouseInventoryList from "../../components/WarehouseInventoryList/WarehouseInventoryList";
 import "./InventoryListPage.scss";
+import InventoryList from "../../components/InventoryList/InventoryList";
 
 function InventoryListPage() {
   return (
