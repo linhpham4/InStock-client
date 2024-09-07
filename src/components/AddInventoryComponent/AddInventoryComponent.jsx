@@ -193,7 +193,7 @@ function AddInventoryComponent() {
             >
               Category
               <select
-                className="addInventory-form__input addInventory-form__input--3"
+                className={`addInventory-form__input addInventory-form__input--3 ${categoryInvalid}`}
                 id="category"
                 name="category"
                 defaultValue=""
@@ -265,7 +265,7 @@ function AddInventoryComponent() {
               >
                 Quantity
                 <input
-                  className="addInventory-form__input addInventory-form__input--4"
+                  className={`addInventory-form__input addInventory-form__input--4 ${quantityInvalid}`}
                   type="text"
                   id="quantity"
                   placeholder="0"
