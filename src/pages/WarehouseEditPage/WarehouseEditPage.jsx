@@ -1,10 +1,13 @@
 import "./WarehouseEditPage.scss";
+import EditWarehouse from "../../components/EditWarehouse/EditWarehouse";
+import SectionComponent2 from "../../components/SectionComponent2/SectionComponent2";
 
 function WarehouseEditPage() {
   return (
-    <>
-      <h1>Warehouse Edit Page</h1>
-    </>
+    <main>
+      <SectionComponent2 title="Edit Warehouse" backLink="/warehouse" buttonDisplay="hidden" />
+      <EditWarehouse />
+    </main>
   );
 }
 
