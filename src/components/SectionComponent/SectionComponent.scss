@@ -3,52 +3,68 @@
 @use '../../styles/partials/variables.scss'as *;
 
 .warehouse-header {
-    width: 90%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-    padding: 1em 0;
-    position: relative;
-    border-bottom: solid 1px $cloud;
+    justify-content: center;
 
 
-    @include tablet-breakpoint {
-        flex-direction: row;
-        justify-content: space-between;
+    @include desktop-breakpoint {
+        padding: 0 2rem;
+
     }
 
-    @include tablet-breakpoint {
-        padding:  1em 2em;
-        // margin-left: 2em;
-        // width: 80%;
-        max-width: 1900px;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1em 2em 1.5em;
+        width: 100%;
+        border-bottom: solid 1px $cloud;
+
+
+        @include tablet-breakpoint {
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 2em;
+            border-bottom: none;
+        }
+
+        @include tablet-breakpoint {}
+
+
+
+    }
+
+    &__heading-container {
+        width: 100%;
+        align-items: start;
     }
 
     &__heading {
         font-size: 2.5rem;
         font-weight: 600;
         padding: 0.51em 0;
+        text-align: left;
 
-        @include tablet-breakpoint {
-        }
+        @include tablet-breakpoint {}
     }
 
     &__inputs {
         width: 100%;
+        position: relative;
 
         @include tablet-breakpoint {
+            width: 60%;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            // width: 90%;
+            justify-content: flex-end;
             gap: 2em;
             margin-right: 1em;
         }
 
         @include desktop-breakpoint {
             width: 45%;
-            margin: 0;
+            margin-right: 2em;
 
         }
     }
@@ -58,9 +74,12 @@
         @include tablet-breakpoint {
             display: flex;
             width: 60%;
-            max-width: 450px;
-
+            max-width: 350px;
             position: relative;
+        }
+
+        @include desktop-breakpoint {
+min-width: 450px;
         }
     }
 
@@ -127,7 +146,7 @@
         @include mobile-subheader;
         position: absolute;
         right: 1em;
-        bottom: 5em;
+        bottom: 4em;
 
         @include tablet-breakpoint {
             bottom: 0.5em;
