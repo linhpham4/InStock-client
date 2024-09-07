@@ -19,9 +19,10 @@
     }
 
     @include tablet-breakpoint {
-        padding: 1em 0;
+        padding:  1em 2em;
         // margin-left: 2em;
-        width: 80%;
+        // width: 80%;
+        max-width: 1900px;
     }
 
     &__heading {
