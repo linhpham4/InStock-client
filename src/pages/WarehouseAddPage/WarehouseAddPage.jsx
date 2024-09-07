@@ -1,10 +1,12 @@
 import "./WarehouseAddPage.scss";
-import WarehouseAddEdit from "../../components/WarehouseAddEdit/WarehouseAddEdit";
+import AddWarehouse from "../../components/AddWarehouse/AddWarehouse";
+import SectionComponent2 from "../../components/SectionComponent2/SectionComponent2";
 
 function WarehouseAddPage() {
   return (
     <main>
-      <WarehouseAddEdit title="Add New Warehouse" backLink="/warehouse" buttonText="+ Add Warehouse"/>
+      <SectionComponent2 title="Add New Warehouse" backLink="/warehouse" buttonDisplay="hidden" />
+      <AddWarehouse />
     </main>
   );
 }
