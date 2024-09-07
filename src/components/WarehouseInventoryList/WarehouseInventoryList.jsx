@@ -11,7 +11,7 @@ import { useParams } from 'react-router-dom'
 
 const WarehouseInventoryList = () => {
 
-    const baseUrl = import.meta.env.VITE_API_URL
+    const baseUrl = import.meta.env.VITE_APP_BASE_URL
 
     const [inventory, setInventory] = useState([])
 
