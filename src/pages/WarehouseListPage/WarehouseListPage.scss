@@ -1,0 +1,15 @@
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/typography.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
+
+.warehouse-list__list-main {
+  margin-top: 4rem;
+  position: relative;
+  @include tablet-breakpoint {
+    margin-top: 7rem;
+  }
+}
+.section-header {
+  position: relative;
+  box-sizing: border-box;
+}

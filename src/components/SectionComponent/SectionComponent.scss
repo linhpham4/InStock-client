@@ -1,129 +1,120 @@
-@use '../../styles/partials/mixins.scss'as *;
-@use '../../styles/partials/typography.scss'as *;
-@use '../../styles/partials/variables.scss'as *;
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/typography.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
 
 .warehouse-header {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    padding: 0 3em 1em;
-    position: relative;
-    border-bottom: solid 1px $cloud;
+  width: 100%; // new code (changed from 100vw to 100% as it was drifting beyond page width
+  display: flex;
+  flex-direction: column;
+  padding: 0 3em 1em;
+  position: relative;
+  border-bottom: solid 1px $cloud;
 
+  @include tablet-breakpoint {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1em 3em;
+  }
+
+  &__heading {
+    font-size: 2.5rem;
+    font-weight: 600;
+    padding: 0.51em 0;
 
     @include tablet-breakpoint {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 1em 3em;
+    }
+  }
+
+  &__inputs {
+    width: 100%;
+
+    @include tablet-breakpoint {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 60%;
+      gap: 2em;
     }
 
-    &__heading {
-        font-size: 2.5rem;
-        font-weight: 600;
-        padding: 0.51em 0;
+    @include desktop-breakpoint {
+      width: 45%;
+    }
+  }
 
-        @include tablet-breakpoint {
-        }
+  &__searchField {
+    @include tablet-breakpoint {
+      display: flex;
+      width: 60%;
+      max-width: 450px;
+
+      position: relative;
+    }
+  }
+
+  &__field {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 1.1em 1.5em;
+    border-radius: 1.7em;
+    border: solid 1px $cloud;
+    min-width: 150px;
+    max-height: 47px;
+    margin-bottom: 1.5em;
+
+    @include tablet-breakpoint {
+      margin: 0;
+    }
+  }
+
+  &__button2 {
+    background-color: $instock-indigo;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    border-radius: 2em;
+    border: none;
+    min-width: 47px;
+    max-height: 47px;
+    width: 100%;
+    min-width: 200px;
+
+    @include tablet-breakpoint {
+      width: 40%;
     }
 
-    &__inputs {
-        width: 100%;
-
-        @include tablet-breakpoint {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 60%;
-            gap: 2em;
-        }
-
-        @include desktop-breakpoint {
-            width: 45%;
-
-        }
+    &:hover {
+      background-color: $graphite;
+      border-color: $graphite;
+      transition: 0.3s;
+      cursor: pointer;
     }
+  }
 
-    &__searchField {
+  &__btn-text {
+    color: $white;
+    font-size: 1.25rem;
+    padding: 1rem;
 
-        @include tablet-breakpoint {
-            display: flex;
-            width: 60%;
-            max-width: 450px;
-
-            position: relative;
-        }
+    @include tablet-breakpoint {
+      font-size: 1rem;
     }
+  }
 
-    &__field {
+  &__icon {
+    color: $white;
+    @include mobile-subheader;
+    position: absolute;
+    top: 50%; // new code
+    transform: translateY(-20%); // new code
+    right: 3.5em;
+    // bottom: 4.1em;
 
-        width: 100%;
-        font-size: 1.1rem;
-        padding: 1.1em 1.5em;
-        border-radius: 1.7em;
-        border: solid 1px $cloud;
-        min-width: 150px;
-        max-height: 47px;
-        margin-bottom: 1.5em;
-
-
-        @include tablet-breakpoint {
-            margin: 0;
-        }
-
-
+    @include tablet-breakpoint {
+      //   bottom: 0.5em;
+      top: 50%; // new code
+      transform: translateY(-50%); // new code
+      right: 1em;
     }
-
-
-    &__button2 {
-        background-color: $instock-indigo;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1em;
-        border-radius: 2em;
-        border: none;
-        min-width: 47px;
-        max-height: 47px;
-        width: 100%;
-        min-width: 200px;
-
-
-        @include tablet-breakpoint {
-            width: 40%;
-        }
-
-        &:hover {
-            background-color: $graphite;
-            border-color: $graphite;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-    }
-
-    &__btn-text {
-        color: $white;
-        font-size: 1.25rem;
-        padding: 1rem;
-
-        @include tablet-breakpoint {
-            font-size: 1rem;
-        }
-    }
-
-
-    &__icon {
-        color: $white;
-        @include mobile-subheader;
-        position: absolute;
-        right: 3.5em;
-        bottom: 4.1em;
-
-        @include tablet-breakpoint {
-            bottom: 0.5em;
-            right: 1em;
-
-        }
-    }
-
+  }
 }
