@@ -1,7 +1,13 @@
 import "./AddWarehouse.scss";
+import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddWarehouse = () => {
+
+  const baseUrl = import.meta.env.VITE_APP_URL;
+  const navigate = useNavigate();
+
   //state variable for form input values with inital state of "" for all
   const initialInput = {
     warehouse_name: "",
@@ -70,6 +76,21 @@ const AddWarehouse = () => {
     }
 
     setErrors({});
+
+// uncomment after back end is finished
+    //post new warehouse object to server 
+    // const postWarehouse = async () => {
+    //   try {
+    //     await axios.post(`${baseUrl}/stock/warehouses`, userInput);
+    //     alert("Warehouse has been successfully added!");
+    //     navigate("/warehouse");
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // }
+
+    // postWarehouse ();
+    
   };
 
   return (
