@@ -10,28 +10,28 @@ import { Link } from "react-router-dom"
 function SectionComponent({ title, buttonText, buttonLink }) {
   return (
 
-<div className='warehouse-header'>
-        <h2 className='warehouse-header__heading'>{title}</h2>
-        
-        <div className="warehouse-header__inputs">
+    <div className='warehouse-header'>
+      <h2 className='warehouse-header__heading'>{title}</h2>
 
-          <div className="warehouse-header__searchField">
-            <input type="text" placeholder="Search..." className="warehouse-header__field" />
-            <img src={searchIcon} alt="" className="warehouse-header__icon" />
-          </div>
+      <div className="warehouse-header__inputs">
 
-          <Link to={buttonLink} className="warehouse-header__link">
+        <div className="warehouse-header__searchField">
+          <input type="text" placeholder="Search..." className="warehouse-header__field" />
+          <img src={searchIcon} alt="" className="warehouse-header__icon" />
+        </div>
+
+        <Link to={buttonLink} className="warehouse-header__link">
           <button className='warehouse-header__button2'>
             <p className='warehouse-header__btn-text'>{buttonText}</p>
           </button>
-          </Link>
-
-        </div>
-
-
-
+        </Link>
 
       </div>
+
+
+
+
+    </div>
 
   )
 }
