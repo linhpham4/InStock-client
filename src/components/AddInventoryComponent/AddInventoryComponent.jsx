@@ -61,6 +61,7 @@ function AddInventoryComponent() {
       santaMonica: 5,
       seattle: 6,
       miami: 7,
+      boston: 8,
     };
 
     // check for valid inputs in all fields
@@ -298,6 +299,7 @@ function AddInventoryComponent() {
                 <option value="santaMonica">Santa Monica</option>
                 <option value="seattle">Seattle</option>
                 <option value="miami">Miami</option>
+                <option value="boston">Boston</option>
               </select>
               {errors.warehouseField && (
                 <p className="addInventory-form__error">
