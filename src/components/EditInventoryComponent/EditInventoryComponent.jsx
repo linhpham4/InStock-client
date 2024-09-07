@@ -5,6 +5,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 function EditInventoryComponent() {
+  const [warehouseName, setWarehouseName] = useState ("");
   const [warehouseId, setWarehouseId] = useState("");
   const [itemName, setItemName] = useState("");
   const [itemDescription, setItemDescription] = useState("");
@@ -18,16 +19,8 @@ function EditInventoryComponent() {
   const [categoryInvalid, setCategoryInvalid] = useState("");
   const [quantityInvalid, setQuantityInvalid] = useState("");
   const [errors, setErrors] = useState({});
+  // const [isSelected, setSelected] = useState({})
   const navigate = useNavigate();
-
-  const formData = {
-    warehouse_id: warehouseId,
-    item_name: itemName,
-    description: itemDescription,
-    category: itemCategory,
-    status: stockStatus,
-    quantity: itemQuantity,
-  };
 
   // Convert warehouse name to warehouse ID
   const warehouseKey = {
@@ -41,6 +34,19 @@ function EditInventoryComponent() {
     boston: 8
   };
 
+  // setWarehouseId(warehouseKey[warehouseName]) 
+  const formData = {
+    warehouse_id: warehouseId,
+    item_name: itemName,
+    description: itemDescription,
+    category: itemCategory,
+    status: stockStatus,
+    quantity: itemQuantity,
+  };
+
+  
+  // console.log(warehouseKey["miami"])
+
 //NEW CODE FOR EditInventoryComponent - KEEP WORKING IN THIS SECTION----------------------------  
   const { itemId } = useParams();
   const [notFound, setNotFound] = useState(null);
@@ -50,14 +56,14 @@ function EditInventoryComponent() {
   const getItem = async () => {
     try {
       const response = await axios.get(`${baseUrl}/stock/inventories/${itemId}`);
-      const warehouseId = response.data.warehouse_id;
-      const warehouseName = warehouseKey[warehouseId];
-      setWarehouseId(warehouseName);
+      const warehouseName = response.data.warehouse_name;
+      setWarehouseName(warehouseName);
       setItemName(response.data.item_name);
       setItemDescription(response.data.description);
       setItemCategory(response.data.category);
       setItemQuantity(response.data.quantity);
       setStockStatus(response.data.status);
+      console.log(itemName)
     } catch (error) {
       setNotFound(true);
       console.error(error);
@@ -66,6 +72,8 @@ function EditInventoryComponent() {
 
   useEffect(() => {
     getItem();
+    console.log(warehouseKey[warehouseName])
+    // console.log(warehouseId)
   },[itemId]);
 
   // Function to access choice from radio and assign value
@@ -216,6 +224,7 @@ function EditInventoryComponent() {
                 id="itemName"
                 type="text"
                 htmlFor="description"
+                defaultValue={formData.item_name}
               />
               {errors.itemField && (
                 <p className="addInventory-form__error">{errors.itemField}</p>
@@ -232,6 +241,7 @@ function EditInventoryComponent() {
                 id="description"
                 placeholder="Please enter a brief description..."
                 rows="4"
+                defaultValue={formData.description}
               />
               {errors.descriptionField && (
                 <p className="addInventory-form__error">
@@ -259,10 +269,10 @@ function EditInventoryComponent() {
                 >
                   Accessories
                 </option>
-                <option value="apparel">Apparel</option>
-                <option value="electronics">Electronics</option>
-                <option value="gear">Gear</option>
-                <option value="health">Health</option>
+                <option value="apparel" {...itemCategory === "Apparel" ? {selected:true} : ""}>Apparel</option>
+                <option value="electronics" {...itemCategory === "Electronics" ? {selected:true} : ""}>Electronics</option>
+                <option value="gear" {...itemCategory === "Gear" ? {selected:true} : ""}>Gear</option>
+                <option value="health" {...itemCategory === "Health" ? {selected:true} : ""}>Health</option>
               </select>
               {errors.categoryField && (
                 <p className="addInventory-form__error">
@@ -321,6 +331,7 @@ function EditInventoryComponent() {
                   type="text"
                   id="quantity"
                   placeholder="0"
+                  value={formData.quantity}
                 />
                 {errors.quantityField && (
                   <p className="addInventory-form__error">
@@ -339,6 +350,7 @@ function EditInventoryComponent() {
                 id="warehouseName"
                 name="warehouseName"
                 defaultValue=""
+                // value={formData.warehouse_id}
               >
                 <option value="" disabled>
                   Please select
