@@ -6,7 +6,7 @@
   width: 100%; // new code (changed from 100vw to 100% as it was drifting beyond page width
   display: flex;
   flex-direction: column;
-  padding: 0 3em 1em;
+  padding: 2rem 3rem 1rem;
   position: relative;
   border-bottom: solid 1px $cloud;
 
@@ -20,8 +20,10 @@
     font-size: 2.5rem;
     font-weight: 600;
     padding: 0.51em 0;
+    @include mobile-page-header; // added to make sure we have same font on all pages that use this component
 
     @include tablet-breakpoint {
+      @include page-header; // added to make sure we have same font on all pages that use this component
     }
   }
 
@@ -106,7 +108,7 @@
     @include mobile-subheader;
     position: absolute;
     top: 50%; // new code
-    transform: translateY(-20%); // new code
+    transform: translateY(-25%); // new code
     right: 3.5em;
     // bottom: 4.1em;
 
