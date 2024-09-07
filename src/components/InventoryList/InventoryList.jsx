@@ -117,7 +117,7 @@ const InventoryList = () => {
             <img className='inv__icon' src={sortIcon} alt="sort" />
         </div>
         <div className='inv__title'>
-            <p>QUANTITY</p>
+            <p>QTY</p>
             <img className='inv__icon' src={sortIcon} alt="sort" />
         </div>
         <div className='inv__title'>
