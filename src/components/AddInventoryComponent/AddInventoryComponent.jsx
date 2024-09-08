@@ -1,10 +1,11 @@
 import "./AddInventoryComponent.scss";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function AddInventoryComponent() {
-  const [warehouseId, setWarehouseId] = useState("");
+  const [warehouseName, setWarehouseName] = useState ("");
   const [itemName, setItemName] = useState("");
   const [itemDescription, setItemDescription] = useState("");
   const [itemCategory, setItemCategory] = useState("");
@@ -18,9 +19,23 @@ function AddInventoryComponent() {
   const [quantityInvalid, setQuantityInvalid] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const baseUrl = import.meta.env.VITE_APP_BASE_URL;
 
+  // Convert warehouse name to warehouse ID
+  const warehouseKey = {
+    Manhattan: 1,
+    Washington: 2,
+    Jersey: 3,
+    SF: 4,
+    SantaMonica: 5,
+    Seattle: 6,
+    Miami: 7,
+    Boston: 8
+  };
+  
+//creates object to submit to server
   const formData = {
-    warehouse_id: warehouseId,
+    warehouse_id: warehouseKey[warehouseName],
     item_name: itemName,
     description: itemDescription,
     category: itemCategory,
@@ -39,30 +54,20 @@ function AddInventoryComponent() {
   useEffect(() => {
     if (stockStatus === "Out of Stock") {
       setHideQuantity(true);
+      setItemQuantity(0);
     } else {
       setHideQuantity(false);
     }
   }, [stockStatus]);
 
-  const handleCancel = (event) => {
-    navigate("/inventory");
+  // Handler for cancle button and back buttons --> navigates to the previous page
+  const handleGoBack = (event) => {
+    navigate(-1);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     let validationErrors = {};
-
-    // Convert warehouse name to warehouse ID
-    const warehouseKey = {
-      manhattan: 1,
-      washington: 2,
-      jersey: 3,
-      sf: 4,
-      santaMonica: 5,
-      seattle: 6,
-      miami: 7,
-      boston: 8,
-    };
 
     // check for valid inputs in all fields
     const warehouseField = event.target.warehouseName.value;
