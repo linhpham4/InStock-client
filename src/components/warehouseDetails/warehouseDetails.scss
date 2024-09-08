@@ -6,15 +6,16 @@
 .selectedWarehouse {
 
     font-size: 1em;
-    background-color: $light-grey;
+    // background-color: $light-grey;
     padding: 1em 2em;
-    border: 1px solid $cloud;
+    // border: 1px solid $cloud;
     border-radius: 4px;
 
     @include tablet-breakpoint {
         display: flex;
         justify-content: space-between;
         @include mobile-body-large;
+        margin: 2rem 6rem 1rem 4em;
     }
 
     @include desktop-breakpoint {
