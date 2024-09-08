@@ -1,5 +1,5 @@
-@use "../../styles/partials/mixins.scss" as *;
-@use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss"as *;
+@use "../../styles/partials/variables.scss"as *;
 
 .background {
   margin-left: 1rem;
@@ -8,8 +8,18 @@
 }
 
 .inventory {
+  width: 100%;
   border-bottom: 1px solid #bdc5d5;
   padding-bottom: 1.5rem;
+
+
+  &__wrapper {
+    width: 100%;
+    margin: 0;
+  }
+
+
+
 
   @include tablet-breakpoint {
     padding-top: 1.5rem;
@@ -19,7 +29,7 @@
     display: flex;
 
     @include tablet-breakpoint {
-        justify-content: flex-start;
+      justify-content: flex-start;
     }
   }
 
@@ -28,7 +38,7 @@
     width: 20px;
 
     @include tablet-breakpoint {
-        height: 22px;
+      height: 22px;
     }
   }
 
@@ -38,9 +48,6 @@
       gap: 0.5rem;
     }
 
-    // @include desktop-breakpoint {
-    //   padding-left: 4rem;
-    // }
   }
 
   &__altimages {
@@ -51,19 +58,14 @@
   }
 
   &__title {
-    width: 8.25rem; // Controls spacing for header-card alignment
+    width: 8.25rem; 
     display: flex;
 
-    // @include desktop-breakpoint {
-    //   width: 11rem;
-    // }
+  
 
     &--padding {
       padding-left: 2rem;
 
-      // @include desktop-breakpoint {
-      //   padding-left: 4rem;
-      // }
     }
   }
 
@@ -73,6 +75,8 @@
   }
 
   &__container {
+    width: 100%;
+
     @include tablet-breakpoint {
       display: flex;
       flex-direction: column;
@@ -96,11 +100,6 @@
       padding-right: 1rem;
     }
 
-    // @include desktop-breakpoint {
-    //   gap: 2rem;
-    //   padding-left: 2rem;
-    //   padding-right: 2rem;
-    // }
   }
 
   &__card {
@@ -118,10 +117,6 @@
       align-items: center;
     }
 
-    // @include desktop-breakpoint {
-    //   gap: 2rem;
-    //   padding: 0 2rem;
-    // }
   }
 
   &__icons {
@@ -221,10 +216,7 @@
 
   @include tablet-breakpoint {
     display: flex;
-    width: 8.25rem; // Controls spacing for header-card alignment
+    width: 8.25rem; 
   }
 
-  // @include desktop-breakpoint {
-  //   width: 11rem;
-  // }
 }
