@@ -14,65 +14,6 @@ const WarehouseList = () => {
 
     const [warehouses, setWarehouses] = useState([])
 
-    // const warehouses = [
-    //     {
-    //         warehouse: "Manhattan",
-    //         id: 1,
-    //         address: "503 Broadway, New York, USA",
-    //         contact: "Parmin Aujla",
-    //         number: "+1 (629) 555-0129",
-    //         email: "paujla@instock.com"
-    //     },
-    //     {
-    //         warehouse: "Washington",
-    //         id: 2,
-    //         address: "33 Pearl Street SW, Washington, USA",
-    //         contact: "Graeme Lyon",
-    //         number: "+1 (647) 504-0911",
-    //         email: "glyon@instock.com"
-    //     },
-    //     {
-    //         warehouse: "Jersey",
-    //         id: 3,
-    //         address: "300 Main Street, New Jersey, USA",
-    //         contact: "Brad MacDonald",
-    //         number: "+1 (401) 377-2337",
-    //         email: "bmcdonald@instock.com"
-    //     },
-    //     {
-    //         warehouse: "San Fran",
-    //         id: 4,
-    //         address: "890 Brannan Street, San Francisco, USA",
-    //         contact: "Gary Wong",
-    //         number: "+1 (239) 555-0108",
-    //         email: "gwong@instock.com"
-    //     },
-    //     {
-    //         warehouse: "Santa Monica",
-    //         id: 5,
-    //         address: "520 Broadway, Santa Monica, USA",
-    //         contact: "Sharon Ng",
-    //         number: "+1 (270) 555-0117",
-    //         email: "sng@instock.com"
-    //     },
-    //     {
-    //         warehouse: "Seattle",
-    //         id: 6,
-    //         address: "1201 Third Avenue, Seattle, USA",
-    //         contact: "Daniel Bachu",
-    //         number: "+1 (480) 555-0103",
-    //         email: "dbachu@instock.com"
-    //     },
-    //     {
-    //         warehouse: "Miami",
-    //         id: 7,
-    //         address: "2650 NW 5th Avenue, Miami, USA",
-    //         contact: "Alana Thomas",
-    //         number: "+1 (647) 832-2065",
-    //         email: "athomas@instock.com"
-    //     }
-    // ]
-
     async function getWarehouseList() {
         const warehouseList = await axios.get(`${baseUrl}/stock/warehouses`)
         setWarehouses(warehouseList.data)
@@ -86,7 +27,7 @@ const WarehouseList = () => {
 
     return (
 
-        <main className='warehouse__m'>
+        <main>
 
             <div className='warehouse__headings'>
                 <div className='warehouse__title'>
@@ -114,7 +55,7 @@ const WarehouseList = () => {
 
             {warehouses.map(warehouse => (
 
-                <div className='warehouse'>
+                <div key={warehouse.id} className='warehouse'>
 
                     <div className='warehouse__card'>
 
