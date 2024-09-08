@@ -4,6 +4,7 @@ import logo2 from '../../assets/logo/InStock-Logo_2x.png'
 import { Link } from "react-router-dom";
 
 const Header = () => {
+
   return (
     <>
       <div className="header__background">
@@ -15,10 +16,10 @@ const Header = () => {
 
           <div className="header__container">
             <Link to={`/warehouse`}>
-              <button className="header__buttons">Warehouses</button>
+              <button className="header__buttons header__buttons--activeware">Warehouses</button>
             </Link>
             <Link to={`/inventory`}>
-              <button className="header__buttons">Inventory</button>
+              <button className="header__buttons header__buttons--activeinv">Inventory</button>
             </Link>
           </div>
 
