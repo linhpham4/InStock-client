@@ -2,6 +2,7 @@ import "./SectionComponent2.scss";
 import editIcon from "../../assets/icons/edit-white-24px.svg";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // pass as props when you call this component from the parent component:
 // title="<header title>"
@@ -9,14 +10,15 @@ import { Link } from "react-router-dom";
 // buttonDisplay="hidden" if you need to hide the button, don't pass anything if you don't need to hide
 // buttonLink="</route to go when button is clicked>"
 
-function SectionComponent({ title, backLink, buttonDisplay, buttonLink }) {
+function SectionComponent({ title, buttonDisplay, buttonLink }) {
+
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="washington-header">
         <div className="washington-header__location">
-          <Link to={backLink} className="washington-header__link">
-            <img className="washington-header__back-icon" src={backArrow} alt="" />
-          </Link>
+            <img className="washington-header__back-icon" src={backArrow} alt="Back Arrow" onClick={(e) => navigate(-1)}/>
           <h2 className="washington-header__heading">{title}</h2>
         </div>
 

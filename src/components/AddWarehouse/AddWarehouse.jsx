@@ -36,9 +36,8 @@ const AddWarehouse = () => {
     }));
   };
 
-  const handleCancel = (event) => {
-    setUserInput(initialInput);
-    setErrors(initialInput);
+  const handleGoBack = (event) => {
+    navigate(-1);
   };
 
   const handleSubmit = (event) => {
@@ -82,6 +81,7 @@ const AddWarehouse = () => {
       try {
         await axios.post(`${baseUrl}/stock/warehouses`, userInput);
         alert("Warehouse has been successfully added!");
+        setUserInput(initialInput);
         // navigate(-1);
       } catch (error) {
         console.error(error);
@@ -238,7 +238,7 @@ const AddWarehouse = () => {
             className="warehouseAE__button warehouseAE__button--cancel"
             type="reset"
             form="warehouseAE"
-            onClick={handleCancel}
+            onClick={handleGoBack}
           >
             Cancel
           </button>
