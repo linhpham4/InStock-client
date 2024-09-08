@@ -119,28 +119,37 @@ function AddInventoryComponent() {
       setQuantityInvalid("");
     }
 
+    //to account for when status goes from out of stock to in stock
+    setItemQuantity(Number(quantityField));
+    
     //if a key exists in validationErrors, update the errors state variable
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
 
-    // update object with all values
-    setWarehouseId(warehouseKey[warehouseField]);
-    setItemName(itemField);
-    setItemDescription(descriptionField);
-    setItemCategory(categoryField);
-    setItemQuantity(Number(quantityField));
-
     //reset from and remove errors
     setErrors({});
-    event.target.reset();
-  };
 
-  // To check object to ensure correct post request ****REMOVE BEFORE SUBMISSION****
-  useEffect(() => {
-    console.log(formData);
-  }, [warehouseId]);
+    //post request to add item in server
+    const addItem = async () => {
+      try {
+        await axios.post(`${baseUrl}/stock/inventories`, formData);
+        alert("Item has been successfully added!");
+        event.target.reset();
+        setItemName("");
+        setItemDescription("");
+        setItemCategory("");
+        setStockStatus("");
+        setItemQuantity("");
+        setItemWarehouse("");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    addItem();
+  };
 
   return (
     <>
