@@ -1,12 +1,11 @@
 import "./EditInventoryComponent.scss";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function EditInventoryComponent() {
   const [warehouseName, setWarehouseName] = useState ("");
-  const [warehouseId, setWarehouseId] = useState("");
   const [itemName, setItemName] = useState("");
   const [itemDescription, setItemDescription] = useState("");
   const [itemCategory, setItemCategory] = useState("");
@@ -46,14 +45,14 @@ function EditInventoryComponent() {
 
   // Convert warehouse name to warehouse ID
   const warehouseKey = {
-    "Manhattan": 1,
-    "Washington": 2,
-    "Jersey": 3,
-    "SF": 4,
-    "SantaMonica": 5,
-    "Seattle": 6,
-    "Miami": 7,
-    "Boston": 8
+    Manhattan: 1,
+    Washington: 2,
+    Jersey: 3,
+    SF: 4,
+    SantaMonica: 5,
+    Seattle: 6,
+    Miami: 7,
+    Boston: 8
   };
 
   //creates object to submit to server
@@ -83,8 +82,8 @@ function EditInventoryComponent() {
     }
   }, [stockStatus]);
 
-  // Handler for cancle button, navigates to the previous page
-  const handleCancel = (event) => {
+  // Handler for cancle button and back buttons --> navigates to the previous page
+  const handleGoBack = (event) => {
     navigate(-1);
   };
 
@@ -159,8 +158,6 @@ function EditInventoryComponent() {
       try {
          await axios.put(`${baseUrl}/stock/inventories/${itemId}`, formData);
          alert("Item has been successfully updated!");
-         navigate(-1);
-         console.log(formData)
       } catch (error) {
         console.error(error);
       }
@@ -178,10 +175,7 @@ function EditInventoryComponent() {
     <>
       <div className="addInventory-header">
         <div className="addInventory-header__location">
-          <Link className="addInventory-header__link" to="/inventory">
-            <img src={backArrow} alt="back arrow" />
-          </Link>
-
+          <img src={backArrow} alt="back arrow" onClick={handleGoBack} />
           <h2 className="addInventory-header__heading">
             Edit Inventory Item
           </h2>
@@ -202,7 +196,6 @@ function EditInventoryComponent() {
                 id="itemName"
                 name="itemName"
                 type="text"
-                htmlFor="description"
                 value={formData.item_name}
                 onChange={(e) => setItemName(e.target.value)}
               />
@@ -249,14 +242,14 @@ function EditInventoryComponent() {
                 <option
                   className="addInventory-form__input-category-placeholder"
                   value="Accessories"
-                  {...itemCategory === "Accessories" ? {selected:true} : ""}
+                  {...itemCategory === "Accessories" && {selected:true}}
                 >
                   Accessories
                 </option>
-                <option value="Apparel" {...itemCategory === "Apparel" ? {selected:true} : ""}>Apparel</option>
-                <option value="Electronics" {...itemCategory === "Electronics" ? {selected:true} : ""}>Electronics</option>
-                <option value="Gear" {...itemCategory === "Gear" ? {selected:true} : ""}>Gear</option>
-                <option value="Health" {...itemCategory === "Health" ? {selected:true} : ""}>Health</option>
+                <option value="Apparel" {...itemCategory === "Apparel" && {selected:true}}>Apparel</option>
+                <option value="Electronics" {...itemCategory === "Electronics" && {selected:true}}>Electronics</option>
+                <option value="Gear" {...itemCategory === "Gear" && {selected:true}}>Gear</option>
+                <option value="Health" {...itemCategory === "Health" && {selected:true}}>Health</option>
               </select>
               {errors.categoryField && (
                 <p className="addInventory-form__error">
@@ -273,11 +266,11 @@ function EditInventoryComponent() {
               </label>
               <div className="addInventory-form__wrapper-radio">
                 <label
-                  className={`addInventory-form__label addInventory-form__label--5 ${hideQuantity ? "addInventory-form__label--inactive" : ""}`}
+                  className={`addInventory-form__label addInventory-form__label--5 ${hideQuantity && "addInventory-form__label--inactive"}`}
                   htmlFor="inStock"
                 >
                   <input
-                    className={`addInventory-form__radio addInventory-form__radio--inStock ${!hideQuantity ? "addInventory-form__radio--inactive" : ""}`}
+                    className={`addInventory-form__radio addInventory-form__radio--inStock ${hideQuantity && "addInventory-form__radio--inactive"}`}
                     type="radio"
                     name="status"
                     value="inStock"
@@ -287,11 +280,11 @@ function EditInventoryComponent() {
                   In Stock
                 </label>
                 <label
-                  className={`addInventory-form__label addInventory-form__label--6 ${!hideQuantity ? "addInventory-form__label--inactive" : ""}`}
+                  className={`addInventory-form__label addInventory-form__label--6 ${!hideQuantity && "addInventory-form__label--inactive"}`}
                   htmlFor="outOfStock"
                 >
                   <input
-                    className={`addInventory-form__radio addInventory-form__radio--outOfStock ${!hideQuantity ? "addInventory-form__radio--inactive" : ""}`}
+                    className={`addInventory-form__radio addInventory-form__radio--outOfStock ${!hideQuantity && "addInventory-form__radio--inactive"}`}
                     type="radio"
                     name="status"
                     value="outOfStock"
@@ -341,14 +334,14 @@ function EditInventoryComponent() {
                 <option value="" disabled>
                   Please select
                 </option>
-                <option value="Manhattan" {...warehouseName === "Manhattan" ? {selected:true} : ""}>Manhattan</option>
-                <option value="Washington" {...warehouseName === "Washington" ? {selected:true} : ""}>Washington</option>
-                <option value="Jersey" {...warehouseName === "Jersey" ? {selected:true} : ""}>Jersey</option>
-                <option value="SF" {...warehouseName === "SF" ? {selected:true} : ""}>SF</option>
-                <option value="SantaMonica" {...warehouseName === "SantaMonica" ? {selected:true} : ""}>Santa Monica</option>
-                <option value="Seattle" {...warehouseName === "Seattle" ? {selected:true} : ""}>Seattle</option>
-                <option value="Miami" {...warehouseName === "Miami" ? {selected:true} : ""}>Miami</option>
-                <option value="Boston" {...warehouseName === "Boston" ? {selected:true} : ""}>Boston</option>
+                <option value="Manhattan" {...warehouseName === "Manhattan" && {selected:true}}>Manhattan</option>
+                <option value="Washington" {...warehouseName === "Washington" && {selected:true}}>Washington</option>
+                <option value="Jersey" {...warehouseName === "Jersey" && {selected:true}}>Jersey</option>
+                <option value="SF" {...warehouseName === "SF" && {selected:true}}>SF</option>
+                <option value="SantaMonica" {...warehouseName === "SantaMonica" && {selected:true}}>Santa Monica</option>
+                <option value="Seattle" {...warehouseName === "Seattle" && {selected:true}}>Seattle</option>
+                <option value="Miami" {...warehouseName === "Miami" && {selected:true}}>Miami</option>
+                <option value="Boston" {...warehouseName === "Boston" && {selected:true}}>Boston</option>
               </select>
               {errors.warehouseField && (
                 <p className="addInventory-form__error">
@@ -361,8 +354,7 @@ function EditInventoryComponent() {
         <div className="addInventory-form__button-container">
           <button
             className="addInventory-form__button-cancel"
-            onClick={handleCancel}
-            type="reset"
+            onClick={handleGoBack}
           >
             Cancel
           </button>
