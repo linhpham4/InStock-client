@@ -7,7 +7,10 @@ import { Link } from "react-router-dom"
 // buttonText="+<button text>"
 // buttonLink="</route to go when button is clicked>"
 
+
+
 function SectionComponent({ title, buttonText, buttonLink }) {
+
   return (
 
     <div className='warehouse-header'>

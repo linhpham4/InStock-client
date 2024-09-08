@@ -18,7 +18,7 @@ const WarehouseInventoryList = () => {
     const { warehouseId } = useParams();
 
     async function getInventoryByWarehouse() {
-        const inventory = await axios.get(`${baseUrl}warehouses/${warehouseId}/inventories`)
+        const inventory = await axios.get(`${baseUrl}/stock/warehouses/${warehouseId}/inventories`)
         setInventory(inventory.data)
     }
 
@@ -64,6 +64,7 @@ if (!inventory) {
             <div key={item.id} className='inventory'>
                     
                 <div className='inventory__card'>
+                    
     
                     {/* This code will render at tablet/desktop breakpoints */}
                     <Link className='inventory__link toggle-tabletdesktop' to={`/inventory/${item.id}`}>
