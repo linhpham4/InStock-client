@@ -13,14 +13,20 @@ const WarehouseList = (viewDeleteModal) => {
 
   const [warehouses, setWarehouses] = useState([]);
 
+  const { warehouseId } = useParams();
+
   async function getWarehouseList() {
     const warehouseList = await axios.get(`${baseUrl}/stock/warehouses`);
     setWarehouses(warehouseList.data);
   }
 
-
+  useEffect(() => {
     getWarehouseList();
+  }, []);
 
+  useEffect(() => {
+    getWarehouseList();
+  }, [warehouseId]);
 
   return (
     <main>
@@ -80,10 +86,10 @@ const WarehouseList = (viewDeleteModal) => {
                 />
               </Link>
               <Link
-               className="warehouse__link-edit"
-               to={`/warehouse/${warehouse.id}/edit`}
+                className="warehouse__link-edit"
+                to={`/warehouse/${warehouse.id}/edit`}
               >
-              <img className="images" src={editIcon} alt="edit" />
+                <img className="images" src={editIcon} alt="edit" />
               </Link>
             </div>
             {/* ---------------------------------------------------- */}
@@ -135,10 +141,10 @@ const WarehouseList = (viewDeleteModal) => {
               <img src={deleteIcon} alt="delete" />
             </Link>
             <Link
-               className="warehouse__link-edit"
-               to={`/warehouse/${warehouse.id}/edit`}
-              >
-            <img src={editIcon} alt="edit" />
+              className="warehouse__link-edit"
+              to={`/warehouse/${warehouse.id}/edit`}
+            >
+              <img src={editIcon} alt="edit" />
             </Link>
           </div>
         </div>

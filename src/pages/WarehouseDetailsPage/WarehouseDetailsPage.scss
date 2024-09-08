@@ -1,0 +1,33 @@
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/typography.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
+
+.warehouse-details-page {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  &__header {
+    box-sizing: border-box;
+  }
+  &__list-main {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    // margin-left: -7.9rem;
+    // border: 5px solid brown;
+    // margin-top: 4rem;
+    width: 100%;
+    @include tablet-breakpoint {
+      //   margin-top: 7rem;
+    }
+  }
+  &__other {
+    border: 3px solid green;
+  }
+  &__delete-modal {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+  }
+}

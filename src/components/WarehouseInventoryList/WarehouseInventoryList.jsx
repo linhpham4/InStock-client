@@ -34,7 +34,7 @@ if (!inventory) {
 
     return (
     
-        <main>
+        <main className="inventory1">
     
         <div className='inventory__headings'>
             <div className='inventory__title'>
@@ -77,6 +77,7 @@ if (!inventory) {
                         <p className='inventory__address'>{item.quantity}</p>
                     </div>
                     <div className='inventory__alticons toggle-tabletdesktop'>
+                        
                         <img className='inventory__altimages' src={deleteIcon} alt="delete" />
                         <Link to={`/inventory/${item.id}/edit`}>
                             <img className='images' src={editIcon} alt="edit" />

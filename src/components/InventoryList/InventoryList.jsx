@@ -14,18 +14,20 @@ const InventoryList = () => {
 
   const [inventory, setInventory] = useState([]);
 
-  const { warehouseId } = useParams();
+  const { itemId } = useParams();
 
   async function getInventoryByWarehouse() {
     const inventory = await axios.get(`${baseUrl}/stock/inventories`);
     setInventory(inventory.data);
   }
 
-  getInventoryByWarehouse();
+  useEffect(() => {
+    getInventoryByWarehouse();
+  }, []);
 
   useEffect(() => {
     getInventoryByWarehouse();
-  }, [warehouseId]);
+  }, [itemId]);
 
   if (!inventory) {
     return <div>Loading...</div>;
