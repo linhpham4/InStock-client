@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./InventoryDetails.scss";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
@@ -7,19 +7,17 @@ import edit from "../../assets/icons/edit-white-24px.svg";
 
 const URL = import.meta.env.VITE_APP_BASE_URL;
 
-function InventoryDetails() {
+function InventoryDetails(props) {
   const { itemId } = useParams();
   const [selectedInventory, setSelectedInventory] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const Item = "Television";
-  const itemDescription =
-    "50k wide T.V. with lots of features and vivid colors";
-  const categoryDescription = "Electronics";
-  const stock = "IN STOCK";
-  const quantity = 500;
-  const warehouse = "Manhattan";
+  const navigate = useNavigate()
+
+  function goBack() {
+    navigate(-1)
+  }
 
   const getInventoryDetails = async () => {
     try {
@@ -42,7 +40,6 @@ function InventoryDetails() {
   }, [itemId]);
 
   useEffect(() => {
-    console.log(selectedInventory);
   }, [selectedInventory]);
 
   if (loading) {
@@ -62,9 +59,9 @@ function InventoryDetails() {
       <section className="inventory-details">
         <div className="inventory-details__header">
           <div className="inventory-details__wrapper-1">
-            <Link className="inventory-details__back-link" to="/inventory">
+            <a className="inventory-details__back-link" onClick={() => goBack()}>
               <img src={backArrow} alt="back arrow" />
-            </Link>
+            </a>
 
             <h2 className="inventory-details__title">
               {selectedInventory.item_name}
@@ -157,4 +154,4 @@ function InventoryDetails() {
   );
 }
 
-export default InventoryDetails;
+export default InventoryDetails

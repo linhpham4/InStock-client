@@ -1,158 +1,122 @@
-@use '../../styles/partials/mixins.scss'as *;
-@use '../../styles/partials/typography.scss'as *;
-@use '../../styles/partials/variables.scss'as *;
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/typography.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
 
 .warehouse-header {
-    display: flex;
-    justify-content: center;
+  width: 100%; // new code (changed from 100vw to 100% as it was drifting beyond page width
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 3rem 1rem;
+  position: relative;
+  border-bottom: solid 1px $cloud;
 
+  @include tablet-breakpoint {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1em 3em;
+  }
+
+  &__heading {
+    font-size: 2.5rem;
+    font-weight: 600;
+    padding: 0.51em 0;
+    @include mobile-page-header; // added to make sure we have same font on all pages that use this component
+
+    @include tablet-breakpoint {
+      @include page-header; // added to make sure we have same font on all pages that use this component
+    }
+  }
+
+  &__inputs {
+    width: 100%;
+
+    @include tablet-breakpoint {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 60%;
+      gap: 2em;
+    }
 
     @include desktop-breakpoint {
-        padding: 0 2rem;
+      width: 45%;
+    }
+  }
 
+  &__searchField {
+    @include tablet-breakpoint {
+      display: flex;
+      width: 60%;
+      max-width: 450px;
+
+      position: relative;
+    }
+  }
+
+  &__field {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 1.1em 1.5em;
+    border-radius: 1.7em;
+    border: solid 1px $cloud;
+    min-width: 150px;
+    max-height: 47px;
+    margin-bottom: 1.5em;
+
+    @include tablet-breakpoint {
+      margin: 0;
+    }
+  }
+
+  &__button2 {
+    background-color: $instock-indigo;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    border-radius: 2em;
+    border: none;
+    min-width: 47px;
+    max-height: 47px;
+    width: 100%;
+    min-width: 200px;
+
+    @include tablet-breakpoint {
+      width: 40%;
     }
 
-
-    &__container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 1em 2em 1.5em;
-        width: 100%;
-        border-bottom: solid 1px $cloud;
-
-
-        @include tablet-breakpoint {
-            flex-direction: row;
-            justify-content: space-between;
-            gap: 2em;
-            border-bottom: none;
-        }
-
-        @include tablet-breakpoint {}
-
-
-
+    &:hover {
+      background-color: $graphite;
+      border-color: $graphite;
+      transition: 0.3s;
+      cursor: pointer;
     }
+  }
 
-    &__heading-container {
-        width: 100%;
-        align-items: start;
+  &__btn-text {
+    color: $white;
+    font-size: 1.25rem;
+    padding: 1rem;
+
+    @include tablet-breakpoint {
+      font-size: 1rem;
     }
+  }
 
-    &__heading {
-        font-size: 2.5rem;
-        font-weight: 600;
-        padding: 0.51em 0;
-        text-align: left;
+  &__icon {
+    color: $white;
+    @include mobile-subheader;
+    position: absolute;
+    top: 50%; // new code
+    transform: translateY(-25%); // new code
+    right: 3.5em;
+    // bottom: 4.1em;
 
-        @include tablet-breakpoint {}
+    @include tablet-breakpoint {
+      //   bottom: 0.5em;
+      top: 50%; // new code
+      transform: translateY(-50%); // new code
+      right: 1em;
     }
-
-    &__inputs {
-        width: 100%;
-        position: relative;
-
-        @include tablet-breakpoint {
-            width: 60%;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 2em;
-            margin-right: 1em;
-        }
-
-        @include desktop-breakpoint {
-            width: 45%;
-            margin-right: 2em;
-
-        }
-    }
-
-    &__searchField {
-
-        @include tablet-breakpoint {
-            display: flex;
-            width: 60%;
-            max-width: 350px;
-            position: relative;
-        }
-
-        @include desktop-breakpoint {
-min-width: 450px;
-        }
-    }
-
-    &__field {
-
-        width: 100%;
-        font-size: 1.1rem;
-        padding: 1.1em 1.5em;
-        border-radius: 1.7em;
-        border: solid 1px $cloud;
-        min-width: 150px;
-        max-height: 47px;
-        margin-bottom: 1.5em;
-
-
-        @include tablet-breakpoint {
-            margin: 0;
-        }
-
-
-    }
-
-
-    &__button2 {
-        background-color: $instock-indigo;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1em;
-        border-radius: 2em;
-        border: none;
-        min-width: 47px;
-        max-height: 47px;
-        width: 100%;
-        min-width: 200px;
-
-
-        @include tablet-breakpoint {
-            width: 40%;
-        }
-
-        &:hover {
-            background-color: $graphite;
-            border-color: $graphite;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-    }
-
-    &__btn-text {
-        color: $white;
-        font-size: 1.25rem;
-        padding: 1rem;
-
-        @include tablet-breakpoint {
-            font-size: 1rem;
-        }
-    }
-
-
-    &__icon {
-        color: $white;
-        @include mobile-subheader;
-        position: absolute;
-        right: 1em;
-        bottom: 4em;
-
-        @include tablet-breakpoint {
-            bottom: 0.5em;
-            right: 1em;
-
-        }
-    }
-
+  }
 }

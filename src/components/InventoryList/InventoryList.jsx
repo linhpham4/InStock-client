@@ -11,93 +11,26 @@ import { useParams } from 'react-router-dom'
 
 const InventoryList = () => {
 
-    //Dummy data - to be deleted later
-    const inventory = [
-        {
-            "id": 1,
-            "warehouse_name": "Manhattan",
-            "item_name": "Television",
-            "description": "This 50\", 4K LED TV provides a crystal-clear picture and vivid colors.",
-            "category": "Electronics",
-            "status": "In Stock",
-            "quantity": 500
-        },
-        {
-            "id": 2,
-            "warehouse_name": "Manhattan",
-            "item_name": "Gym Bag",
-            "description": "Made out of military-grade synthetic materials, this gym bag is highly durable, water resistant, and easy to clean.",
-            "category": "Gear",
-            "status": "Out of Stock",
-            "quantity": 0
-        },
-        {
-            "id": 3,
-            "warehouse_name": "Manhattan",
-            "item_name": "Hoodie",
-            "description": "A simple 100% cotton hoodie, this is an essential piece for any wardrobe.",
-            "category": "Apparel",
-            "status": "Out of Stock",
-            "quantity": 0
-        },
-        {
-            "id": 4,
-            "warehouse_name": "Manhattan",
-            "item_name": "Keychain",
-            "description": "Made from 100% genuine leather, this keychain will keep your keys organized while keeping a classic, professional look.",
-            "category": "Accessories",
-            "status": "In Stock",
-            "quantity": 2000
-        },
-        {
-            "id": 5,
-            "warehouse_name": "Manhattan",
-            "item_name": "Shampoo",
-            "description": "Natural shampoo made from 99% biodegradable ingredients.",
-            "category": "Health",
-            "status": "In Stock",
-            "quantity": 4350
-        },
-        {
-            "id": 6,
-            "warehouse_name": "Manhattan",
-            "item_name": "Phone Charger",
-            "description": "This USB-C phone charger features fast charging for the latest devices.",
-            "category": "Electronics",
-            "status": "In Stock",
-            "quantity": 10000
-        },
-        {
-            "id": 7,
-            "warehouse_name": "Manhattan",
-            "item_name": "Tent",
-            "description": "Perfect for spring or summer camping, this 1-person tent is easy to pack and has the option to become modular when used with other products.",
-            "category": "Gear",
-            "status": "In Stock",
-            "quantity": 800
-        }
-    ]
+    const baseUrl = import.meta.env.VITE_APP_BASE_URL
 
-    // const baseUrl = import.meta.env.VITE_APP_BASE_URL
+    const [inventory, setInventory] = useState([])
 
-    // const [inventory, setInventory] = useState(inventoryDummy)
+    const { warehouseId } = useParams();
 
-    // const { warehouseId } = useParams();
+    async function getInventoryByWarehouse() {
+        const inventory = await axios.get(`${baseUrl}/stock/inventories`)
+        setInventory(inventory.data)
+    }
 
-    // async function getInventoryByWarehouse() {
-    //     const inventory = await axios.get(`${baseUrl}/stock/inventories`)
-    //     setInventory(inventory.data)
-    // }
+    useEffect(() => {
+        getInventoryByWarehouse();
+    }, [warehouseId]);
 
-    // useEffect(() => {
-    //     getInventoryByWarehouse();
-    // }, [warehouseId]);
-
-    // if (!inventory) {
-    //     return (
-    //         <div>Loading...</div>
-    //     )
-    // } else {
+    if (!inventory) {
+        return (
+            <div>Loading...</div>
+        )
+    } else {
 
   return (
 
@@ -150,8 +83,13 @@ const InventoryList = () => {
                     <p className='inv__address'>{item.warehouse_name}</p>
                 </div>
                 <div className='inv__alticons toggle-tabletdesktop'>
-                    <img className='inv__altimages' src={deleteIcon} alt="delete" />
-                    <img className='images' src={editIcon} alt="edit" />
+                    <Link to={`/inventory/${item.item_name}/delete`}>
+                        <img className='inv__altimages' src={deleteIcon} alt="delete" />
+                    </Link>
+                    <Link>
+                        <img className='images' src={editIcon} alt="edit" />
+                    </Link>
+
                 </div>
                 {/* ---------------------------------------------------- */}
 
@@ -188,16 +126,20 @@ const InventoryList = () => {
                     </div>
 
                 </div>
-                {/* ---------------------------------------------------- */}
 
             </div>
 
             <div className='inv__icons toggle-mobile'>
 
-                <img src={deleteIcon} alt="delete" />
-                <img src={editIcon} alt="edit" />
+                <Link to={`/inventory/${item.item_name}/delete`}>
+                    <img src={deleteIcon} alt="delete" />
+                </Link>
+                <Link>
+                    <img src={editIcon} alt="edit" />
+                </Link>
 
             </div>
+                {/* ---------------------------------------------------- */}
 
         </div>
         ))}
@@ -207,6 +149,6 @@ const InventoryList = () => {
 
     
   )}
-// }
+}
 
 export default InventoryList

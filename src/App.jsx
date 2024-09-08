@@ -11,9 +11,6 @@ import InventoryAddPage from "./pages/InventoryAddPage/InventoryAddPage";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 
-
-
-
 function App() {
   return (
     <>
@@ -22,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/warehouse" element={<WarehouseListPage />} />
           <Route
-            path="/warehouse/:warehouseId/delete"
+            path="/warehouse/:warehouseName/delete"
             element={<WarehouseListPage />}
           />
           <Route
@@ -36,7 +33,7 @@ function App() {
           <Route path="/warehouse/add" element={<WarehouseAddPage />} />
           <Route path="/inventory" element={<InventoryListPage />} />
           <Route
-            path="/inventory/:itemId/delete"
+            path="/inventory/:itemName/delete"
             element={<InventoryListPage />}
           />
           <Route path="/inventory/:itemId" element={<InventoryDetailsPage />} />
@@ -46,7 +43,7 @@ function App() {
           />
           <Route path="/inventory/add" element={<InventoryAddPage />} />
         </Routes>
-       <Footer />
+        <Footer />
       </BrowserRouter>
     </>
   );

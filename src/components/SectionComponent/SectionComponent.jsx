@@ -3,6 +3,7 @@ import searchIcon from '../../assets/icons/search-24px.svg'
 import { Link } from "react-router-dom"
 
 function SectionComponent({ title, buttonText, buttonLink }) {
+
   return (
     <div className='warehouse-header'>
       <div className='warehouse-header__container'>

@@ -8,20 +8,6 @@
 }
 
 .warehouse {
-
-  &__m {
-
-    margin-top: 1em;
-
-    @include desktop-breakpoint {
-      display: flex;
-      flex-direction: column;
-      margin: 0 auto;
-      // width: 90%;
-      width: 100%;
-    }
-  }
-
   border-bottom: 1px solid #bdc5d5;
   padding-bottom: 1.5rem;
 
@@ -223,6 +209,10 @@
     @include tablet-breakpoint {
       flex-direction: row;
     }
+  }
+
+  &__link-delete {
+    cursor: pointer;
   }
 }
 
