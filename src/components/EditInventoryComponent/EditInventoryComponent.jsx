@@ -153,6 +153,7 @@ function EditInventoryComponent() {
     setItemName(itemField);
     setItemDescription(descriptionField);
     setItemCategory(categoryField);
+    setStockStatus(statusField);
     setItemQuantity(Number(quantityField));
 
     //reset from and remove errors
@@ -176,7 +177,7 @@ function EditInventoryComponent() {
 //   }
 
 //   editItem();
-//-----------------------------------------------------------------
+
 
   // Will render if axios call cannot find item
   if (notFound) {
@@ -338,7 +339,6 @@ function EditInventoryComponent() {
                 id="warehouseName"
                 name="warehouseName"
                 defaultValue=""
-                // value={formData.warehouse_id}
               >
                 <option value="" disabled>
                   Please select
