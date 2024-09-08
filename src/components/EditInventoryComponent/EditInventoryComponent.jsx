@@ -19,7 +19,6 @@ function EditInventoryComponent() {
   const [categoryInvalid, setCategoryInvalid] = useState("");
   const [quantityInvalid, setQuantityInvalid] = useState("");
   const [errors, setErrors] = useState({});
-  // const [isSelected, setSelected] = useState({})
   const navigate = useNavigate();
 
   // Convert warehouse name to warehouse ID
@@ -34,20 +33,6 @@ function EditInventoryComponent() {
     boston: 8
   };
 
-  // setWarehouseId(warehouseKey[warehouseName]) 
-  const formData = {
-    warehouse_id: warehouseId,
-    item_name: itemName,
-    description: itemDescription,
-    category: itemCategory,
-    status: stockStatus,
-    quantity: itemQuantity,
-  };
-
-  
-  // console.log(warehouseKey["miami"])
-
-//NEW CODE FOR EditInventoryComponent - KEEP WORKING IN THIS SECTION----------------------------  
   const { itemId } = useParams();
   const [notFound, setNotFound] = useState(null);
   const baseUrl = import.meta.env.VITE_APP_BASE_URL;
@@ -56,14 +41,12 @@ function EditInventoryComponent() {
   const getItem = async () => {
     try {
       const response = await axios.get(`${baseUrl}/stock/inventories/${itemId}`);
-      const warehouseName = response.data.warehouse_name;
-      setWarehouseName(warehouseName);
+      setWarehouseName(response.data.warehouse_name);
       setItemName(response.data.item_name);
       setItemDescription(response.data.description);
       setItemCategory(response.data.category);
       setItemQuantity(response.data.quantity);
       setStockStatus(response.data.status);
-      console.log(itemName)
     } catch (error) {
       setNotFound(true);
       console.error(error);
@@ -72,9 +55,16 @@ function EditInventoryComponent() {
 
   useEffect(() => {
     getItem();
-    console.log(warehouseKey[warehouseName])
-    // console.log(warehouseId)
   },[itemId]);
+
+  const formData = {
+    warehouse_id: warehouseId,
+    item_name: itemName,
+    description: itemDescription,
+    category: itemCategory,
+    status: stockStatus,
+    quantity: itemQuantity,
+  };
 
   // Function to access choice from radio and assign value
   const statusChange = (event) => {
@@ -93,7 +83,7 @@ function EditInventoryComponent() {
   }, [stockStatus]);
 
   const handleCancel = (event) => {
-    navigate("/inventory");
+    navigate(-1);
   };
 
   const handleSubmit = (event) => {
@@ -175,14 +165,11 @@ function EditInventoryComponent() {
     console.log(formData);
   }, [warehouseId]);
 
-// DO PUT REQUEST HERE -----------------------------------------------------------------
-//I'm pretty sure this works, but I haven't tested yet
-
 //   const editItem = async () => {
 //     try {
-//       await axios.put(`${baseUrl}/stock/inventories/${itemId}`);
+//       await axios.put(`${baseUrl}/stock/inventories/${itemId}`, formData);
 //       alert("Item has been successfully updated!");
-//       navigate("/inventory");
+//       navigate(-1);
 //     } catch (error) {
 //       console.error(error);
 //     }
@@ -266,6 +253,7 @@ function EditInventoryComponent() {
                 <option
                   className="addInventory-form__input-category-placeholder"
                   value="accessories"
+                  {...itemCategory === "Accessories" ? {selected:true} : ""}
                 >
                   Accessories
                 </option>
@@ -331,7 +319,7 @@ function EditInventoryComponent() {
                   type="text"
                   id="quantity"
                   placeholder="0"
-                  value={formData.quantity}
+                  defaultValue={formData.quantity}
                 />
                 {errors.quantityField && (
                   <p className="addInventory-form__error">
@@ -355,14 +343,14 @@ function EditInventoryComponent() {
                 <option value="" disabled>
                   Please select
                 </option>
-                <option value="manhattan">Manhattan</option>
-                <option value="washington">Washington</option>
-                <option value="jersey">Jersey</option>
-                <option value="sf">SF</option>
-                <option value="santaMonica">Santa Monica</option>
-                <option value="seattle">Seattle</option>
-                <option value="miami">Miami</option>
-                <option value="boston">Boston</option>
+                <option value="manhattan" {...warehouseName === "Manhattan" ? {selected:true} : ""}>Manhattan</option>
+                <option value="washington" {...warehouseName === "Washington" ? {selected:true} : ""}>Washington</option>
+                <option value="jersey" {...warehouseName === "Manhattan" ? {selected:true} : ""}>Jersey</option>
+                <option value="sf" {...warehouseName === "Manhattan" ? {selected:true} : ""}>SF</option>
+                <option value="santaMonica" {...warehouseName === "Manhattan" ? {selected:true} : ""}>Santa Monica</option>
+                <option value="seattle" {...warehouseName === "Manhattan" ? {selected:true} : ""}>Seattle</option>
+                <option value="miami" {...warehouseName === "Miami" ? {selected:true} : ""}>Miami</option>
+                <option value="boston" {...warehouseName === "Manhattan" ? {selected:true} : ""}>Boston</option>
               </select>
               {errors.warehouseField && (
                 <p className="addInventory-form__error">
