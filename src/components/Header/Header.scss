@@ -52,10 +52,21 @@
 
   &__buttons {
     @include button-base;
+    @include mobile-labels-links-buttons;
     color: $cloud;
     background-color: $graphite;
     border: none;
     width: 10.25rem;
+
+
+    @include tablet-breakpoint {
+      @include labels-links-buttons
+    }
+
+    &--active {
+      background-color: $instock-black;
+      color: $white;
+    }
 
     &:active {
       background-color: $instock-black;
