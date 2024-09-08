@@ -1,9 +1,21 @@
 import "./DeleteWarehouseModal.scss";
 import close from "../../assets/icons/close-24px.svg";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
+import axios from "axios";
 
 function DeleteWarehouseModal({ Warehouse }) {
-  const warehouse = "Washington";
+  const base_url = import.meta.env.VITE_APP_BASE_URL;
+
+  const { warehouseName, warehouseId } = useParams();
+  const deleteWarehouse = async () => {
+    try {
+      await axios.delete(`${base_url}/stock/warehouses/${warehouseId}`);
+      alert(`${warehouseName} has been deleted`);
+      goBack();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -37,7 +49,9 @@ function DeleteWarehouseModal({ Warehouse }) {
             </a>
             <Link
               className="delete-wml__button-2--wrapper"
-              onClick={() => goBack()}
+              onClick={() => {
+                deleteWarehouse();
+              }}
             >
               <button className="delete-wml__button-2">Delete</button>
             </Link>
