@@ -184,7 +184,7 @@ function EditInventoryComponent() {
           <h2 className="addInventory-header__heading">Edit Inventory Item</h2>
         </div>
       </div>
-      <form className="addInventory-form" onSubmit={handleSubmit}>
+      <form className="addInventory-form" id="warehouseEdit" onSubmit={handleSubmit}>
         <div className="addInventory-form__container-wrapper">
           <div className="addInventory-form__container addInventory-form__container--1">
             <h3 className="addInventory-form__title">Item Details</h3>
@@ -425,11 +425,13 @@ function EditInventoryComponent() {
         <div className="addInventory-form__button-container">
           <button
             className="addInventory-form__button-cancel"
+            type="reset"
+            form="warehouseEdit"
             onClick={handleGoBack}
           >
             Cancel
           </button>
-          <button className="addInventory-form__button-add" type="submit">
+          <button className="addInventory-form__button-add" form="warehouseEdit" type="submit">
             Save
           </button>
         </div>
