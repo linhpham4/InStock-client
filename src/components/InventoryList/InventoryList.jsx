@@ -21,6 +21,8 @@ const InventoryList = () => {
     setInventory(inventory.data);
   }
 
+  getInventoryByWarehouse();
+
   useEffect(() => {
     getInventoryByWarehouse();
   }, [warehouseId]);
@@ -49,89 +51,92 @@ const InventoryList = () => {
           </div>
           <div className="inv__title">
             <p>WAREHOUSE</p>
-            <img className='inv__icon' src={sortIcon} alt="sort" />
+            <img className="inv__icon" src={sortIcon} alt="sort" />
+          </div>
+          <div className="inv__title">
+            <p className="inv__title--padding">ACTIONS</p>
+          </div>
         </div>
-        <div className='inv__title'>
-            <p className='inv__title--padding'>ACTIONS</p>
-        </div>
-    </div>
 
-
-    {inventory.map(item => (
-
-        <div key={item.id} className='inv'>
-                
-            <div className='inv__card'>
-
-                {/* This code will render at tablet/desktop breakpoints */}
-                <Link className='inv__link toggle-tabletdesktop' to={`/inventory/${item.id}`}>
-                    <p className='inv__name--blue '>{item.item_name}</p>
-                    <img className='inv__chevron' src={chevron} alt="chevron" />
-                </Link>
-                <p className='inv__address toggle-tabletdesktop'>{item.category}</p>
-                <p className='inv__name toggle-tabletdesktop'>{item.status}</p>
-                <div className='inv__container toggle-tabletdesktop'>
-                    <p className='inv__address'>{item.quantity}</p>
-                </div>
-                <div className='inv__container toggle-tabletdesktop'>
-                    <p className='inv__address'>{item.warehouse_name}</p>
-                </div>
-                <div className='inv__alticons toggle-tabletdesktop'>
-                    <Link to={`/inventory/${item.item_name}/${item.id}/delete`}>
-                        <img className='inv__altimages' src={deleteIcon} alt="delete" />
-                    </Link>
-                    <Link>
-                        <img className='images' src={editIcon} alt="edit" />
-                    </Link>
-
-                </div>
-                {/* ---------------------------------------------------- */}
-
-
-
-                {/* This code will render at mobile breakpoints */}
-                <div className='inv__na toggle-mobile'>
-                    <div className='inv__container'>
-                        <p className='inv__label'>INVENTORY ITEM</p>
-                        <Link className='inv__link' to={`/inventory/${item.id}`}> 
-                            <p className='inv__name--blue'>{item.item_name}</p>
-                            <img className='inv__chevron' src={chevron} alt="chevron" />
-                        </Link>
-                    </div>
-                    <div className='inv__container'>
-                        <p className='inv__label'>CATEGORY</p>
-                        <p className='inv__address'>{item.category}</p>
-                    </div>
-                </div>
-
-                <div className='inv__contact toggle-mobile'>
-
-                    <div className='inv__container'>
-                        <p className='inv__label'>STATUS</p>
-                        <p className='inv__name'>{item.status}</p>
-                    </div>
-                    <div className='inv__container'>
-                        <p className='inv__label'>QTY</p>
-                        <p className='inv__info'>{item.quantity}</p>
-                    </div>
-                    <div className='inv__container'>
-                        <p className='inv__label'>WAREHOUSE</p>
-                        <p className='inv__info'>{item.warehouse_name}</p>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div className='inv__icons toggle-mobile'>
-
-                <Link to={`/inventory/${item.item_name}/${item.id}/delete`}>
-                    <img src={deleteIcon} alt="delete" />
+        {inventory.map((item) => (
+          <div key={item.id} className="inv">
+            <div className="inv__card">
+              {/* This code will render at tablet/desktop breakpoints */}
+              <Link
+                className="inv__link toggle-tabletdesktop"
+                to={`/inventory/${item.id}`}
+              >
+                <p className="inv__name--blue ">{item.item_name}</p>
+                <img className="inv__chevron" src={chevron} alt="chevron" />
+              </Link>
+              <p className="inv__address toggle-tabletdesktop">
+                {item.category}
+              </p>
+              <p className="inv__name toggle-tabletdesktop">{item.status}</p>
+              <div className="inv__container toggle-tabletdesktop">
+                <p className="inv__address">{item.quantity}</p>
+              </div>
+              <div className="inv__container toggle-tabletdesktop">
+                <p className="inv__address">{item.warehouse_name}</p>
+              </div>
+              <div className="inv__alticons toggle-tabletdesktop">
+                <Link
+                  to={`/inventory/${item.item_name}/${item.id}/delete`}
+                  onClick={() => window.scrollTo({ top: 0 })}
+                >
+                  <img
+                    className="inv__altimages"
+                    src={deleteIcon}
+                    alt="delete"
+                  />
                 </Link>
                 <Link>
-                    <img src={editIcon} alt="edit" />
+                  <img className="images" src={editIcon} alt="edit" />
                 </Link>
+              </div>
+              {/* ---------------------------------------------------- */}
 
+              {/* This code will render at mobile breakpoints */}
+              <div className="inv__na toggle-mobile">
+                <div className="inv__container">
+                  <p className="inv__label">INVENTORY ITEM</p>
+                  <Link className="inv__link" to={`/inventory/${item.id}`}>
+                    <p className="inv__name--blue">{item.item_name}</p>
+                    <img className="inv__chevron" src={chevron} alt="chevron" />
+                  </Link>
+                </div>
+                <div className="inv__container">
+                  <p className="inv__label">CATEGORY</p>
+                  <p className="inv__address">{item.category}</p>
+                </div>
+              </div>
+
+              <div className="inv__contact toggle-mobile">
+                <div className="inv__container">
+                  <p className="inv__label">STATUS</p>
+                  <p className="inv__name">{item.status}</p>
+                </div>
+                <div className="inv__container">
+                  <p className="inv__label">QTY</p>
+                  <p className="inv__info">{item.quantity}</p>
+                </div>
+                <div className="inv__container">
+                  <p className="inv__label">WAREHOUSE</p>
+                  <p className="inv__info">{item.warehouse_name}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="inv__icons toggle-mobile">
+              <Link
+                to={`/inventory/${item.item_name}/${item.id}/delete`}
+                onClick={() => window.scrollTo({ top: 0 })}
+              >
+                <img src={deleteIcon} alt="delete" />
+              </Link>
+              <Link>
+                <img src={editIcon} alt="edit" />
+              </Link>
             </div>
             {/* ---------------------------------------------------- */}
           </div>

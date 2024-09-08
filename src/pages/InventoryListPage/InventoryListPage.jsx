@@ -27,7 +27,7 @@ function InventoryListPage() {
           className="inventory-list-section__delete-modal"
           style={{ display: !itemName ? "none" : "flex" }}
         >
-          <DeleteInventoryModal ItemName={itemName} />
+          <DeleteInventoryModal ItemName={itemName} ItemId={itemId} />
         </div>
       </section>
     </>
