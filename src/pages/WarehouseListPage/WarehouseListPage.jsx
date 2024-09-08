@@ -18,7 +18,7 @@ function WarehouseListPage() {
     <>
       <section className="section-warehouse-list-page">
         <main className="section-warehouse-list-page__header">
-          <SectionComponent title={title} buttonText={buttonText} />
+          <SectionComponent title={title} buttonText={buttonText} buttonLink="/warehouse/add"/>
         </main>
         <div className="section-warehouse-list-page__list-main">
           <WarehouseList viewDeleteModal={viewDeleteModal()} />

@@ -36,9 +36,8 @@ const AddWarehouse = () => {
     }));
   };
 
-  const handleCancel = (event) => {
-    setUserInput(initialInput);
-    setErrors(initialInput);
+  const handleGoBack = (event) => {
+    navigate(-1);
   };
 
   const handleSubmit = (event) => {
@@ -77,20 +76,18 @@ const AddWarehouse = () => {
 
     setErrors({});
 
-// uncomment after back end is finished
     //post new warehouse object to server 
-    // const postWarehouse = async () => {
-    //   try {
-    //     await axios.post(`${baseUrl}/stock/warehouses`, userInput);
-    //     alert("Warehouse has been successfully added!");
-    //     navigate("/warehouse");
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // }
+    const postWarehouse = async () => {
+      try {
+        await axios.post(`${baseUrl}/stock/warehouses`, userInput);
+        alert("Warehouse has been successfully added!");
+        setUserInput(initialInput);
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
-    // postWarehouse ();
-    
+    postWarehouse ();
   };
 
   return (
@@ -240,7 +237,7 @@ const AddWarehouse = () => {
             className="warehouseAE__button warehouseAE__button--cancel"
             type="reset"
             form="warehouseAE"
-            onClick={handleCancel}
+            onClick={handleGoBack}
           >
             Cancel
           </button>

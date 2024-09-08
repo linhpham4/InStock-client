@@ -54,9 +54,8 @@ const EditWarehouse = () => {
     }));
   };
 
-  const handleCancel = (event) => {
-    setUserInput(initialInput);
-    setErrors(initialInput);
+  const handleGoBack = (event) => {
+    navigate(-1);
   };
 
   const handleSubmit = (event) => {
@@ -95,19 +94,17 @@ const EditWarehouse = () => {
 
     setErrors({});
 
-// uncomment after back end is finished
     //put updated warehouse object to server 
-    // const editWarehouse = async () => {
-    //   try {
-    //     await axios.put(`${baseUrl}/stock/warehouses/${warehouseId}`, userInput);
-    //     alert("Warehouse has been successfully updated!");
-    //     navigate("/warehouse");
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // }
+    const editWarehouse = async () => {
+      try {
+        await axios.put(`${baseUrl}/stock/warehouses/${warehouseId}`, userInput);
+        alert("Warehouse has been successfully updated!");
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
-    // editWarehouse ();
+    editWarehouse ();
   };
 
   if (userInput === initialInput) {
@@ -265,7 +262,7 @@ const EditWarehouse = () => {
             className="warehouseAE__button warehouseAE__button--cancel"
             type="reset"
             form="warehouseAE"
-            onClick={handleCancel}
+            onClick={handleGoBack}
           >
             Cancel
           </button>

@@ -5,7 +5,7 @@ import SectionComponent2 from "../../components/SectionComponent2/SectionCompone
 function WarehouseAddPage() {
   return (
     <main>
-      <SectionComponent2 title="Add New Warehouse" backLink="/warehouse" buttonDisplay="hidden" />
+      <SectionComponent2 title="Add New Warehouse" buttonDisplay="hidden" />
       <AddWarehouse />
     </main>
   );
