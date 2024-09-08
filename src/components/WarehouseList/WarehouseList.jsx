@@ -5,7 +5,7 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import chevron from "../../assets/icons/chevron_right-24px.svg";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 const WarehouseList = (viewDeleteModal) => {
@@ -43,7 +43,6 @@ const WarehouseList = (viewDeleteModal) => {
         </div>
         <div className="warehouse__title">
           <p className="warehouse__title--padding">ACTIONS</p>
-          <img className="warehouse__icon" src={sortIcon} alt="sort" />
         </div>
       </div>
 
