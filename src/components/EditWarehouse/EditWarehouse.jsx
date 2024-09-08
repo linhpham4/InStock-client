@@ -54,9 +54,8 @@ const EditWarehouse = () => {
     }));
   };
 
-  const handleCancel = (event) => {
-    setUserInput(initialInput);
-    setErrors(initialInput);
+  const handleGoBack = (event) => {
+    navigate(-1);
   };
 
   const handleSubmit = (event) => {
@@ -265,7 +264,7 @@ const EditWarehouse = () => {
             className="warehouseAE__button warehouseAE__button--cancel"
             type="reset"
             form="warehouseAE"
-            onClick={handleCancel}
+            onClick={handleGoBack}
           >
             Cancel
           </button>
