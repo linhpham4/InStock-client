@@ -1,7 +1,7 @@
 import "./DeleteWarehouseModal.scss";
 import close from "../../assets/icons/close-24px.svg";
 
-function DeleteWarehouseModal() {
+function DeleteWarehouseModal(Warehouse) {
   const warehouse = "Washington";
 
   return (

@@ -8,12 +8,10 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const WarehouseList = () => {
+const WarehouseList = (viewDeleteModal) => {
   const baseUrl = import.meta.env.VITE_APP_BASE_URL;
 
-    const baseUrl = import.meta.env.VITE_APP_BASE_URL
-
-    const [warehouses, setWarehouses] = useState([])
+  const [warehouses, setWarehouses] = useState([]);
 
   async function getWarehouseList() {
     const warehouseList = await axios.get(`${baseUrl}/stock/warehouses`);
@@ -24,58 +22,66 @@ const WarehouseList = () => {
     getWarehouseList();
   }, []);
 
-    return (
+  return (
+    <main>
+      <div className="warehouse__headings">
+        <div className="warehouse__title">
+          <p>WAREHOUSE</p>
+          <img className="warehouse__icon" src={sortIcon} alt="sort" />
+        </div>
+        <div className="warehouse__title">
+          <p>ADDRESS</p>
+          <img className="warehouse__icon" src={sortIcon} alt="sort" />
+        </div>
+        <div className="warehouse__title">
+          <p>CONTACT NAME</p>
+          <img className="warehouse__icon" src={sortIcon} alt="sort" />
+        </div>
+        <div className="warehouse__title">
+          <p>CONTACT INFORMATION</p>
+          <img className="warehouse__icon" src={sortIcon} alt="sort" />
+        </div>
+        <div className="warehouse__title">
+          <p className="warehouse__title--padding">ACTIONS</p>
+          <img className="warehouse__icon" src={sortIcon} alt="sort" />
+        </div>
+      </div>
 
-        <main>
-
-            <div className='warehouse__headings'>
-                <div className='warehouse__title'>
-                    <p>WAREHOUSE</p>
-                    <img className='warehouse__icon' src={sortIcon} alt="sort" />
-                </div>
-                <div className='warehouse__title'>
-                    <p>ADDRESS</p>
-                    <img className='warehouse__icon' src={sortIcon} alt="sort" />
-                </div>
-                <div className='warehouse__title'>
-                    <p>CONTACT NAME</p>
-                    <img className='warehouse__icon' src={sortIcon} alt="sort" />
-                </div>
-                <div className='warehouse__title'>
-                    <p>CONTACT INFORMATION</p>
-                    <img className='warehouse__icon' src={sortIcon} alt="sort" />
-                </div>
-                <div className='warehouse__title'>
-                    <p className='warehouse__title--padding'>ACTIONS</p>
-                    <img className='warehouse__icon' src={sortIcon} alt="sort" />
-                </div>
+      {warehouses.map((warehouse) => (
+        <div key={warehouse.id} className="warehouse">
+          <div className="warehouse__card">
+            {/* This code will render at tablet/desktop breakpoints */}
+            <Link className="warehouse__link" to={`/warehouse/${warehouse.id}`}>
+              <p className="warehouse__name--blue ">
+                {warehouse.warehouse_name}
+              </p>
+              <img className="warehouse__chevron" src={chevron} alt="chevron" />
+            </Link>
+            <p className="warehouse__address toggle-tabletdesktop">
+              {warehouse.address}
+            </p>
+            <p className="warehouse__name toggle-tabletdesktop">
+              {warehouse.contact_name}
+            </p>
+            <div className="warehouse__container toggle-tabletdesktop">
+              <p className="warehouse__address">{warehouse.contact_phone}</p>
+              <p className="warehouse__address">{warehouse.contact_email}</p>
             </div>
-
-
-            {warehouses.map(warehouse => (
-
-                <div key={warehouse.id} className='warehouse'>
-
-                    <div className='warehouse__card'>
-
-                        {/* This code will render at tablet/desktop breakpoints */}
-                        <Link className='warehouse__link toggle-tabletdesktop' to={`/warehouse/${warehouse.id}`}> 
-                            <p className='warehouse__name--blue '>{warehouse.warehouse_name}</p>
-                            <img className='warehouse__chevron' src={chevron} alt="chevron" />
-                        </Link>
-                        <p className='warehouse__address toggle-tabletdesktop'>{warehouse.address}</p>
-                        <p className='warehouse__name toggle-tabletdesktop'>{warehouse.contact_name}</p>
-                        <div className='warehouse__container toggle-tabletdesktop'>
-                            <p className='warehouse__address'>{warehouse.contact_phone}</p>
-                            <p className='warehouse__address'>{warehouse.contact_email}</p>
-                        </div>
-                        <div className='warehouse__alticons toggle-tabletdesktop'>
-                            <img className='warehouse__altimages' src={deleteIcon} alt="delete" />
-                            <img className='images' src={editIcon} alt="edit" />
-                        </div>
-                        {/* ---------------------------------------------------- */}
-
-
+            <div className="warehouse__alticons toggle-tabletdesktop">
+              <Link
+                className="warehouse__link-delete"
+                to={`/warehouse/${warehouse.warehouse_name}/delete`}
+                onClick={() => viewDeleteModal(warehouse.warehouse_name)}
+              >
+                <img
+                  className="warehouse__altimages"
+                  src={deleteIcon}
+                  alt="delete"
+                />
+              </Link>
+              <img className="images" src={editIcon} alt="edit" />
+            </div>
+            {/* ---------------------------------------------------- */}
 
             {/* This code will render at mobile breakpoints */}
             <div className="warehouse__na toggle-mobile">
@@ -118,7 +124,8 @@ const WarehouseList = () => {
           <div className="warehouse__icons toggle-mobile">
             <Link
               className="warehouse__link-delete"
-              to={`/warehouse/${warehouse.id}/delete`}
+              to={`/warehouse/${warehouse.warehouse_name}/delete`}
+              onClick={() => viewDeleteModal(warehouse.warehouse_name)}
             >
               <img src={deleteIcon} alt="delete" />
             </Link>
