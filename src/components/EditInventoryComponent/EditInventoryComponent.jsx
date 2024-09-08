@@ -1,10 +1,10 @@
-import "./AddInventoryComponent.scss";
+import "./EditInventoryComponent.scss";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function AddInventoryComponent() {
+function EditInventoryComponent() {
   const [warehouseName, setWarehouseName] = useState("");
   const [itemName, setItemName] = useState("");
   const [itemDescription, setItemDescription] = useState("");
@@ -19,7 +19,31 @@ function AddInventoryComponent() {
   const [quantityInvalid, setQuantityInvalid] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const { itemId } = useParams();
+  const [notFound, setNotFound] = useState(null);
   const baseUrl = import.meta.env.VITE_APP_BASE_URL;
+
+  // get data for the item with id matching itemId & update state variables
+  const getItem = async () => {
+    try {
+      const response = await axios.get(
+        `${baseUrl}/stock/inventories/${itemId}`
+      );
+      setWarehouseName(response.data.warehouse_name);
+      setItemName(response.data.item_name);
+      setItemDescription(response.data.description);
+      setItemCategory(response.data.category);
+      setItemQuantity(response.data.quantity);
+      setStockStatus(response.data.status);
+    } catch (error) {
+      setNotFound(true);
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getItem();
+  }, [itemId]);
 
   // Convert warehouse name to warehouse ID
   const warehouseKey = {
@@ -131,37 +155,33 @@ function AddInventoryComponent() {
       return;
     }
 
-    //reset from and remove errors
+    //remove errors
     setErrors({});
 
-    //post request to add item in server
-    const addItem = async () => {
+    //put request to update item in server
+    const editItem = async () => {
       try {
-        await axios.post(`${baseUrl}/stock/inventories`, formData);
-        alert("Item has been successfully added!");
-        event.target.reset();
-        setItemName("");
-        setItemDescription("");
-        setItemCategory("");
-        setStockStatus("");
-        setItemQuantity("");
-        setWarehouseName("");
+        await axios.put(`${baseUrl}/stock/inventories/${itemId}`, formData);
+        alert("Item has been successfully updated!");
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
 
-    addItem();
+    editItem();
   };
+
+  // Will render if axios call cannot find item
+  if (notFound) {
+    return <h1>{`Item with ID ${itemId} cannot be found`}</h1>;
+  }
 
   return (
     <>
       <div className="addInventory-header">
         <div className="addInventory-header__location">
           <img src={backArrow} alt="back arrow" onClick={handleGoBack} />
-          <h2 className="addInventory-header__heading">
-            Add New Inventory Item
-          </h2>
+          <h2 className="addInventory-header__heading">Edit Inventory Item</h2>
         </div>
       </div>
       <form className="addInventory-form" onSubmit={handleSubmit}>
@@ -410,11 +430,11 @@ function AddInventoryComponent() {
             Cancel
           </button>
           <button className="addInventory-form__button-add" type="submit">
-            + Add Item
+            Save
           </button>
         </div>
       </form>
     </>
   );
 }
-export default AddInventoryComponent;
+export default EditInventoryComponent;
