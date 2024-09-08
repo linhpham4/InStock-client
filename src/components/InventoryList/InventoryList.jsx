@@ -90,7 +90,7 @@ const InventoryList = () => {
                     alt="delete"
                   />
                 </Link>
-                <Link>
+                <Link to={`/inventory/${item.id}/edit`}>
                   <img className="images" src={editIcon} alt="edit" />
                 </Link>
               </div>
@@ -134,7 +134,7 @@ const InventoryList = () => {
               >
                 <img src={deleteIcon} alt="delete" />
               </Link>
-              <Link>
+              <Link to={`/inventory/${item.id}/edit`}>
                 <img src={editIcon} alt="edit" />
               </Link>
             </div>
