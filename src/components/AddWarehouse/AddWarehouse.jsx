@@ -77,20 +77,18 @@ const AddWarehouse = () => {
 
     setErrors({});
 
-// uncomment after back end is finished
     //post new warehouse object to server 
-    // const postWarehouse = async () => {
-    //   try {
-    //     await axios.post(`${baseUrl}/stock/warehouses`, userInput);
-    //     alert("Warehouse has been successfully added!");
-    //     navigate("/warehouse");
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // }
+    const postWarehouse = async () => {
+      try {
+        await axios.post(`${baseUrl}/stock/warehouses`, userInput);
+        alert("Warehouse has been successfully added!");
+        // navigate(-1);
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
-    // postWarehouse ();
-    
+    postWarehouse ();
   };
 
   return (
