@@ -1,11 +1,19 @@
 import React from "react";
 import "./DeleteInventoryModal.scss";
 import close from "../../assets/icons/close-24px.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 function DeleteInventoryModal({ ItemName, ItemId }) {
   const base_url = import.meta.env.VITE_APP_BASE_URL;
+
+  // logic to determine if we are on delete modal.  Scrolling is disabled when delete modal active.
+  const location = useLocation();
+  if (location.pathname === `/inventory/${ItemName}/${ItemId}/delete`) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
 
   const deleteInventoryItem = async () => {
     try {
@@ -17,6 +25,7 @@ function DeleteInventoryModal({ ItemName, ItemId }) {
     }
   };
 
+  // function to return to whichever previous page user was on
   const navigate = useNavigate();
 
   function goBack() {

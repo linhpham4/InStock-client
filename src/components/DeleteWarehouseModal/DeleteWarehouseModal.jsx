@@ -1,12 +1,22 @@
 import "./DeleteWarehouseModal.scss";
 import close from "../../assets/icons/close-24px.svg";
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useNavigate, Link, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 
 function DeleteWarehouseModal({ Warehouse }) {
   const base_url = import.meta.env.VITE_APP_BASE_URL;
-
   const { warehouseName, warehouseId } = useParams();
+
+  // logic to determine if we are on delete modal.  Scrolling is disabled when delete modal active.
+  const location = useLocation();
+  if (
+    location.pathname === `/warehouse/${warehouseName}/${warehouseId}/delete`
+  ) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
   const deleteWarehouse = async () => {
     try {
       await axios.delete(`${base_url}/stock/warehouses/${warehouseId}`);
