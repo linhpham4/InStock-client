@@ -46,14 +46,14 @@ function EditInventoryComponent() {
 
   // Convert warehouse name to warehouse ID
   const warehouseKey = {
-    manhattan: 1,
-    washington: 2,
-    jersey: 3,
-    sf: 4,
-    santaMonica: 5,
-    seattle: 6,
-    miami: 7,
-    boston: 8
+    "Manhattan": 1,
+    "Washington": 2,
+    "Jersey": 3,
+    "SF": 4,
+    "SantaMonica": 5,
+    "Seattle": 6,
+    "Miami": 7,
+    "Boston": 8
   };
 
   // on warehouseName change, converts it into warehouseId and sets state variable
@@ -83,6 +83,7 @@ function EditInventoryComponent() {
   useEffect(() => {
     if (stockStatus === "Out of Stock") {
       setHideQuantity(true);
+      setItemQuantity(0);
     } else {
       setHideQuantity(false);
     }
@@ -99,6 +100,9 @@ function EditInventoryComponent() {
 
     // check for valid inputs in all fields
     const warehouseField = event.target.warehouseName.value;
+    const warehouseId = warehouseKey[warehouseName];
+    setWarehouseId(warehouseId);
+    console.log(warehouseId)
     if (!warehouseField) {
       setWarehouseInvalid("addInventory-form__input--invalid");
       validationErrors.warehouseField = "This field is required";
@@ -155,6 +159,27 @@ function EditInventoryComponent() {
 
     //remove errors
     setErrors({});
+
+    const editItem = async () => {
+    try {
+      //  await axios.put(`${baseUrl}/stock/inventories/${itemId}`, formData);
+      //  alert("Item has been successfully updated!");
+       // navigate(-1);
+       console.log(formData)
+    } catch (error) {
+      console.error(error);
+    }
+   }
+// console.log(formData)
+editItem();
+
+
+// // To check object to ensure correct post request ****REMOVE BEFORE SUBMISSION****
+// useEffect(() => {
+//   console.log(formData);
+// }, [warehouseId]);
+
+
   };
 
   // Will render if axios call cannot find item
@@ -236,7 +261,7 @@ function EditInventoryComponent() {
                 </option>
                 <option
                   className="addInventory-form__input-category-placeholder"
-                  value="accessories"
+                  value="Accessories"
                   {...itemCategory === "Accessories" ? {selected:true} : ""}
                 >
                   Accessories
@@ -329,14 +354,14 @@ function EditInventoryComponent() {
                 <option value="" disabled>
                   Please select
                 </option>
-                <option value="manhattan" {...warehouseName === "Manhattan" ? {selected:true} : ""}>Manhattan</option>
-                <option value="washington" {...warehouseName === "Washington" ? {selected:true} : ""}>Washington</option>
-                <option value="jersey" {...warehouseName === "Manhattan" ? {selected:true} : ""}>Jersey</option>
-                <option value="sf" {...warehouseName === "Manhattan" ? {selected:true} : ""}>SF</option>
-                <option value="santaMonica" {...warehouseName === "Manhattan" ? {selected:true} : ""}>Santa Monica</option>
-                <option value="seattle" {...warehouseName === "Manhattan" ? {selected:true} : ""}>Seattle</option>
-                <option value="miami" {...warehouseName === "Miami" ? {selected:true} : ""}>Miami</option>
-                <option value="boston" {...warehouseName === "Manhattan" ? {selected:true} : ""}>Boston</option>
+                <option value="Manhattan" {...warehouseName === "Manhattan" ? {selected:true} : ""}>Manhattan</option>
+                <option value="Washington" {...warehouseName === "Washington" ? {selected:true} : ""}>Washington</option>
+                <option value="Jersey" {...warehouseName === "Jersey" ? {selected:true} : ""}>Jersey</option>
+                <option value="SF" {...warehouseName === "SF" ? {selected:true} : ""}>SF</option>
+                <option value="SantaMonica" {...warehouseName === "SantaMonica" ? {selected:true} : ""}>Santa Monica</option>
+                <option value="Seattle" {...warehouseName === "Seattle" ? {selected:true} : ""}>Seattle</option>
+                <option value="Miami" {...warehouseName === "Miami" ? {selected:true} : ""}>Miami</option>
+                <option value="Boston" {...warehouseName === "Boston" ? {selected:true} : ""}>Boston</option>
               </select>
               {errors.warehouseField && (
                 <p className="addInventory-form__error">
