@@ -10,7 +10,6 @@ function InventoryListPage() {
   const buttonLink = '/inventory/add'
 
   const { itemName } = useParams()
-  console.log(itemName)
 
   return (
     <>
