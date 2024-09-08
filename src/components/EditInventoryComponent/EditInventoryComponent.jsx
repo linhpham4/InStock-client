@@ -165,7 +165,7 @@ function EditInventoryComponent() {
         console.error(error);
       }
     }
-    
+
     editItem();
   };
 
@@ -273,11 +273,11 @@ function EditInventoryComponent() {
               </label>
               <div className="addInventory-form__wrapper-radio">
                 <label
-                  className="addInventory-form__label addInventory-form__label--5"
+                  className={`addInventory-form__label addInventory-form__label--5 ${hideQuantity ? "addInventory-form__label--inactive" : ""}`}
                   htmlFor="inStock"
                 >
                   <input
-                    className="addInventory-form__radio addInventory-form__radio--inStock"
+                    className={`addInventory-form__radio addInventory-form__radio--inStock ${!hideQuantity ? "addInventory-form__radio--inactive" : ""}`}
                     type="radio"
                     name="status"
                     value="inStock"
@@ -287,11 +287,11 @@ function EditInventoryComponent() {
                   In Stock
                 </label>
                 <label
-                  className="addInventory-form__label addInventory-form__label--6"
+                  className={`addInventory-form__label addInventory-form__label--6 ${!hideQuantity ? "addInventory-form__label--inactive" : ""}`}
                   htmlFor="outOfStock"
                 >
                   <input
-                    className="addInventory-form__radio addInventory-form__radio--outOfStock"
+                    className={`addInventory-form__radio addInventory-form__radio--outOfStock ${!hideQuantity ? "addInventory-form__radio--inactive" : ""}`}
                     type="radio"
                     name="status"
                     value="outOfStock"
