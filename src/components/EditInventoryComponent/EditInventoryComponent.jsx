@@ -56,15 +56,9 @@ function EditInventoryComponent() {
     "Boston": 8
   };
 
-  // on warehouseName change, converts it into warehouseId and sets state variable
-  useEffect(() => {
-    const warehouseId = warehouseKey[warehouseName];
-    setWarehouseId(warehouseId);
-  }, [warehouseName]);
-
   //creates object to submit to server
   const formData = {
-    warehouse_id: warehouseId,
+    warehouse_id: warehouseKey[warehouseName],
     item_name: itemName,
     description: itemDescription,
     category: itemCategory,
@@ -148,6 +142,9 @@ function EditInventoryComponent() {
       setQuantityInvalid("");
     }
 
+    //to account for when status goes from out of stock to in stock
+    setItemQuantity(Number(quantityField));
+
     //if a key exists in validationErrors, update the errors state variable
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -157,26 +154,19 @@ function EditInventoryComponent() {
     //remove errors
     setErrors({});
 
+    //put request to update item in server
     const editItem = async () => {
-    try {
-      //  await axios.put(`${baseUrl}/stock/inventories/${itemId}`, formData);
-      //  alert("Item has been successfully updated!");
-       // navigate(-1);
-       console.log(formData)
-    } catch (error) {
-      console.error(error);
+      try {
+         await axios.put(`${baseUrl}/stock/inventories/${itemId}`, formData);
+         alert("Item has been successfully updated!");
+         navigate(-1);
+         console.log(formData)
+      } catch (error) {
+        console.error(error);
+      }
     }
-   }
-// console.log(formData)
-editItem();
-
-
-// // To check object to ensure correct post request ****REMOVE BEFORE SUBMISSION****
-// useEffect(() => {
-//   console.log(formData);
-// }, [warehouseId]);
-
-
+    
+    editItem();
   };
 
   // Will render if axios call cannot find item
