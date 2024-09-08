@@ -2,13 +2,14 @@
 @use "../../styles/partials/variables.scss" as *;
 @use "../../styles/partials/typography.scss/" as *;
 
-.delete-wm {
+.delete-wml {
   position: absolute;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
+  z-index: 1;
   &__container {
     display: flex;
     flex-direction: column;
@@ -16,6 +17,7 @@
     background-color: white;
     width: 100%;
     height: 100%;
+    min-height: 16rem;
     position: relative;
     @include tablet-breakpoint {
       width: 90%;
@@ -30,6 +32,7 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    cursor: pointer;
   }
   &__close-icon {
     padding-top: 0.8rem;
@@ -39,9 +42,11 @@
     padding-top: 1rem;
     width: 90%;
     text-align: left;
+    font-weight: 600;
     @include mobile-page-header;
     @include tablet-breakpoint {
       padding-top: 0.5rem;
+      @include page-header;
     }
   }
   &__text {
@@ -51,6 +56,10 @@
     @include tablet-breakpoint {
       padding-top: 0.5rem;
       padding-right: 7rem;
+      @include body-large;
+      & {
+        font-size: 1.2rem;
+      }
     }
   }
   &__button-container {
@@ -66,6 +75,7 @@
     @include tablet-breakpoint {
       width: 80%;
       justify-content: flex-end;
+      gap: 1rem;
     }
     @include desktop-breakpoint {
       padding-right: 0;
@@ -74,16 +84,28 @@
   &__button-1 {
     @include button-secondary;
     & {
-      width: 45%;
+      width: 100%;
     }
     @include tablet-breakpoint {
       margin-right: 1rem;
+    }
+    &--wrapper {
+      width: 45%;
+      @include tablet-breakpoint {
+        width: 15%;
+      }
     }
   }
   &__button-2 {
     @include button-delete;
     & {
+      width: 100%;
+    }
+    &--wrapper {
       width: 45%;
+      @include tablet-breakpoint {
+        width: 15%;
+      }
     }
   }
 }
