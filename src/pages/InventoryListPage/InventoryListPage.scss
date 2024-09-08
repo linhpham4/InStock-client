@@ -1,3 +1,21 @@
-// .test {
-//     height: 100vh;
-// }
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/typography.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
+
+.inventory-list-section {
+  &__header {
+    box-sizing: border-box;
+  }
+  &__list-main {
+    margin-top: 4rem;
+    @include tablet-breakpoint {
+      margin-top: 7rem;
+    }
+  }
+  &__delete-modal {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+  }
+}
