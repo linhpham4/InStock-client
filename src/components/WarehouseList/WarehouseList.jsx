@@ -70,7 +70,7 @@ const WarehouseList = (viewDeleteModal) => {
             <div className="warehouse__alticons toggle-tabletdesktop">
               <Link
                 className="warehouse__link-delete"
-                to={`/warehouse/${warehouse.warehouse_name}/delete`}
+                to={`/warehouse/${warehouse.warehouse_name}/${warehouse.id}/delete`}
                 onClick={() => viewDeleteModal(warehouse.warehouse_name)}
               >
                 <img
@@ -124,7 +124,7 @@ const WarehouseList = (viewDeleteModal) => {
           <div className="warehouse__icons toggle-mobile">
             <Link
               className="warehouse__link-delete"
-              to={`/warehouse/${warehouse.warehouse_name}/delete`}
+              to={`/warehouse/${warehouse.warehouse_name}/${warehouse.id}/delete`}
               onClick={() => viewDeleteModal(warehouse.warehouse_name)}
             >
               <img src={deleteIcon} alt="delete" />
