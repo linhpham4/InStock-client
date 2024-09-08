@@ -4,7 +4,7 @@ import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import chevron from "../../assets/icons/chevron_right-24px.svg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -79,7 +79,12 @@ const WarehouseList = (viewDeleteModal) => {
                   alt="delete"
                 />
               </Link>
+              <Link
+               className="warehouse__link-edit"
+               to={`/warehouse/${warehouse.id}/edit`}
+              >
               <img className="images" src={editIcon} alt="edit" />
+              </Link>
             </div>
             {/* ---------------------------------------------------- */}
 
@@ -129,7 +134,12 @@ const WarehouseList = (viewDeleteModal) => {
             >
               <img src={deleteIcon} alt="delete" />
             </Link>
+            <Link
+               className="warehouse__link-edit"
+               to={`/warehouse/${warehouse.id}/edit`}
+              >
             <img src={editIcon} alt="edit" />
+            </Link>
           </div>
         </div>
       ))}
