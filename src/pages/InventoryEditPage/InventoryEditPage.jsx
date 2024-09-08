@@ -1,10 +1,11 @@
 import "./InventoryEditPage.scss";
+import EditInventoryComponent from "../../components/EditInventoryComponent/EditInventoryComponent";
 
 function InventoryEditPage() {
   return (
-    <>
-      <h1>Inventory Edit Page</h1>
-    </>
+    <main>
+      <EditInventoryComponent />
+    </main>
   );
 }
 
