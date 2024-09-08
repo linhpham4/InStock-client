@@ -9,9 +9,6 @@ function WarehouseListPage() {
   const buttonText = "+ Add New Warehouse";
   const { warehouseName } = useParams();
 
-  const { warehouse } = useParams();
-  console.log(warehouse)
-
   const viewDeleteModal = () => {
     console.log(`success: ${warehouseName}`);
     console.log(typeof warehouseName);
