@@ -100,9 +100,6 @@ function EditInventoryComponent() {
 
     // check for valid inputs in all fields
     const warehouseField = event.target.warehouseName.value;
-    const warehouseId = warehouseKey[warehouseName];
-    setWarehouseId(warehouseId);
-    console.log(warehouseId)
     if (!warehouseField) {
       setWarehouseInvalid("addInventory-form__input--invalid");
       validationErrors.warehouseField = "This field is required";
@@ -216,7 +213,7 @@ editItem();
                 name="itemName"
                 type="text"
                 htmlFor="description"
-                defaultValue={formData.item_name}
+                value={formData.item_name}
                 onChange={(e) => setItemName(e.target.value)}
               />
               {errors.itemField && (
@@ -235,7 +232,7 @@ editItem();
                 name="description"
                 placeholder="Please enter a brief description..."
                 rows="4"
-                defaultValue={formData.description}
+                value={formData.description}
                 onChange={(e) => setItemDescription(e.target.value)}
               />
               {errors.descriptionField && (
@@ -330,7 +327,7 @@ editItem();
                   name="quantity"
                   placeholder="0"
                   defaultValue={formData.quantity}
-                  onChange={(e) => setItemQuantity(e.target.value)}
+                  onChange={(e) => setItemQuantity(Number(e.target.value))}
                 />
                 {errors.quantityField && (
                   <p className="addInventory-form__error">
