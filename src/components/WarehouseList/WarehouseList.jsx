@@ -18,9 +18,9 @@ const WarehouseList = (viewDeleteModal) => {
     setWarehouses(warehouseList.data);
   }
 
-  useEffect(() => {
+
     getWarehouseList();
-  }, []);
+
 
   return (
     <main>
