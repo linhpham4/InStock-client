@@ -82,7 +82,6 @@ const AddWarehouse = () => {
         await axios.post(`${baseUrl}/stock/warehouses`, userInput);
         alert("Warehouse has been successfully added!");
         setUserInput(initialInput);
-        // navigate(-1);
       } catch (error) {
         console.error(error);
       }
