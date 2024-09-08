@@ -4,14 +4,18 @@
 
 .section-warehouse-list-page {
   &__header {
-    position: relative;
     box-sizing: border-box;
   }
   &__list-main {
     margin-top: 4rem;
-    position: relative;
     @include tablet-breakpoint {
       margin-top: 7rem;
     }
+  }
+  &__delete-modal {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
   }
 }
