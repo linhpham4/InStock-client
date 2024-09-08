@@ -59,10 +59,10 @@
     }
 
     &--padding {
-      padding-left: 2rem;
+      padding-left: 2.75rem;
 
       @include desktop-breakpoint {
-        padding-left: 4rem;
+        padding-left: 5rem;
       }
     }
   }
@@ -154,7 +154,7 @@
     }
   }
 
-  &__address {
+  &__other-info {
     @include mobile-body-medium;
 
     @include tablet-breakpoint {

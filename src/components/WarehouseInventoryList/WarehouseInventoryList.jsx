@@ -78,7 +78,9 @@ if (!inventory) {
                     </div>
                     <div className='inventory__alticons toggle-tabletdesktop'>
                         <img className='inventory__altimages' src={deleteIcon} alt="delete" />
-                        <img className='images' src={editIcon} alt="edit" />
+                        <Link to={`/inventory/${item.id}/edit`}>
+                            <img className='images' src={editIcon} alt="edit" />
+                        </Link>
                     </div>
                     {/* ---------------------------------------------------- */}
     
@@ -118,7 +120,9 @@ if (!inventory) {
                 <div className='inventory__icons toggle-mobile'>
     
                     <img src={deleteIcon} alt="delete" />
-                    <img src={editIcon} alt="edit" />
+                    <Link to={`/inventory/${item.id}/edit`}>
+                        <img src={editIcon} alt="edit" />
+                    </Link>
     
                 </div>
     
