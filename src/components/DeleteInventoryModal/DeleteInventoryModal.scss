@@ -1,127 +1,235 @@
-@use "../../styles/partials/mixins.scss"as *;
-@use "../../styles/partials/variables.scss"as *;
-@use "../../styles/partials/typography.scss/"as *;
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/typography.scss/" as *;
 
 .delete-wm {
-    position: absolute;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+  &__container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    min-height: 16rem;
+    position: relative;
     @include tablet-breakpoint {
-        align-items: start;
+      width: 90%;
+      height: 30%;
+      margin-top: 15%;
     }
-
-    &__container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        background-color: white;
-        width: 100%;
-        height: 100%;
-
-        @include tablet-breakpoint {
-            width: 90%;
-            max-height: 400px;
-            margin-top: 15%;
-        }
-
-        @include desktop-breakpoint {
-            width: 60%;
-            padding: 0 1em;
-
-        }
+    @include desktop-breakpoint {
+      width: 50%;
     }
-
-    &__icon-lit-container {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        align-items: center;
-
+  }
+  &__icon-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+  }
+  &__close-icon {
+    padding-top: 0.8rem;
+    padding-right: 0.8rem;
+  }
+  &__title {
+    padding-top: 1rem;
+    width: 90%;
+    text-align: left;
+    font-weight: 600;
+    @include mobile-page-header;
+    @include tablet-breakpoint {
+      padding-top: 0.5rem;
+      @include page-header;
     }
-
-    &__icon-container {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
+  }
+  &__text {
+    padding-top: 1rem;
+    width: 90%;
+    @include mobile-body-large;
+    @include tablet-breakpoint {
+      padding-top: 0.5rem;
+      padding-right: 7rem;
+      @include body-large;
+      & {
+        font-size: 1.2rem;
+      }
     }
-
-    &__close-icon {
-        padding: 1.5rem;
-
+  }
+  &__button-container {
+    flex-grow: 1;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 2rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+    @include tablet-breakpoint {
+      width: 80%;
+      justify-content: flex-end;
+      gap: 1rem;
     }
-
-    &__lit {
-        width: 90%;
+    @include desktop-breakpoint {
+      padding-right: 0;
     }
-
-    &__title {
-        padding: 1em 0;
-        width: 90%;
-        text-align: left;
-        @include mobile-page-header;
-
-        @include tablet-breakpoint {
-            padding-top: 0.5rem;
-        }
+  }
+  &__button-1 {
+    @include button-secondary;
+    & {
+      width: 100%;
     }
-
-    &__text {
-        padding-top: 1rem;
-        width: 90%;
-        @include mobile-body-large;
-
-        @include tablet-breakpoint {
-            padding-top: 0.5rem;
-            padding-right: 7rem;
-        }
+    @include tablet-breakpoint {
+      margin-right: 1rem;
     }
-
-    &__button-container {
-        width: 100%;
-
-        padding: 3em;
-
-        display: flex;
-        justify-content: space-around;
-
-        @include tablet-breakpoint {
-            justify-content: flex-end;
-        }
-
+    &--wrapper {
+      width: 45%;
+      @include tablet-breakpoint {
+        width: 15%;
+      }
     }
-
-    &__button-1 {
-        @include button-secondary;
-
-        & {
-            width: 45%;
-        }
-
-        @include tablet-breakpoint {
-            margin-right: 1rem;
-            width: 10%;
-            min-width: 90px;
-
-        }
+  }
+  &__button-2 {
+    @include button-delete;
+    & {
+      width: 100%;
     }
-
-    &__button-2 {
-        @include button-delete;
-
-        & {
-            width: 45%;
-        }
-
-        @include tablet-breakpoint {
-            width: 10%;
-            min-width: 90px;
-
-        }
+    &--wrapper {
+      width: 45%;
+      @include tablet-breakpoint {
+        width: 15%;
+      }
     }
+  }
 }
+
+// .delete-wm {
+//     position: absolute;
+//     top: 0;
+//     width: 100vw;
+//     height: 100vh;
+//     background-color: rgba(0, 0, 0, 0.5);
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+
+//     @include tablet-breakpoint {
+//         align-items: start;
+//     }
+
+//     &__container {
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: space-between;
+//         background-color: white;
+//         width: 100%;
+//         height: 100%;
+
+//         @include tablet-breakpoint {
+//             width: 90%;
+//             max-height: 400px;
+//             margin-top: 15%;
+//         }
+
+//         @include desktop-breakpoint {
+//             width: 60%;
+//             padding: 0 1em;
+
+//         }
+//     }
+
+//     &__icon-lit-container {
+//         display: flex;
+//         flex-direction: column;
+//         width: 100%;
+//         align-items: center;
+
+//     }
+
+//     &__icon-container {
+//         width: 100%;
+//         display: flex;
+//         justify-content: flex-end;
+//     }
+
+//     &__close-icon {
+//         padding: 1.5rem;
+
+//     }
+
+//     &__lit {
+//         width: 90%;
+//     }
+
+//     &__title {
+//         padding: 1em 0;
+//         width: 90%;
+//         text-align: left;
+//         @include mobile-page-header;
+
+//         @include tablet-breakpoint {
+//             padding-top: 0.5rem;
+//         }
+//     }
+
+//     &__text {
+//         padding-top: 1rem;
+//         width: 90%;
+//         @include mobile-body-large;
+
+//         @include tablet-breakpoint {
+//             padding-top: 0.5rem;
+//             padding-right: 7rem;
+//         }
+//     }
+
+//     &__button-container {
+//         width: 100%;
+
+//         padding: 3em;
+
+//         display: flex;
+//         justify-content: space-around;
+
+//         @include tablet-breakpoint {
+//             justify-content: flex-end;
+//         }
+
+//     }
+
+//     &__button-1 {
+//         @include button-secondary;
+
+//         & {
+//             width: 45%;
+//         }
+
+//         @include tablet-breakpoint {
+//             margin-right: 1rem;
+//             width: 10%;
+//             min-width: 90px;
+
+//         }
+//     }
+
+//     &__button-2 {
+//         @include button-delete;
+
+//         & {
+//             width: 45%;
+//         }
+
+//         @include tablet-breakpoint {
+//             width: 10%;
+//             min-width: 90px;
+
+//         }
+//     }
+// }

@@ -7,18 +7,29 @@ import { useParams } from "react-router-dom";
 function InventoryListPage() {
   const title = "Inventory";
   const buttonText = "+ Add New Item";
-  const buttonLink = '/inventory/add'
-
-  const { itemName } = useParams()
+  const buttonLink = "/inventory/add";
+  const { itemName, itemId } = useParams();
 
   return (
     <>
-      <main className="section-header">
-        <SectionComponent title={title} buttonText={buttonText} buttonLink={buttonLink} />
-      </main>
-      <div className="warehouse-list__list-main">
-        <InventoryList />
-      </div>
+      <section className="inventory-list-section">
+        <main className="inventory-list-section__header">
+          <SectionComponent
+            title={title}
+            buttonText={buttonText}
+            buttonLink={buttonLink}
+          />
+        </main>
+        <div className="inventory-list-section__list-main">
+          <InventoryList />
+        </div>
+        <div
+          className="inventory-list-section__delete-modal"
+          style={{ display: !itemName ? "none" : "flex" }}
+        >
+          <DeleteInventoryModal ItemName={itemName} ItemId={itemId} />
+        </div>
+      </section>
     </>
   );
 }
