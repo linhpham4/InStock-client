@@ -12,47 +12,57 @@ const URL = import.meta.env.VITE_APP_BASE_URL;
 
 
 function WarehouseDetailsPage() {
-const { warehouseId } = useParams();
-    const [selectedWarehouse, setSelectedWarehouse] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  const { warehouseId } = useParams();
+  const [selectedWarehouse, setSelectedWarehouse] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    const getWarehouseDetails = async () => {
-        try {
-            const results = await axios.get(`${URL}/stock/warehouses/${warehouseId}`);
-            setSelectedWarehouse(results.data);
-        } catch (error) {
-            setError('Unable to get warehouse details');
-            console.error('Unable to get warehouse details:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        if (warehouseId) {
-            getWarehouseDetails();
-        }
-    }, [warehouseId]);
-
-    if (loading) {
-        return <div>Loading...</div>;
+  const getWarehouseDetails = async () => {
+    try {
+      const results = await axios.get(`${URL}/stock/warehouses/${warehouseId}`);
+      setSelectedWarehouse(results.data);
+    } catch (error) {
+      setError('Unable to get warehouse details');
+      console.error('Unable to get warehouse details:', error);
+    } finally {
+      setLoading(false);
     }
+  };
 
-    if (error) {
-        return <div>{error}</div>;
+  useEffect(() => {
+    if (warehouseId) {
+      getWarehouseDetails();
     }
+  }, [warehouseId]);
 
-    if (!selectedWarehouse) {
-        return <div>Loading...</div>;
-    }
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!selectedWarehouse) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
-<div className="warehouseDetailsPage">
-        <SectionComponent2 />
-      <WarehouseDetails selectedWarehouse={selectedWarehouse}/>
-      <WarehouseInventoryList />
-</div>
+      <div className="warehouseDetailsPage">
+
+        <div className="warehouseDetailsPage__heading">
+          <SectionComponent2 />
+        </div>
+
+        <div className="warehouseDetailsPage__locations-details">
+          <WarehouseDetails selectedWarehouse={selectedWarehouse} />
+        </div>
+        
+        <div className="warehouseDetailsPage__list">
+          <WarehouseInventoryList />
+        </div>
+
+      </div>
 
     </>
   );
