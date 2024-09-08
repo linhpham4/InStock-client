@@ -24,7 +24,6 @@ const WarehouseList = () => {
 }, [])
 
 
-
     return (
 
         <main>

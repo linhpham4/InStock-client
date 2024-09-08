@@ -4,11 +4,16 @@ import "./InventoryListPage.scss";
 import InventoryList from "../../components/InventoryList/InventoryList";
 
 function InventoryListPage() {
+  const title = "Inventory";
+  const buttonText = "+ Add New Item";
   return (
     <>
-      {/* <SectionComponent /> */}
-      <InventoryList />
-      {/* <DeleteInventoryModal /> */}
+      <main className="section-header">
+        <SectionComponent title={title} buttonText={buttonText} />
+      </main>
+      <div className="warehouse-list__list-main">
+        <InventoryList />
+      </div>
     </>
   );
 }

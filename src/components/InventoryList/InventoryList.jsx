@@ -83,8 +83,13 @@ const InventoryList = () => {
                     <p className='inv__address'>{item.warehouse_name}</p>
                 </div>
                 <div className='inv__alticons toggle-tabletdesktop'>
-                    <img className='inv__altimages' src={deleteIcon} alt="delete" />
-                    <img className='images' src={editIcon} alt="edit" />
+                    <Link to={`/inventory/${item.id}/delete`}>
+                        <img className='inv__altimages' src={deleteIcon} alt="delete" />
+                    </Link>
+                    <Link>
+                        <img className='images' src={editIcon} alt="edit" />
+                    </Link>
+
                 </div>
                 {/* ---------------------------------------------------- */}
 
@@ -121,16 +126,20 @@ const InventoryList = () => {
                     </div>
 
                 </div>
-                {/* ---------------------------------------------------- */}
 
             </div>
 
             <div className='inv__icons toggle-mobile'>
 
-                <img src={deleteIcon} alt="delete" />
-                <img src={editIcon} alt="edit" />
+                <Link to={`/inventory/${item.id}/delete`}>
+                    <img src={deleteIcon} alt="delete" />
+                </Link>
+                <Link>
+                    <img src={editIcon} alt="edit" />
+                </Link>
 
             </div>
+                {/* ---------------------------------------------------- */}
 
         </div>
         ))}
