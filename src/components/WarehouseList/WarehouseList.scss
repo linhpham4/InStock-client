@@ -37,10 +37,6 @@
       padding-left: 2rem;
       gap: 0.5rem;
     }
-
-    @include desktop-breakpoint {
-      padding-left: 4rem;
-    }
   }
 
   &__altimages {
@@ -54,16 +50,8 @@
     width: 8.25rem; // Controls spacing for header-card alignment
     display: flex;
 
-    @include desktop-breakpoint {
-      width: 11rem;
-    }
-
     &--padding {
-      padding-left: 2rem;
-
-      @include desktop-breakpoint {
-        padding-left: 4rem;
-      }
+      padding-left: 2.25rem;
     }
   }
 
@@ -95,12 +83,6 @@
       padding-left: 1rem;
       padding-right: 1rem;
     }
-
-    @include desktop-breakpoint {
-      gap: 2rem;
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
   }
 
   &__card {
@@ -116,11 +98,6 @@
       padding: 0 1rem;
       justify-content: space-around;
       align-items: center;
-    }
-
-    @include desktop-breakpoint {
-      gap: 2rem;
-      padding: 0 2rem;
     }
   }
 
@@ -226,9 +203,5 @@
   @include tablet-breakpoint {
     display: flex;
     width: 8.25rem; // Controls spacing for header-card alignment
-  }
-
-  @include desktop-breakpoint {
-    width: 11rem;
   }
 }
