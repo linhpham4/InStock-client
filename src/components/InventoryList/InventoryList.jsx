@@ -69,15 +69,15 @@ const InventoryList = () => {
                 <p className="inv__name--blue ">{item.item_name}</p>
                 <img className="inv__chevron" src={chevron} alt="chevron" />
               </Link>
-              <p className="inv__address toggle-tabletdesktop">
+              <p className="inv__other-info toggle-tabletdesktop">
                 {item.category}
               </p>
               <p className="inv__name toggle-tabletdesktop">{item.status}</p>
               <div className="inv__container toggle-tabletdesktop">
-                <p className="inv__address">{item.quantity}</p>
+                <p className="inv__other-info">{item.quantity}</p>
               </div>
               <div className="inv__container toggle-tabletdesktop">
-                <p className="inv__address">{item.warehouse_name}</p>
+                <p className="inv__other-info">{item.warehouse_name}</p>
               </div>
               <div className="inv__alticons toggle-tabletdesktop">
                 <Link
@@ -107,7 +107,7 @@ const InventoryList = () => {
                 </div>
                 <div className="inv__container">
                   <p className="inv__label">CATEGORY</p>
-                  <p className="inv__address">{item.category}</p>
+                  <p className="inv__other-info">{item.category}</p>
                 </div>
               </div>
 
