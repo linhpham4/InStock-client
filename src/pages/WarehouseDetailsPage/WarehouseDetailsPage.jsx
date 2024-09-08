@@ -8,7 +8,7 @@ function WarehouseDetailsPage() {
   return (
     <div className="warehouseDetailsPage">
 
-      <SectionComponent2 />
+      <SectionComponent2 title={""} backLink={"/warehouse"} buttonDisplay={""} buttonLink/>
       <WarehouseDetails />
       {/* <WarehouseInventoryList /> */}
     </div>

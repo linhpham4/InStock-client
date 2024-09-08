@@ -14,7 +14,7 @@ function WarehouseDetails() {
 
     const getWarehouseDetails = async () => {
         try {
-            const results = await axios.get(`${URL}/warehouses/${warehouseId}`);
+            const results = await axios.get(`${URL}/stock/warehouses/${warehouseId}`);
             setSelectedWarehouse(results.data);
         } catch (error) {
             setError('Unable to get warehouse details');

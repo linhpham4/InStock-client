@@ -7,7 +7,7 @@ function SectionComponent({ title, buttonText, buttonLink }) {
     <div className='warehouse-header'>
       <div className='warehouse-header__container'>
         <div className="warehouse-header__heading-container">
-                  <h2 className='warehouse-header__heading'>{title}</h2>
+          <h2 className='warehouse-header__heading'>{title}</h2>
 
         </div>
 
