@@ -142,7 +142,7 @@ function AddInventoryComponent() {
         setItemCategory("");
         setStockStatus("");
         setItemQuantity("");
-        setItemWarehouse("");
+        setWarehouseName("");
       } catch (error) {
         console.log(error);
       }
