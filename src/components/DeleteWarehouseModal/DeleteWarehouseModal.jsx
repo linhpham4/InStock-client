@@ -1,7 +1,7 @@
 import "./DeleteWarehouseModal.scss";
 import close from "../../assets/icons/close-24px.svg";
 
-function DeleteWarehouseModal(Warehouse) {
+function DeleteWarehouseModal({ Warehouse }) {
   const warehouse = "Washington";
 
   return (
@@ -15,9 +15,9 @@ function DeleteWarehouseModal(Warehouse) {
               alt="close tab"
             />
           </div>
-          <h1 className="delete-wm__title">Delete {warehouse} Warehouse?</h1>
+          <h1 className="delete-wm__title">Delete {Warehouse} Warehouse?</h1>
           <p className="delete-wm__text">
-            Please confirm that you'd like to delete {warehouse} from the list
+            Please confirm that you'd like to delete {Warehouse} from the list
             of warehouses. You won't be able to undo this action.
           </p>
           <div className="delete-wm__button-container">
