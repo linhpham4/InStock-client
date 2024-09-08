@@ -3,9 +3,9 @@ import EditInventoryComponent from "../../components/EditInventoryComponent/Edit
 
 function InventoryEditPage() {
   return (
-    <>
+    <main>
       <EditInventoryComponent />
-    </>
+    </main>
   );
 }
 
