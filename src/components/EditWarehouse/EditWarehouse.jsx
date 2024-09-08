@@ -94,19 +94,17 @@ const EditWarehouse = () => {
 
     setErrors({});
 
-// uncomment after back end is finished
     //put updated warehouse object to server 
-    // const editWarehouse = async () => {
-    //   try {
-    //     await axios.put(`${baseUrl}/stock/warehouses/${warehouseId}`, userInput);
-    //     alert("Warehouse has been successfully updated!");
-    //     navigate("/warehouse");
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // }
+    const editWarehouse = async () => {
+      try {
+        await axios.put(`${baseUrl}/stock/warehouses/${warehouseId}`, userInput);
+        alert("Warehouse has been successfully updated!");
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
-    // editWarehouse ();
+    editWarehouse ();
   };
 
   if (userInput === initialInput) {
