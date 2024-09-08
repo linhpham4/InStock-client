@@ -20,24 +20,11 @@ function EditInventoryComponent() {
   const [quantityInvalid, setQuantityInvalid] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
-
-  // Convert warehouse name to warehouse ID
-  const warehouseKey = {
-    manhattan: 1,
-    washington: 2,
-    jersey: 3,
-    sf: 4,
-    santaMonica: 5,
-    seattle: 6,
-    miami: 7,
-    boston: 8
-  };
-
   const { itemId } = useParams();
   const [notFound, setNotFound] = useState(null);
   const baseUrl = import.meta.env.VITE_APP_BASE_URL;
 
-  // get data for the item with id matching itemId
+  // get data for the item with id matching itemId & update state variables
   const getItem = async () => {
     try {
       const response = await axios.get(`${baseUrl}/stock/inventories/${itemId}`);
@@ -57,6 +44,25 @@ function EditInventoryComponent() {
     getItem();
   },[itemId]);
 
+  // Convert warehouse name to warehouse ID
+  const warehouseKey = {
+    manhattan: 1,
+    washington: 2,
+    jersey: 3,
+    sf: 4,
+    santaMonica: 5,
+    seattle: 6,
+    miami: 7,
+    boston: 8
+  };
+
+  // on warehouseName change, converts it into warehouseId and sets state variable
+  useEffect(() => {
+    const warehouseId = warehouseKey[warehouseName];
+    setWarehouseId(warehouseId);
+  }, [warehouseName]);
+
+  //creates object to submit to server
   const formData = {
     warehouse_id: warehouseId,
     item_name: itemName,
@@ -82,6 +88,7 @@ function EditInventoryComponent() {
     }
   }, [stockStatus]);
 
+  // Handler for cancle button, navigates to the previous page
   const handleCancel = (event) => {
     navigate(-1);
   };
@@ -89,8 +96,6 @@ function EditInventoryComponent() {
   const handleSubmit = (event) => {
     event.preventDefault();
     let validationErrors = {};
-
-    
 
     // check for valid inputs in all fields
     const warehouseField = event.target.warehouseName.value;
@@ -148,36 +153,9 @@ function EditInventoryComponent() {
       return;
     }
 
-    // update object with all values
-    setWarehouseId(warehouseKey[warehouseField]);
-    setItemName(itemField);
-    setItemDescription(descriptionField);
-    setItemCategory(categoryField);
-    setStockStatus(statusField);
-    setItemQuantity(Number(quantityField));
-
-    //reset from and remove errors
+    //remove errors
     setErrors({});
-    event.target.reset();
   };
-
-  // To check object to ensure correct post request ****REMOVE BEFORE SUBMISSION****
-  useEffect(() => {
-    console.log(formData);
-  }, [warehouseId]);
-
-//   const editItem = async () => {
-//     try {
-//       await axios.put(`${baseUrl}/stock/inventories/${itemId}`, formData);
-//       alert("Item has been successfully updated!");
-//       navigate(-1);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   }
-
-//   editItem();
-
 
   // Will render if axios call cannot find item
   if (notFound) {
@@ -197,7 +175,7 @@ function EditInventoryComponent() {
           </h2>
         </div>
       </div>
-      <form className="addInventory-form" onSubmit={handleSubmit}>
+      <form className="addInventory-form" onSubmit={handleSubmit} >
         <div className="addInventory-form__container-wrapper">
           <div className="addInventory-form__container addInventory-form__container--1">
             <h3 className="addInventory-form__title">Item Details</h3>
@@ -210,9 +188,11 @@ function EditInventoryComponent() {
                 className={`addInventory-form__input addInventory-form__input--1 ${itemInvalid}`}
                 placeholder="Item Name"
                 id="itemName"
+                name="itemName"
                 type="text"
                 htmlFor="description"
                 defaultValue={formData.item_name}
+                onChange={(e) => setItemName(e.target.value)}
               />
               {errors.itemField && (
                 <p className="addInventory-form__error">{errors.itemField}</p>
@@ -227,9 +207,11 @@ function EditInventoryComponent() {
                 className={`addInventory-form__input addInventory-form__input--2 ${descriptionInvalid}`}
                 type="text"
                 id="description"
+                name="description"
                 placeholder="Please enter a brief description..."
                 rows="4"
                 defaultValue={formData.description}
+                onChange={(e) => setItemDescription(e.target.value)}
               />
               {errors.descriptionField && (
                 <p className="addInventory-form__error">
@@ -247,6 +229,7 @@ function EditInventoryComponent() {
                 id="category"
                 name="category"
                 defaultValue=""
+                onChange={(e) => setItemCategory(e.target.value)}
               >
                 <option value="" disabled>
                   Please select
@@ -258,10 +241,10 @@ function EditInventoryComponent() {
                 >
                   Accessories
                 </option>
-                <option value="apparel" {...itemCategory === "Apparel" ? {selected:true} : ""}>Apparel</option>
-                <option value="electronics" {...itemCategory === "Electronics" ? {selected:true} : ""}>Electronics</option>
-                <option value="gear" {...itemCategory === "Gear" ? {selected:true} : ""}>Gear</option>
-                <option value="health" {...itemCategory === "Health" ? {selected:true} : ""}>Health</option>
+                <option value="Apparel" {...itemCategory === "Apparel" ? {selected:true} : ""}>Apparel</option>
+                <option value="Electronics" {...itemCategory === "Electronics" ? {selected:true} : ""}>Electronics</option>
+                <option value="Gear" {...itemCategory === "Gear" ? {selected:true} : ""}>Gear</option>
+                <option value="Health" {...itemCategory === "Health" ? {selected:true} : ""}>Health</option>
               </select>
               {errors.categoryField && (
                 <p className="addInventory-form__error">
@@ -319,8 +302,10 @@ function EditInventoryComponent() {
                   className={`addInventory-form__input addInventory-form__input--4 ${quantityInvalid}`}
                   type="text"
                   id="quantity"
+                  name="quantity"
                   placeholder="0"
                   defaultValue={formData.quantity}
+                  onChange={(e) => setItemQuantity(e.target.value)}
                 />
                 {errors.quantityField && (
                   <p className="addInventory-form__error">
@@ -339,6 +324,7 @@ function EditInventoryComponent() {
                 id="warehouseName"
                 name="warehouseName"
                 defaultValue=""
+                onChange={(e) => setWarehouseName(e.target.value)}
               >
                 <option value="" disabled>
                   Please select
