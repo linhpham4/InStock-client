@@ -38,6 +38,8 @@
 
   &__container {
     display: flex;
+    justify-content: center;
+    gap: 1rem;
     margin-top: 1.5rem;
     width: 100%;
 
@@ -49,10 +51,11 @@
   }
 
   &__buttons {
-    background-color: $graphite;
-    color: $cloud;
-    border: none;
     @include button-base;
+    color: $cloud;
+    background-color: $graphite;
+    border: none;
+    width: 10.25rem;
 
     &:active {
       background-color: $instock-black;

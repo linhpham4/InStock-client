@@ -83,7 +83,7 @@ const InventoryList = () => {
                     <p className='inv__address'>{item.warehouse_name}</p>
                 </div>
                 <div className='inv__alticons toggle-tabletdesktop'>
-                    <Link to={`/inventory/${item.item_name}/delete`}>
+                    <Link to={`/inventory/${item.item_name}/${item.id}/delete`}>
                         <img className='inv__altimages' src={deleteIcon} alt="delete" />
                     </Link>
                     <Link>
@@ -131,7 +131,7 @@ const InventoryList = () => {
 
             <div className='inv__icons toggle-mobile'>
 
-                <Link to={`/inventory/${item.item_name}/delete`}>
+                <Link to={`/inventory/${item.item_name}/${item.id}/delete`}>
                     <img src={deleteIcon} alt="delete" />
                 </Link>
                 <Link>
