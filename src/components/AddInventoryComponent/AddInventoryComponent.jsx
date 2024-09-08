@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function AddInventoryComponent() {
-  const [warehouseName, setWarehouseName] = useState ("");
+  const [warehouseName, setWarehouseName] = useState("");
   const [itemName, setItemName] = useState("");
   const [itemDescription, setItemDescription] = useState("");
   const [itemCategory, setItemCategory] = useState("");
@@ -30,10 +30,10 @@ function AddInventoryComponent() {
     SantaMonica: 5,
     Seattle: 6,
     Miami: 7,
-    Boston: 8
+    Boston: 8,
   };
-  
-//creates object to submit to server
+
+  //creates object to submit to server
   const formData = {
     warehouse_id: warehouseKey[warehouseName],
     item_name: itemName,
@@ -115,13 +115,16 @@ function AddInventoryComponent() {
     } else if (stockStatus !== "Out of Stock" && isNaN(quantityField)) {
       setQuantityInvalid("addInventory-form__input--invalid");
       validationErrors.quantityField = "Must be a number";
+    } else if (stockStatus == "In Stock" && quantityField == 0) {
+      validationErrors.quantityField =
+        "If 'In Stock' is checked quantity must be greater than 0";
     } else {
       setQuantityInvalid("");
     }
 
     //to account for when status goes from out of stock to in stock
     setItemQuantity(Number(quantityField));
-    
+
     //if a key exists in validationErrors, update the errors state variable
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -146,7 +149,7 @@ function AddInventoryComponent() {
       } catch (error) {
         console.log(error);
       }
-    }
+    };
 
     addItem();
   };
@@ -222,14 +225,34 @@ function AddInventoryComponent() {
                 <option
                   className="addInventory-form__input-category-placeholder"
                   value="Accessories"
-                  {...itemCategory === "Accessories" && {selected:true}}
+                  {...(itemCategory === "Accessories" && { selected: true })}
                 >
                   Accessories
                 </option>
-                <option value="Apparel" {...itemCategory === "Apparel" && {selected:true}}>Apparel</option>
-                <option value="Electronics" {...itemCategory === "Electronics" && {selected:true}}>Electronics</option>
-                <option value="Gear" {...itemCategory === "Gear" && {selected:true}}>Gear</option>
-                <option value="Health" {...itemCategory === "Health" && {selected:true}}>Health</option>
+                <option
+                  value="Apparel"
+                  {...(itemCategory === "Apparel" && { selected: true })}
+                >
+                  Apparel
+                </option>
+                <option
+                  value="Electronics"
+                  {...(itemCategory === "Electronics" && { selected: true })}
+                >
+                  Electronics
+                </option>
+                <option
+                  value="Gear"
+                  {...(itemCategory === "Gear" && { selected: true })}
+                >
+                  Gear
+                </option>
+                <option
+                  value="Health"
+                  {...(itemCategory === "Health" && { selected: true })}
+                >
+                  Health
+                </option>
               </select>
               {errors.categoryField && (
                 <p className="addInventory-form__error">
@@ -246,11 +269,15 @@ function AddInventoryComponent() {
               </label>
               <div className="addInventory-form__wrapper-radio">
                 <label
-                  className={`addInventory-form__label addInventory-form__label--5 ${hideQuantity && "addInventory-form__label--inactive"}`}
+                  className={`addInventory-form__label addInventory-form__label--5 ${
+                    hideQuantity && "addInventory-form__label--inactive"
+                  }`}
                   htmlFor="inStock"
                 >
                   <input
-                    className={`addInventory-form__radio addInventory-form__radio--inStock ${hideQuantity && "addInventory-form__radio--inactive"}`}
+                    className={`addInventory-form__radio addInventory-form__radio--inStock ${
+                      hideQuantity && "addInventory-form__radio--inactive"
+                    }`}
                     type="radio"
                     name="status"
                     value="inStock"
@@ -260,11 +287,15 @@ function AddInventoryComponent() {
                   In Stock
                 </label>
                 <label
-                 className={`addInventory-form__label addInventory-form__label--6 ${!hideQuantity && "addInventory-form__label--inactive"}`}
+                  className={`addInventory-form__label addInventory-form__label--6 ${
+                    !hideQuantity && "addInventory-form__label--inactive"
+                  }`}
                   htmlFor="outOfStock"
                 >
                   <input
-                    className={`addInventory-form__radio addInventory-form__radio--outOfStock ${!hideQuantity && "addInventory-form__radio--inactive"}`}
+                    className={`addInventory-form__radio addInventory-form__radio--outOfStock ${
+                      !hideQuantity && "addInventory-form__radio--inactive"
+                    }`}
                     type="radio"
                     name="status"
                     value="outOfStock"
@@ -314,14 +345,54 @@ function AddInventoryComponent() {
                 <option value="" disabled>
                   Please select
                 </option>
-                <option value="Manhattan" {...warehouseName === "Manhattan" && {selected:true}}>Manhattan</option>
-                <option value="Washington" {...warehouseName === "Washington" && {selected:true}}>Washington</option>
-                <option value="Jersey" {...warehouseName === "Jersey" && {selected:true}}>Jersey</option>
-                <option value="SF" {...warehouseName === "SF" && {selected:true}}>SF</option>
-                <option value="SantaMonica" {...warehouseName === "SantaMonica" && {selected:true}}>Santa Monica</option>
-                <option value="Seattle" {...warehouseName === "Seattle" && {selected:true}}>Seattle</option>
-                <option value="Miami" {...warehouseName === "Miami" && {selected:true}}>Miami</option>
-                <option value="Boston" {...warehouseName === "Boston" && {selected:true}}>Boston</option>
+                <option
+                  value="Manhattan"
+                  {...(warehouseName === "Manhattan" && { selected: true })}
+                >
+                  Manhattan
+                </option>
+                <option
+                  value="Washington"
+                  {...(warehouseName === "Washington" && { selected: true })}
+                >
+                  Washington
+                </option>
+                <option
+                  value="Jersey"
+                  {...(warehouseName === "Jersey" && { selected: true })}
+                >
+                  Jersey
+                </option>
+                <option
+                  value="SF"
+                  {...(warehouseName === "SF" && { selected: true })}
+                >
+                  SF
+                </option>
+                <option
+                  value="SantaMonica"
+                  {...(warehouseName === "SantaMonica" && { selected: true })}
+                >
+                  Santa Monica
+                </option>
+                <option
+                  value="Seattle"
+                  {...(warehouseName === "Seattle" && { selected: true })}
+                >
+                  Seattle
+                </option>
+                <option
+                  value="Miami"
+                  {...(warehouseName === "Miami" && { selected: true })}
+                >
+                  Miami
+                </option>
+                <option
+                  value="Boston"
+                  {...(warehouseName === "Boston" && { selected: true })}
+                >
+                  Boston
+                </option>
               </select>
               {errors.warehouseField && (
                 <p className="addInventory-form__error">
