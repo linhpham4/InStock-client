@@ -10,7 +10,7 @@ function WarehouseDetailsPage() {
 
       <SectionComponent2 title={""} backLink={"/warehouse"} buttonDisplay={""} buttonLink/>
       <WarehouseDetails />
-      {/* <WarehouseInventoryList /> */}
+      <WarehouseInventoryList />
     </div>
   );
 }

@@ -20,7 +20,6 @@ const WarehouseInventoryList = () => {
     async function getInventoryByWarehouse() {
         const inventory = await axios.get(`${baseUrl}/stock/warehouses/1/inventories`)
         // const inventory = await axios.get(`${baseUrl}/stock/warehouses/${warehouseId}/inventories`)
-        const inventory = await axios.get(`${baseUrl}/stock/warehouses/${warehouseId}/inventories`)
         setInventory(inventory.data)
     }
 
@@ -163,9 +162,11 @@ const WarehouseInventoryList = () => {
 
                     </div>
 
-                )
+                ))}
+
             </main>
-    }
+    )
+}
 
 }
 

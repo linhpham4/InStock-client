@@ -8,8 +8,8 @@ import { useParams } from "react-router-dom";
 import WarehouseDetails from "../../components/warehouseDetails/warehouseDetails";
 
 function WarehouseListPage() {
-  const title = "Warehouses";
-  const buttonText = "+ Add New Warehouse";
+  // const title = "Warehouses";
+  // const buttonText = "+ Add New Warehouse";
   const { warehouseName } = useParams();
 
   const viewDeleteModal = () => {
@@ -21,7 +21,7 @@ function WarehouseListPage() {
     <main>
       <section className="section-warehouse-list-page">
         <main className="section-warehouse-list-page__header">
-          <SectionComponent title={title} buttonText={buttonText} title={"Warehouses"} buttonLink={"/warehouse/add"} buttonText={" Add New Warehouse"}/>
+          <SectionComponent title={"Warehouses"} buttonLink={"/warehouse/add"} buttonText={" Add New Warehouse"}/>
     <WarehouseDetails />
         </main>
         <div className="section-warehouse-list-page__list-main">

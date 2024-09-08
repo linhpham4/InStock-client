@@ -25,28 +25,28 @@ const WarehouseList = (viewDeleteModal) => {
 
 
 
-const URL = import.meta.env.VITE_APP_BASE_URL;
+// const URL = import.meta.env.VITE_APP_BASE_URL;
 
-const WarehouseList = () => {
+// const WarehouseList = () => {
 
     // const { id } = useParams();
     // console.log(id)
     // const [videos, setVideos] = useState([]);
-    const [warehouses, setWarehouses] = useState([]);
+    // const [warehouses, setWarehouses] = useState([]);
 
-    const getWarehouses = async () => {
-        try {
-            const results = await axios.get(`${URL}/stock/warehouses`)
-            const warehouses = results.data;
-            console.log(warehouses)
-            setWarehouses(warehouses);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    // const getWarehouses = async () => {
+    //     try {
+    //         const results = await axios.get(`${URL}/stock/warehouses`)
+    //         const warehouses = results.data;
+    //         console.log(warehouses)
+    //         setWarehouses(warehouses);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
 
-    useEffect(() => {
-        getWarehouses();
+    // useEffect(() => {
+    //     getWarehouses();
 
 
     // }, []);
