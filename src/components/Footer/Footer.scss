@@ -1,0 +1,25 @@
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/typography.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
+
+.footer {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__copy {
+    margin: 2.5rem;
+    color: $slate;
+    @include mobile-body-small;
+    @include tablet-breakpoint {
+      @include body-small;
+    }
+  }
+  &__copyright-icon {
+    color: $slate;
+    @include mobile-body-small;
+    @include tablet-breakpoint {
+      @include body-small;
+    }
+  }
+}

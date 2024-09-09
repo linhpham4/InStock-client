@@ -1,0 +1,168 @@
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/typography.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
+
+input[type='radio'] { 
+  border: 1px solid $instock-indigo;
+  accent-color: $instock-indigo;
+  &:hover {
+    cursor: pointer;
+  }
+} 
+
+.addInventory-header {
+  width: 100vw;
+  display: flex;
+  padding: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  box-sizing: border-box;
+  @include tablet-breakpoint {
+    padding-bottom: 1rem;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+  }
+  &__heading {
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+
+  &__location {
+    display: flex;
+    gap: 1em;
+  }
+}
+
+.addInventory-form {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__container-wrapper {
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    @include tablet-breakpoint {
+      flex-direction: row;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      width: 100%;
+    }
+  }
+  &__container {
+    padding-right: 2rem;
+    padding-left: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 100%;
+    @include tablet-breakpoint {
+      padding-top: 0;
+    }
+    &--1 {
+      border-bottom: 2px solid $cloud;
+      @include tablet-breakpoint {
+        border-right: 2px solid $cloud;
+        border-bottom: none;
+      }
+    }
+  }
+  &__title {
+    padding-bottom: 2rem;
+    font-weight: 600;
+    @include mobile-page-header;
+  }
+  &__label {
+    @include mobile-body-large;
+    width: 100%;
+    & {
+      font-weight: 600;
+    }
+    &--inactive {
+      color: $slate;
+    }
+    &--5,
+    &--6 {
+      font-weight: 400;
+    }
+  }
+  &__input {
+    margin-bottom: 1rem;
+    @include text-field;
+    &--invalid {
+      border: 2px solid red;
+    }
+    &--2 {
+      resize: none;
+      @include tablet-breakpoint {
+        min-height: 7.5rem;
+      }
+    }
+    &--3,
+    &--5 {
+      appearance: none;
+      background-image: url("../../assets/icons/arrow_drop_down-24px.svg");
+      background-repeat: no-repeat;
+      background-position: right 15px center;
+    }
+  }
+  &__error {
+    margin-top: -1.2rem;
+    padding-bottom: 0.8rem;
+    @include field-error;
+  }
+  &__radio {
+    &--inStock {
+      margin-right: 0.5rem;
+    }
+    &--outOfStock {
+      margin-right: 0.5rem;
+    }
+    &--inactive {
+      border: 1px solid $cloud;
+    }
+  }
+  &__wrapper-stock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  &__wrapper-radio {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 1rem;
+  }
+  &__button-container {
+    width: 100%;
+    background-color: $light-grey;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    @include tablet-breakpoint {
+      justify-content: flex-end;
+    }
+  }
+  &__button-cancel {
+    @include button-secondary;
+    & {
+      margin-left: 2rem;
+      margin-right: 1rem;
+    }
+  }
+  &__button-add {
+    @include button-primary;
+    & {
+      margin-left: 1rem;
+      margin-right: 2rem;
+    }
+    @include tablet-breakpoint {
+      margin-left: 0;
+    }
+  }
+}

@@ -1,0 +1,224 @@
+@use "./variables.scss" as *;
+@use "./typography.scss" as *;
+
+//media queries=============================================================
+@mixin tablet-breakpoint {
+  @media (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop-breakpoint {
+  @media (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
+
+//text-styles (mobile)=============================================================
+@mixin mobile-page-header {
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+}
+
+@mixin mobile-subheader {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+@mixin mobile-labels-links-buttons {
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+}
+
+@mixin mobile-table-header {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+}
+
+@mixin mobile-body-large {
+  font-size: 0.9375rem;
+  line-height: 1.625rem;
+}
+
+@mixin mobile-body-medium {
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+}
+
+@mixin mobile-body-small {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+}
+
+//text-styles (tablet & desktop)=============================================================
+@mixin page-header {
+  font-size: 2rem;
+  line-height: 2.5rem;
+}
+
+@mixin subheader {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+@mixin labels-links-buttons {
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+}
+
+@mixin table-header {
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+}
+
+@mixin body-large {
+  font-size: 1rem;
+  line-height: 1.75rem;
+}
+
+@mixin body-medium {
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+}
+
+@mixin body-small {
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+}
+
+//button styling=============================================================
+@mixin button-base {
+  @include mobile-labels-links-buttons;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  border-radius: 2rem;
+  @include tablet-breakpoint {
+    @include labels-links-buttons;
+    width: auto;
+  }
+  &:hover {
+    transition: 0.3s;
+    cursor: pointer;
+  }
+}
+
+@mixin button-primary {
+  color: $white;
+  background-color: $instock-indigo;
+  border: 1px solid $instock-indigo;
+  @include button-base;
+  &:hover {
+    background-color: $graphite;
+    border-color: $graphite;
+  }
+}
+
+@mixin button-secondary {
+  color: $slate;
+  background-color: $white;
+  border: 1px solid $cloud;
+  @include button-base;
+  &:hover {
+    color: $instock-indigo;
+    background-color: $white;
+    border-color: $instock-indigo;
+  }
+}
+
+@mixin button-delete {
+  color: $white;
+  background-color: $red;
+  border: 1px solid $red;
+  @include button-base;
+  &:hover {
+    background-color: $graphite;
+    border-color: $graphite;
+  }
+}
+
+@mixin button-instock {
+  color: rgb(16, 149, 78);
+  background-color: rgba(21, 132, 99, 0.07);
+  &:hover{ 
+    cursor: auto;
+  }
+}
+
+@mixin button-outofstock {
+  color: rgb(183, 52, 35);
+  background-color: rgba(201, 69, 21, 0.07);
+  &:hover{ 
+    cursor: auto;
+  }
+}
+
+//text link styling=============================================================
+@mixin text-link {
+  color: $instock-indigo;
+  position: relative;
+  &::after {
+    content: url("../../assets/icons/chevron_right-24px.svg");
+    position: absolute;
+    top: 0%;
+    margin-left: 0.25rem;
+  }
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+//input styling=============================================================
+@mixin text-field {
+  padding: 0.5rem 1rem;
+  width: 100%;
+  border-radius: 20px;
+  // margin-top: 0.25rem;
+  border: 1px solid $cloud;
+  position: relative;
+  @include mobile-labels-links-buttons;
+  @include tablet-breakpoint {
+    @include labels-links-buttons;
+  }
+  &::placeholder {
+    color: $slate;
+  }
+  &:focus-visible {
+    outline-color: $instock-indigo;
+  }
+  // &:invalid {
+  //   outline-color: $red;
+  // }
+}
+
+@mixin dropdown {
+  background-image: url("../../assets/icons/arrow_drop_down-24px.svg");
+  background-repeat: no-repeat;
+  background-position: 98% 50%;
+  @include text-field;
+}
+
+@mixin search-field {
+  background-image: url("../../assets/icons/search-24px.svg");
+  background-repeat: no-repeat;
+  background-position: 96% 50%;
+  @include text-field;
+}
+
+//This styling is for "This field is required" error message for incomplete fields
+//Look in WarehouseAddEdit for example of how to use
+@mixin field-error {
+  color: $red;
+  margin-bottom: -1rem;
+  @include mobile-body-small;
+  @include tablet-breakpoint {
+    margin-bottom: -1.5rem;
+    @include body-small;
+  }
+  &::before {
+    content: url("../../assets/icons/error-24px.svg");
+    transform: scale(0.65);
+    display: inline-block;
+    vertical-align: middle;
+  }
+}

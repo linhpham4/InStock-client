@@ -1,0 +1,159 @@
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/typography.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
+
+.inventory-details {
+  width: 100%;
+  display: flex;
+  padding: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  box-sizing: border-box;
+  border-bottom: 2px solid $cloud;
+  @include tablet-breakpoint {
+    padding-bottom: 1rem;
+  }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__back-link {
+    display: flex;
+    align-items: center;
+  }
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+
+  &__wrapper-1 {
+    display: flex;
+    gap: 1em;
+  }
+  &__wrapper-2 {
+    display: flex;
+    align-items: center;
+  }
+  &__edit-link {
+    position: relative;
+  }
+  &__edit-button-mobile {
+    @include button-primary;
+    & {
+      border-radius: 150px;
+      position: relative;
+      padding: 0.5rem;
+      padding-left: 0.7rem;
+      padding-right: 0.7rem;
+    }
+    @include tablet-breakpoint {
+      display: none;
+    }
+  }
+  &__edit-button-tablet {
+    display: none;
+    @include button-primary;
+    & {
+      border-radius: 150px;
+      position: relative;
+      padding: 0.5rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      @include body-large;
+    }
+    @include tablet-breakpoint {
+      display: flex;
+      align-items: center;
+    }
+  }
+  &__button-img-mobile {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    transform: translateY(3px);
+  }
+  &__button-img-tablet {
+    margin-right: 0.3rem;
+  }
+}
+.inventory-body {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  @include tablet-breakpoint {
+    flex-direction: row;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  &__container-1 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    @include tablet-breakpoint {
+      width: 50%;
+      border-right: 2px solid $cloud;
+    }
+  }
+
+  &__container-2 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    @include tablet-breakpoint {
+      width: 50%;
+      padding-left: 2.5rem;
+    }
+  }
+
+  &__subcontainer {
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+    @include tablet-breakpoint {
+      width: 80%;
+    }
+  }
+
+  &__description-wrapper {
+    @include tablet-breakpoint {
+      padding-bottom: 1rem;
+    }
+  }
+
+  &__status-wrapper {
+    @include tablet-breakpoint {
+      padding-bottom: 1rem;
+    }
+  }
+
+  &__title {
+    padding-bottom: 0.2rem;
+    @include mobile-body-large;
+    color: $slate;
+    font-weight: 600;
+  }
+  &__text {
+    padding-bottom: 1rem;
+    @include mobile-body-large;
+  }
+  &__status-button {
+    margin-bottom: 1rem;
+    @include button-base;
+
+    &--instock {
+      @include button-instock;
+    }
+
+    &--outofstock {
+      @include button-outofstock;
+    }
+
+    & {
+      border: none;
+      font-weight: 600 !important;
+      @include mobile-labels-links-buttons;
+    }
+  }
+}

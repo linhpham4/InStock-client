@@ -1,0 +1,96 @@
+@use '../../styles/partials/mixins.scss'as *;
+@use '../../styles/partials/typography.scss'as *;
+@use '../../styles/partials/variables.scss'as *;
+
+.washington-header {
+    width: 100%;
+    display: flex;
+    padding: 2rem 1.5rem 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+
+    @include tablet-breakpoint {
+        padding: 2rem 2.5rem 1.5rem;
+    }
+
+    &__heading {
+        font-weight: 600;
+        @include mobile-page-header;
+
+        @include tablet-breakpoint {
+            @include page-header;
+        }
+    }
+
+    &__back-arrow {
+        background-image: url("../../assets/icons/arrow_back-24px.svg");
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 25px;
+        border: none;
+        background-color: $white;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__location {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    &__button2 {
+        background-color: $instock-indigo;
+        padding: 0.7em;
+        border-radius: 50%;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @include tablet-breakpoint {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.7em 1.5em;
+            gap: 0.5em;
+            border-radius: 2em;
+        }
+
+        &--hidden {
+            display: none;
+          }
+
+        &:hover {
+            background-color: $graphite;
+            border-color: $graphite;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+    }
+
+    &__btn-text {
+        display: none;
+
+        @include tablet-breakpoint {
+            display: inline-block;
+            color: $white;
+            @include labels-links-buttons;
+        }
+    }
+
+    &__btn-icon {
+        width: 20px;
+    }
+
+    &__link{
+        display: flex;
+        align-items: center;
+    }
+
+    &__back-icon {
+        width: 30px;
+    }
+
+}

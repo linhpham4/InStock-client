@@ -1,0 +1,19 @@
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/typography.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
+
+.section-warehouse-list-page {
+  &__delete-modal {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    margin-left: -1rem;
+    @include tablet-breakpoint {
+      margin-left: -2rem;
+    }
+    @include desktop-breakpoint {
+      margin-left: -8.125rem;
+    }
+  }
+}

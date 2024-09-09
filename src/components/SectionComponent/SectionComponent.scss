@@ -1,0 +1,100 @@
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/typography.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
+
+.warehouse-header {
+  width: 100%; // new code (changed from 100vw to 100% as it was drifting beyond page width
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem 1.5rem;
+  position: relative;
+  border-bottom: solid 1px $cloud;
+
+  @include tablet-breakpoint {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2rem 2rem 1.5rem;
+  }
+
+  @include desktop-breakpoint {
+    padding: 2rem 2.5rem 1.5rem;
+  }
+
+  &__heading {
+    font-weight: 600;
+    @include mobile-page-header; // added to make sure we have same font on all pages that use this component
+
+    @include tablet-breakpoint {
+      @include page-header; // added to make sure we have same font on all pages that use this component
+    }
+  }
+
+  &__inputs {
+    @include tablet-breakpoint {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 60%;
+      gap: 1rem;
+    }
+
+    @include desktop-breakpoint {
+      width: 45%;
+    }
+  }
+
+  &__field {
+    margin: 1rem 0;
+    @include search-field;
+
+    @include tablet-breakpoint {
+      margin: 0;
+      width: 50%;
+    }
+  }
+
+  &__link {
+    width: 12rem;
+  }
+
+  &__button2 {
+    @include button-primary;
+
+    @include tablet-breakpoint {
+      width: 100%;
+    }
+
+    &:hover {
+      background-color: $graphite;
+      border-color: $graphite;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+  }
+
+  &__btn-text {
+    color: $white;
+    @include mobile-labels-links-buttons;
+
+    @include tablet-breakpoint {
+      @include labels-links-buttons;
+    }
+  }
+//used mixin so no need for extra icon
+  // &__icon {
+  //   color: $white;
+  //   @include mobile-subheader;
+  //   position: absolute;
+  //   top: 50%; // new code
+  //   transform: translateY(-25%); // new code
+  //   right: 3.5em;
+  //   // bottom: 4.1em;
+
+  //   @include tablet-breakpoint {
+  //     //   bottom: 0.5em;
+  //     top: 50%; // new code
+  //     transform: translateY(-50%); // new code
+  //     right: 1em;
+  //   }
+  // }
+}
