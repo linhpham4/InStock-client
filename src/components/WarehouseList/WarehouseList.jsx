@@ -4,9 +4,10 @@ import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import chevron from "../../assets/icons/chevron_right-24px.svg";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const WarehouseList = (viewDeleteModal) => {
   const baseUrl = import.meta.env.VITE_APP_BASE_URL;
@@ -49,7 +50,6 @@ const WarehouseList = (viewDeleteModal) => {
         </div>
         <div className="warehouse__title">
           <p className="warehouse__title--padding">ACTIONS</p>
-          <img className="warehouse__icon" src={sortIcon} alt="sort" />
         </div>
       </div>
 

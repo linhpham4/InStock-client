@@ -22,12 +22,13 @@ const InventoryList = () => {
   }
 
   useEffect(() => {
-    getInventoryByWarehouse();
-  }, []);
+    getInventoryByWarehouse()
+  }, [])
 
   useEffect(() => {
-    getInventoryByWarehouse();
-  }, [itemId]);
+    getInventoryByWarehouse()
+  }, [itemId])
+
 
   if (!inventory) {
     return <div>Loading...</div>;
@@ -47,7 +48,7 @@ const InventoryList = () => {
             <p>STATUS</p>
             <img className="inv__icon" src={sortIcon} alt="sort" />
           </div>
-          <div className="inv__title">
+          <div className="inv__title inv__title--padding">
             <p>QTY</p>
             <img className="inv__icon" src={sortIcon} alt="sort" />
           </div>
@@ -71,15 +72,17 @@ const InventoryList = () => {
                 <p className="inv__name--blue ">{item.item_name}</p>
                 <img className="inv__chevron" src={chevron} alt="chevron" />
               </Link>
-              <p className="inv__address toggle-tabletdesktop">
+              <p className="inv__other-info toggle-tabletdesktop">
                 {item.category}
               </p>
-              <p className="inv__name toggle-tabletdesktop">{item.status}</p>
-              <div className="inv__container toggle-tabletdesktop">
-                <p className="inv__address">{item.quantity}</p>
+              <div className="inv__name toggle-tabletdesktop">
+                <button className={`inv__name ${item.status === 'In Stock' ? 'inv__name--instock' : 'inv__name--outofstock' }`} >{item.status}</button>
               </div>
               <div className="inv__container toggle-tabletdesktop">
-                <p className="inv__address">{item.warehouse_name}</p>
+                <p className="inv__other-info inv__title--padding">{item.quantity}</p>
+              </div>
+              <div className="inv__container toggle-tabletdesktop">
+                <p className="inv__other-info">{item.warehouse_name}</p>
               </div>
               <div className="inv__alticons toggle-tabletdesktop">
                 <Link
@@ -109,14 +112,16 @@ const InventoryList = () => {
                 </div>
                 <div className="inv__container">
                   <p className="inv__label">CATEGORY</p>
-                  <p className="inv__address">{item.category}</p>
+                  <p className="inv__other-info">{item.category}</p>
                 </div>
               </div>
 
               <div className="inv__contact toggle-mobile">
                 <div className="inv__container">
                   <p className="inv__label">STATUS</p>
-                  <p className="inv__name">{item.status}</p>
+                  <div className="inv__name toggle-mobile">
+                    <button className={`inv__name ${item.status === 'In Stock' ? 'inv__name--instock' : 'inv__name--outofstock' }`} >{item.status}</button>
+                  </div>
                 </div>
                 <div className="inv__container">
                   <p className="inv__label">QTY</p>

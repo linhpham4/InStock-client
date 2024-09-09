@@ -4,7 +4,6 @@ import axios from "axios";
 import SelectedWarehouse from "../SelectedWarehouse/SelectedWarehouse";
 import "./warehouseDetails.scss";
 
-const URL = import.meta.env.VITE_APP_BASE_URL;
 
 function WarehouseDetails() {
   const { warehouseId } = useParams();
@@ -52,3 +51,7 @@ function WarehouseDetails() {
 }
 
 export default WarehouseDetails;
+
+
+
+

@@ -1,9 +1,8 @@
 import './SelectedWarehouse.scss';
 
-function SelectedWarehouse({ selectedWarehouse }) {
-    if (!selectedWarehouse) {
-        return <div>Loading...</div>;
-    }
+
+function SelectedWarehouse({selectedWarehouse}) {
+    
 
     return (
         <div className="selectedWarehouse">

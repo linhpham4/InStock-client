@@ -49,7 +49,7 @@ const WarehouseInventoryList = () => {
             <p>STATUS</p>
             <img className="inventory__icon" src={sortIcon} alt="sort" />
           </div>
-          <div className="inventory__title">
+          <div className="inventory__title inventory__title--padding">
             <p>QUANTITY</p>
             <img className="inventory__icon" src={sortIcon} alt="sort" />
           </div>
@@ -57,33 +57,29 @@ const WarehouseInventoryList = () => {
             <p className="inventory__title--padding">ACTIONS</p>
           </div>
         </div>
-
-        {inventory.map((item) => (
-          <div key={item.id} className="inventory">
-            <div className="inventory__card">
-              {/* This code will render at tablet/desktop breakpoints */}
-              <Link
-                className="inventory__link toggle-tabletdesktop"
-                to={`/inventory/${item.id}`}
-              >
-                <p className="inventory__name--blue ">{item.item_name}</p>
-                <img
-                  className="inventory__chevron"
-                  src={chevron}
-                  alt="chevron"
-                />
-              </Link>
-              <p className="inventory__address toggle-tabletdesktop">
-                {item.category}
-              </p>
-              <p className="inventory__name toggle-tabletdesktop">
-                {item.status}
-              </p>
-              <div className="inventory__container toggle-tabletdesktop">
-                <p className="inventory__address">{item.quantity}</p>
-              </div>
-              <div className="inventory__alticons toggle-tabletdesktop">
-                <Link
+    
+    
+        {inventory.map(item => (
+    
+            <div key={item.id} className='inventory'>
+                    
+                <div className='inventory__card'>
+                    
+    
+                    {/* This code will render at tablet/desktop breakpoints */}
+                    <Link className='inventory__link toggle-tabletdesktop' to={`/inventory/${item.id}`}>
+                        <p className='inventory__name--blue '>{item.item_name}</p>
+                        <img className='inventory__chevron' src={chevron} alt="chevron" />
+                    </Link>
+                    <p className='inventory__address toggle-tabletdesktop'>{item.category}</p>
+                    <div className="inv__name toggle-tabletdesktop">
+                        <button className={`inv__name ${item.status === 'In Stock' ? 'instock' : 'outofstock' }`} >{item.status}</button>
+                    </div>
+                    <div className='inventory__container inventory__title--padding toggle-tabletdesktop'>
+                        <p className='inventory__address'>{item.quantity}</p>
+                    </div>
+                    <div className='inventory__alticons toggle-tabletdesktop'>
+                    <Link
                   className="inventory__link-delete"
                   to={`/warehouse/${warehouseId}/${item.id}/${item.item_name}/delete`}
                   onClick={() => window.scrollTo({ top: 0 })}
@@ -94,64 +90,69 @@ const WarehouseInventoryList = () => {
                     alt="delete"
                   />
                 </Link>
-                <Link to={`/inventory/${item.id}/edit`}>
-                  <img className="images" src={editIcon} alt="edit" />
-                </Link>
-              </div>
-              {/* ---------------------------------------------------- */}
-
-              {/* This code will render at mobile breakpoints */}
-              <div className="inventory__na toggle-mobile">
-                <div className="inventory__container">
-                  <p className="inventory__label">INVENTORY ITEM</p>
-                  <Link
-                    className="inventory__link"
-                    to={`/inventory/${item.id}`}
-                  >
-                    <p className="inventory__name--blue">{item.item_name}</p>
-                    <img
-                      className="inventory__chevron"
-                      src={chevron}
-                      alt="chevron"
-                    />
-                  </Link>
+                        <Link to={`/inventory/${item.id}/edit`}>
+                            <img className='images' src={editIcon} alt="edit" />
+                        </Link>
+                    </div>
+                    {/* ---------------------------------------------------- */}
+    
+    
+    
+                    {/* This code will render at mobile breakpoints */}
+                    <div className='inventory__na toggle-mobile'>
+                        <div className='inventory__container'>
+                            <p className='inventory__label'>INVENTORY ITEM</p>
+                            <Link className='inventory__link' to={`/inventory/${item.id}`}> 
+                                <p className='inventory__name--blue'>{item.item_name}</p>
+                                <img className='inventory__chevron' src={chevron} alt="chevron" />
+                            </Link>
+                        </div>
+                        <div className='inventory__container'>
+                            <p className='inventory__label'>CATEGORY</p>
+                            <p className='inventory__address'>{item.category}</p>
+                        </div>
+                    </div>
+    
+                    <div className='inventory__contact toggle-mobile'>
+    
+                        <div className='inventory__container'>
+                            <p className='inventory__label'>STATUS</p>
+                            <div className="inv__name toggle-mobile">
+                                <button className={`inv__name ${item.status === 'In Stock' ? 'instock' : 'outofstock' }`} >{item.status}</button>
+                            </div>
+                        </div>
+                        <div className='inventory__container'>
+                            <p className='inventory__label'>QTY</p>
+                            <p className='inventory__info'>{item.quantity}</p>
+                        </div>
+    
+                    </div>
+                    {/* ---------------------------------------------------- */}
+    
                 </div>
-                <div className="inventory__container">
-                  <p className="inventory__label">CATEGORY</p>
-                  <p className="inventory__address">{item.category}</p>
-                </div>
-              </div>
-
-              <div className="inventory__contact toggle-mobile">
-                <div className="inventory__container">
-                  <p className="inventory__label">STATUS</p>
-                  <p className="inventory__name">{item.status}</p>
-                </div>
-                <div className="inventory__container">
-                  <p className="inventory__label">QTY</p>
-                  <p className="inventory__info">{item.quantity}</p>
-                </div>
-              </div>
-              {/* ---------------------------------------------------- */}
-            </div>
-
-            <div className="inventory__icons toggle-mobile">
-              <Link
+    
+                <div className='inventory__icons toggle-mobile'>
+    
+                <Link
                 className="inventory__link-delete"
                 to={`/warehouse/${warehouseId}/${item.id}/${item.item_name}/delete`}
                 onClick={() => window.scrollTo({ top: 0 })}
               >
                 <img src={deleteIcon} alt="delete" />
               </Link>
-              <Link to={`/inventory/${item.id}/edit`}>
-                <img src={editIcon} alt="edit" />
-              </Link>
+                    <Link to={`/inventory/${item.id}/edit`}>
+                        <img src={editIcon} alt="edit" />
+                    </Link>
+    
+                </div>
+    
             </div>
-          </div>
-        ))}
-      </main>
-    );
-  }
-};
+            ))}
+    
+        
+        </main>
+       
+      )
+}
 
 export default WarehouseInventoryList;
