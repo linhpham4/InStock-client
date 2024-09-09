@@ -4,6 +4,7 @@ import axios from "axios";
 import "./InventoryDetails.scss";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import edit from "../../assets/icons/edit-white-24px.svg";
+import SectionComponent2 from "../SectionComponent2/SectionComponent2";
 
 const URL = import.meta.env.VITE_APP_BASE_URL;
 
@@ -56,7 +57,8 @@ function InventoryDetails(props) {
 
   return (
     <>
-      <section className="inventory-details">
+    <SectionComponent2 title={`${selectedInventory.item_name}`} buttonLink={`/inventory/${itemId}/edit`}/>
+      {/* <section className="inventory-details">
         <div className="inventory-details__header">
           <div className="inventory-details__wrapper-1">
             <a className="inventory-details__back-link" onClick={() => goBack()}>
@@ -88,7 +90,7 @@ function InventoryDetails(props) {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
       <section className="inventory-body">
         <div className="inventory-body__container-1">
           <div className="inventory-body__description-wrapper">
