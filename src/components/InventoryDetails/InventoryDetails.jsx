@@ -115,8 +115,9 @@ function InventoryDetails(props) {
                 STATUS:
               </h3>
               <button
-                className="inventory-body__status-button"
-
+                className={`inventory-body__status-button ${
+                  selectedInventory.status === "In Stock" ? "inventory-body__status-button--instock" : "inventory-body__status-button--outofstock"
+                }`}
               >
                 {selectedInventory.status.toUpperCase()}
               </button>

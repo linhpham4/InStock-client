@@ -142,11 +142,17 @@
     margin-bottom: 1rem;
     @include button-base;
 
+    &--instock {
+      @include button-instock;
+    }
+
+    &--outofstock {
+      @include button-outofstock;
+    }
+
     & {
       border: none;
-      background-color: rgba(243, 217, 212, 0.831);
-      color: rgb(183, 52, 35);
-      font-weight: 600;
+      font-weight: 600 !important;
       @include mobile-labels-links-buttons;
     }
   }
