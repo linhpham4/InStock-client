@@ -6,6 +6,10 @@
   margin-right: 1rem;
   box-shadow: 0px 2px 5px 0px #13182c1a;
 }
+.inventory1 {
+  width: 100%;
+  margin: 0;
+}
 
 .inventory {
   border-bottom: 1px solid #bdc5d5;
@@ -19,7 +23,7 @@
     display: flex;
 
     @include tablet-breakpoint {
-        justify-content: flex-start;
+      justify-content: flex-start;
     }
   }
 
@@ -28,7 +32,7 @@
     width: 20px;
 
     @include tablet-breakpoint {
-        height: 22px;
+      height: 22px;
     }
   }
 

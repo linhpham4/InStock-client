@@ -1,0 +1,26 @@
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/typography.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
+
+.warehouse-details-page {
+  display: flex;
+  justify-content: center;
+  &__header {
+    box-sizing: border-box;
+  }
+  &__list-main {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  &__other {
+    border: 3px solid green;
+  }
+  &__delete-modal {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+  }
+}

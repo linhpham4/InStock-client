@@ -1,32 +1,53 @@
-import './warehouseDetails.scss';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import SelectedWarehouse from "../SelectedWarehouse/SelectedWarehouse";
+import "./warehouseDetails.scss";
 
 
-function WarehouseDetails({selectedWarehouse}) {
+function WarehouseDetails() {
+  const { warehouseId } = useParams();
+  const [selectedWarehouse, setSelectedWarehouse] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-return (
-        <div className="selectedWarehouse">
-            <div className="selectedWarehouse__location">
-                <h5 className="selectedWarehouse__heading">WAREHOUSE ADDRESS</h5>
-                <div className="selectedWarehouse__full-address">
-                    <p className="selectedWarehouse__address">{selectedWarehouse.address},</p>
-                    <p className="selectedWarehouse__city">{selectedWarehouse.city}, {selectedWarehouse.country}</p>
-                </div>
-            </div>
+  const getWarehouseDetails = async () => {
+    try {
+      const results = await axios.get(`${URL}/stock/warehouses/${warehouseId}`);
+      setSelectedWarehouse(results.data);
+    } catch (error) {
+      setError("Unable to get warehouse details");
+      console.error("Unable to get warehouse details:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-            <div className="selectedWarehouse__point-info">
-                <div className="selectedWarehouse__point">
-                    <h5 className="selectedWarehouse__heading">CONTACT NAME:</h5>
-                    <p className="selectedWarehouse__contact-name">{selectedWarehouse.contact_name}</p>
-                    <p className="selectedWarehouse__contact-title">{selectedWarehouse.contact_position}</p>
-                </div>
-                <div className="selectedWarehouse__info">
-                    <h5 className="selectedWarehouse__heading">CONTACT INFORMATION</h5>
-                    <p className="selectedWarehouse__phone">{selectedWarehouse.contact_phone}</p>
-                    <p className="selectedWarehouse__email">{selectedWarehouse.contact_email}</p>
-                </div>
-            </div>
-        </div>
-    );
+  useEffect(() => {
+    if (warehouseId) {
+      getWarehouseDetails();
+    }
+  }, [warehouseId]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!selectedWarehouse) {
+    return <div>No warehouse details available.</div>;
+  }
+
+  return (
+    <div className="container">
+      <div className="container__main-content">
+        <SelectedWarehouse selectedWarehouse={selectedWarehouse} />
+      </div>
+    </div>
+  );
 }
 
 export default WarehouseDetails;

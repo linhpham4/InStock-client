@@ -1,15 +1,21 @@
 import React from "react";
 import "./DeleteInventoryModal.scss";
 import close from "../../assets/icons/close-24px.svg";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 
 function DeleteInventoryModal({ ItemName, ItemId }) {
   const base_url = import.meta.env.VITE_APP_BASE_URL;
+  const { itemName, itemId, warehouseId } = useParams();
 
   // logic to determine if we are on delete modal.  Scrolling is disabled when delete modal active.
   const location = useLocation();
-  if (location.pathname === `/inventory/${ItemName}/${ItemId}/delete`) {
+
+  if (
+    location.pathname === `/inventory/${ItemName}/${ItemId}/delete` ||
+    location.pathname ===
+      `/warehouse/${warehouseId}/${itemId}/${itemName}/delete`
+  ) {
     document.body.style.overflow = "hidden";
   } else {
     document.body.style.overflow = "auto";
@@ -17,7 +23,7 @@ function DeleteInventoryModal({ ItemName, ItemId }) {
 
   const deleteInventoryItem = async () => {
     try {
-      await axios.delete(`${base_url}/stock/inventories/${ItemId}`);
+      await axios.delete(`${base_url}/stock/inventories/${itemId}`);
       alert(`${ItemName} has been deleted`);
       goBack();
     } catch (error) {
@@ -45,10 +51,10 @@ function DeleteInventoryModal({ ItemName, ItemId }) {
             />
           </div>
           <h1 className="delete-wm__title">
-            Delete {ItemName} Inventory Item?
+            Delete {itemName} Inventory Item?
           </h1>
           <p className="delete-wm__text">
-            Please confirm that you'd like to delete {ItemName} from the
+            Please confirm that you'd like to delete {itemName} from the
             inventory list. You won't be able to undo this action.
           </p>
           <div className="delete-wm__button-container">
