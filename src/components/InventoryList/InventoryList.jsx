@@ -34,7 +34,7 @@ const InventoryList = () => {
     return <div>Loading...</div>;
   } else {
     return (
-      <main>
+      <>
         <div className="inv__headings">
           <div className="inv__title">
             <p>INVENTORY ITEM</p>
@@ -148,7 +148,7 @@ const InventoryList = () => {
             {/* ---------------------------------------------------- */}
           </div>
         ))}
-      </main>
+      </>
     );
   }
 };
