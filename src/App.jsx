@@ -15,6 +15,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+      <h1>test2</h1>
         <Header />
         <Routes>
           <Route path="/warehouse" element={<WarehouseListPage />} />
