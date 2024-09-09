@@ -4,12 +4,15 @@ import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import chevron from "../../assets/icons/chevron_right-24px.svg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 const WarehouseList = () => {
   const baseUrl = import.meta.env.VITE_APP_BASE_URL;
+
+  const warehouseId = useParams()
+
   const [warehouses, setWarehouses] = useState([]);
   async function getWarehouseList() {
     const warehouseList = await axios.get(`${baseUrl}/stock/warehouses`);
@@ -19,6 +22,10 @@ const WarehouseList = () => {
   useEffect(() => {
     getWarehouseList();
   }, []);
+
+  useEffect(() => {
+    getWarehouseList();
+  }, [warehouseId]);
 
   return (
     <>

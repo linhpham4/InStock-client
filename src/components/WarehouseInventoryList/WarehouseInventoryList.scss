@@ -154,6 +154,40 @@
   &__name {
     @include mobile-body-medium;
 
+    &--instock {
+      @include button-instock;
+      @include button-base;
+      border: none;
+      @include mobile-labels-links-buttons;
+      display: flex;
+      align-items: center;
+    
+      width: 4.9rem;
+      height: 1.5rem;
+    
+      @include tablet-breakpoint {
+        width: 5rem;
+        height: 1.625rem;
+      }
+    }
+
+    &--outofstock {
+      @include button-outofstock;
+      @include button-base;
+      border: none;
+      @include mobile-labels-links-buttons;
+      display: flex;
+      align-items: center;
+    
+      width: 6.4rem;
+      height: 1.5rem;
+    
+      @include tablet-breakpoint {
+        width: 6.6rem;
+        height: 1.625rem;
+      }
+    }
+    
     @include tablet-breakpoint {
       @include body-medium;
     }
@@ -203,39 +237,5 @@
   @include tablet-breakpoint {
     display: flex;
     width: 8.25rem; // Controls spacing for header-card alignment
-  }
-}
-
-.instock {
-  @include button-instock;
-  @include button-base;
-  border: none;
-  @include mobile-labels-links-buttons;
-  display: flex;
-  align-items: center;
-
-  width: 4.9rem;
-  height: 1.5rem;
-
-  @include tablet-breakpoint {
-    width: 5rem;
-    height: 1.625rem;
-  }
-}
-
-.outofstock {
-  @include button-outofstock;
-  @include button-base;
-  border: none;
-  @include mobile-labels-links-buttons;
-  display: flex;
-  align-items: center;
-
-  width: 6.4rem;
-  height: 1.5rem;
-
-  @include tablet-breakpoint {
-    width: 6.6rem;
-    height: 1.625rem;
   }
 }
