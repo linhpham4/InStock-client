@@ -19,6 +19,10 @@
     padding-top: 1.5rem;
   }
 
+  &__no-item-message {
+    padding-left: 2rem;
+  }
+
   &__link {
     display: flex;
 
@@ -161,10 +165,10 @@
       @include mobile-labels-links-buttons;
       display: flex;
       align-items: center;
-    
+
       width: 4.9rem;
       height: 1.5rem;
-    
+
       @include tablet-breakpoint {
         width: 5rem;
         height: 1.625rem;
@@ -178,16 +182,16 @@
       @include mobile-labels-links-buttons;
       display: flex;
       align-items: center;
-    
+
       width: 6.4rem;
       height: 1.5rem;
-    
+
       @include tablet-breakpoint {
         width: 6.6rem;
         height: 1.625rem;
       }
     }
-    
+
     @include tablet-breakpoint {
       @include body-medium;
     }

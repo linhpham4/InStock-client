@@ -54,7 +54,7 @@ const WarehouseList = () => {
             {/* This code will render at tablet/desktop breakpoints */}
             <Link
               className="warehouse__link toggle-tabletdesktop"
-              to={`/warehouse/${warehouse.id}`}
+              to={`/warehouse/${warehouse.id}/${warehouse.warehouse_name}`}
             >
               <p className="warehouse__name--blue ">
                 {warehouse.warehouse_name}
@@ -97,7 +97,7 @@ const WarehouseList = () => {
                 <p className="warehouse__label">WAREHOUSE</p>
                 <Link
                   className="warehouse__link"
-                  to={`/warehouse/${warehouse.id}`}
+                  to={`/warehouse/${warehouse.id}/${warehouse.warehouse_name}`}
                 >
                   <p className="warehouse__name--blue">
                     {warehouse.warehouse_name}
