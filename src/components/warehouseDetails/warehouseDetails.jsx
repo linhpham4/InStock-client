@@ -10,6 +10,7 @@ function WarehouseDetails() {
   const [selectedWarehouse, setSelectedWarehouse] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const URL = import.meta.env.VITE_APP_BASE_URL;
 
   const getWarehouseDetails = async () => {
     try {
