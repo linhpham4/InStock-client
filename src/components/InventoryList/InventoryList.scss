@@ -183,6 +183,9 @@
         width: 5rem;
         height: 1.625rem;
       }
+      &:hover{ 
+        cursor: auto;
+      }
     }
 
     &--outofstock {
@@ -199,6 +202,9 @@
         @include tablet-breakpoint {
           width: 6.6rem;
           height: 1.625rem;
+        }
+        &:hover{ 
+          cursor: auto;
         }
       }
 
