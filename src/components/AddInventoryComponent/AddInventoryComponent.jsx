@@ -1,11 +1,11 @@
 import "./AddInventoryComponent.scss";
-import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function AddInventoryComponent() {
-  const [warehouses, setWarehouses] = useState("");
+  const [warehouses, setWarehouses] = useState([]);
+  const [warehouseKey, setWarehouseKey] = useState({});
   const [warehouseName, setWarehouseName] = useState("");
   const [itemName, setItemName] = useState("");
   const [itemDescription, setItemDescription] = useState("");
@@ -22,18 +22,6 @@ function AddInventoryComponent() {
   const navigate = useNavigate();
   const baseUrl = import.meta.env.VITE_APP_BASE_URL;
 
-  // Convert warehouse name to warehouse ID
-  const warehouseKey = {
-    Manhattan: 1,
-    Washington: 2,
-    Jersey: 3,
-    SF: 4,
-    SantaMonica: 5,
-    Seattle: 6,
-    Miami: 7,
-    Boston: 8,
-  };
-
   //creates object to submit to server
   const formData = {
     warehouse_id: warehouseKey[warehouseName],
@@ -44,10 +32,29 @@ function AddInventoryComponent() {
     quantity: itemQuantity,
   };
 
+  //get current list of warehouses if any warehouse has been deleted
   const getWarehouses = async () => {
-    const response = await axios.get(`${baseUrl}/stock/warehouses`);
-    setWarehouses(response.data);
-  }
+    try {
+      //generate warehouseKey to convert name to id from current warehouses
+      const warehouseList = await axios.get(`${baseUrl}/stock/warehouses`);
+      const warehouses = warehouseList.data;
+      setWarehouses(warehouseList.data);
+  
+      //makes array of object with warehouse name: warehouse id
+      const warehouseArr = warehouses.map((warehouse) => ({
+        [warehouse.warehouse_name]: warehouse.id,
+      }));
+  
+      //converts array into object with key and value
+      setWarehouseKey(
+        warehouseArr.reduce((warehouseKey, warehouse) => {
+          return { ...warehouseKey, ...warehouse };
+        }, {})
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     getWarehouses();
@@ -352,54 +359,17 @@ function AddInventoryComponent() {
                 <option value="" disabled>
                   Please select
                 </option>
-                <option
-                  value="Manhattan"
-                  {...(warehouseName === "Manhattan" && { selected: true })}
+
+                {/* create options based on current list of warehouses */}
+                {warehouses.map((warehouse) => (
+                  <option key={warehouse.id}
+                  value={`${warehouse.warehouse_name}`}
+                  {...(`warehouseName` === `${warehouse.warehouse_name}` && { selected: true })}
                 >
-                  Manhattan
+                  {`${warehouse.warehouse_name}`}
                 </option>
-                <option
-                  value="Washington"
-                  {...(warehouseName === "Washington" && { selected: true })}
-                >
-                  Washington
-                </option>
-                <option
-                  value="Jersey"
-                  {...(warehouseName === "Jersey" && { selected: true })}
-                >
-                  Jersey
-                </option>
-                <option
-                  value="SF"
-                  {...(warehouseName === "SF" && { selected: true })}
-                >
-                  SF
-                </option>
-                <option
-                  value="SantaMonica"
-                  {...(warehouseName === "SantaMonica" && { selected: true })}
-                >
-                  Santa Monica
-                </option>
-                <option
-                  value="Seattle"
-                  {...(warehouseName === "Seattle" && { selected: true })}
-                >
-                  Seattle
-                </option>
-                <option
-                  value="Miami"
-                  {...(warehouseName === "Miami" && { selected: true })}
-                >
-                  Miami
-                </option>
-                <option
-                  value="Boston"
-                  {...(warehouseName === "Boston" && { selected: true })}
-                >
-                  Boston
-                </option>
+                ))}
+               
               </select>
               {errors.warehouseField && (
                 <p className="addInventory-form__error">
