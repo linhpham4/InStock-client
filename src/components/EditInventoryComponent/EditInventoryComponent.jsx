@@ -384,7 +384,6 @@ function EditInventoryComponent() {
                 className={`addInventory-form__input addInventory-form__input--5 ${warehouseInvalid}`}
                 id="warehouseName"
                 name="warehouseName"
-                defaultValue=""
                 onChange={(e) => setWarehouseName(e.target.value)}
               >
                 <option value="" disabled>
@@ -395,7 +394,7 @@ function EditInventoryComponent() {
                 {warehouses.map((warehouse) => (
                   <option key={warehouse.id}
                   value={`${warehouse.warehouse_name}`}
-                  {...(`warehouseName` === `${warehouse.warehouse_name}` && { selected: true })}
+                  {...(warehouseName === `${warehouse.warehouse_name}` && { selected: true })}
                 >
                   {`${warehouse.warehouse_name}`}
                 </option>
