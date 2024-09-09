@@ -49,7 +49,7 @@ if (!inventory) {
                 <p>STATUS</p>
                 <img className='inventory__icon' src={sortIcon} alt="sort" />
             </div>
-            <div className='inventory__title'>
+            <div className='inventory__title inventory__title--padding'>
                 <p>QUANTITY</p>
                 <img className='inventory__icon' src={sortIcon} alt="sort" />
             </div>
@@ -72,8 +72,10 @@ if (!inventory) {
                         <img className='inventory__chevron' src={chevron} alt="chevron" />
                     </Link>
                     <p className='inventory__address toggle-tabletdesktop'>{item.category}</p>
-                    <p className='inventory__name toggle-tabletdesktop'>{item.status}</p>
-                    <div className='inventory__container toggle-tabletdesktop'>
+                    <div className="inv__name toggle-tabletdesktop">
+                        <button className={`inv__name ${item.status === 'In Stock' ? 'instock' : 'outofstock' }`} >{item.status}</button>
+                    </div>
+                    <div className='inventory__container inventory__title--padding toggle-tabletdesktop'>
                         <p className='inventory__address'>{item.quantity}</p>
                     </div>
                     <div className='inventory__alticons toggle-tabletdesktop'>
@@ -103,7 +105,9 @@ if (!inventory) {
     
                         <div className='inventory__container'>
                             <p className='inventory__label'>STATUS</p>
-                            <p className='inventory__name'>{item.status}</p>
+                            <div className="inv__name toggle-mobile">
+                                <button className={`inv__name ${item.status === 'In Stock' ? 'instock' : 'outofstock' }`} >{item.status}</button>
+                            </div>
                         </div>
                         <div className='inventory__container'>
                             <p className='inventory__label'>QTY</p>
