@@ -22,6 +22,19 @@
         }
     }
 
+    &__back-arrow {
+        background-image: url("../../assets/icons/arrow_back-24px.svg");
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 25px;
+        border: none;
+        background-color: $white;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
     &__location {
         display: flex;
         gap: 0.5rem;
