@@ -5,10 +5,8 @@
 .selectedWarehouse {
 
     font-size: 1em;
-    background-color: $light-grey;
     padding: 1em 2em;
-    border: 1px solid $cloud;
-    border-radius: 4px;
+    border-bottom: 1px solid $cloud;
 
     @include tablet-breakpoint {
         display: flex;
