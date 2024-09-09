@@ -16,20 +16,20 @@ function WarehouseListPage() {
 
   return (
     <>
-      <section className="section-warehouse-list-page">
-        <main className="section-warehouse-list-page__header">
-          <SectionComponent title={title} buttonText={buttonText} buttonLink="/warehouse/add"/>
-        </main>
-        <div className="section-warehouse-list-page__list-main">
-          <WarehouseList viewDeleteModal={viewDeleteModal()} />
-        </div>
+      <main className="section-warehouse-list-page">
+        <SectionComponent
+          title={title}
+          buttonText={buttonText}
+          buttonLink="/warehouse/add"
+        />
+        <WarehouseList viewDeleteModal={viewDeleteModal()} />
         <div
           className="section-warehouse-list-page__delete-modal"
           style={{ display: !warehouseName ? "none" : "flex" }}
         >
           <DeleteWarehouseModal Warehouse={warehouseName} />
         </div>
-      </section>
+      </main>
     </>
   );
 }
