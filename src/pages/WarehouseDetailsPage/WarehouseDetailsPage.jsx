@@ -60,7 +60,7 @@ function WarehouseDetailsPage() {
     <>
       <main className="warehouse-details-page">
         <div className="warehouse-details-page__header">
-          <SectionComponent2 title={swappedWarehouseName} />
+          <SectionComponent2 title={swappedWarehouseName} buttonLink={`/warehouse/${warehouseId}/edit`}/>
         </div>
         <div className="warehouse-details-page__sub-header">
           <WarehouseDetails />
