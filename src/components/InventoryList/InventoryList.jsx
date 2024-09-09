@@ -76,7 +76,7 @@ const InventoryList = () => {
                 {item.category}
               </p>
               <div className="inv__name toggle-tabletdesktop">
-                <button className={`inv__name ${item.status === 'In Stock' ? 'instock' : 'outofstock' }`} >{item.status}</button>
+                <button className={`inv__name ${item.status === 'In Stock' ? 'inv__name--instock' : 'inv__name--outofstock' }`} >{item.status}</button>
               </div>
               <div className="inv__container toggle-tabletdesktop">
                 <p className="inv__other-info inv__title--padding">{item.quantity}</p>
@@ -120,7 +120,7 @@ const InventoryList = () => {
                 <div className="inv__container">
                   <p className="inv__label">STATUS</p>
                   <div className="inv__name toggle-mobile">
-                    <button className={`inv__name ${item.status === 'In Stock' ? 'instock' : 'outofstock' }`} >{item.status}</button>
+                    <button className={`inv__name ${item.status === 'In Stock' ? 'inv__name--instock' : 'inv__name--outofstock' }`} >{item.status}</button>
                   </div>
                 </div>
                 <div className="inv__container">
