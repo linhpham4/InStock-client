@@ -91,7 +91,7 @@
   @include mobile-labels-links-buttons;
   padding: 0.5rem 1rem;
   width: 100%;
-  border-radius: 20px;
+  border-radius: 2rem;
   @include tablet-breakpoint {
     @include labels-links-buttons;
     width: auto;
@@ -167,7 +167,7 @@
   padding: 0.5rem 1rem;
   width: 100%;
   border-radius: 20px;
-  margin-top: 0.25rem;
+  // margin-top: 0.25rem;
   border: 1px solid $cloud;
   position: relative;
   @include mobile-labels-links-buttons;
@@ -180,9 +180,9 @@
   &:focus-visible {
     outline-color: $instock-indigo;
   }
-  &:invalid {
-    outline-color: $red;
-  }
+  // &:invalid {
+  //   outline-color: $red;
+  // }
 }
 
 @mixin dropdown {
@@ -195,7 +195,7 @@
 @mixin search-field {
   background-image: url("../../assets/icons/search-24px.svg");
   background-repeat: no-repeat;
-  background-position: 98% 50%;
+  background-position: 96% 50%;
   @include text-field;
 }
 

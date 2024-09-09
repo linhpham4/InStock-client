@@ -6,20 +6,22 @@
   width: 100%; // new code (changed from 100vw to 100% as it was drifting beyond page width
   display: flex;
   flex-direction: column;
-  padding: 2rem 3rem 1rem;
+  padding: 2rem 1.5rem 1.5rem;
   position: relative;
   border-bottom: solid 1px $cloud;
 
   @include tablet-breakpoint {
     flex-direction: row;
     justify-content: space-between;
-    padding: 1em 3em;
+    padding: 2rem 2rem 1.5rem;
+  }
+
+  @include desktop-breakpoint {
+    padding: 2rem 2.5rem 1.5rem;
   }
 
   &__heading {
-    font-size: 2.5rem;
     font-weight: 600;
-    padding: 0.51em 0;
     @include mobile-page-header; // added to make sure we have same font on all pages that use this component
 
     @include tablet-breakpoint {
@@ -28,14 +30,12 @@
   }
 
   &__inputs {
-    width: 100%;
-
     @include tablet-breakpoint {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       width: 60%;
-      gap: 2em;
+      gap: 1rem;
     }
 
     @include desktop-breakpoint {
@@ -43,46 +43,25 @@
     }
   }
 
-  &__searchField {
-    @include tablet-breakpoint {
-      display: flex;
-      width: 60%;
-      max-width: 450px;
-
-      position: relative;
-    }
-  }
-
   &__field {
-    width: 100%;
-    font-size: 1.1rem;
-    padding: 1.1em 1.5em;
-    border-radius: 1.7em;
-    border: solid 1px $cloud;
-    min-width: 150px;
-    max-height: 47px;
-    margin-bottom: 1.5em;
+    margin: 1rem 0;
+    @include search-field;
 
     @include tablet-breakpoint {
       margin: 0;
+      width: 50%;
     }
   }
 
+  &__link {
+    width: 12rem;
+  }
+
   &__button2 {
-    background-color: $instock-indigo;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1em;
-    border-radius: 2em;
-    border: none;
-    min-width: 47px;
-    max-height: 47px;
-    width: 100%;
-    min-width: 200px;
+    @include button-primary;
 
     @include tablet-breakpoint {
-      width: 40%;
+      width: 100%;
     }
 
     &:hover {
@@ -95,28 +74,27 @@
 
   &__btn-text {
     color: $white;
-    font-size: 1.25rem;
-    padding: 1rem;
+    @include mobile-labels-links-buttons;
 
     @include tablet-breakpoint {
-      font-size: 1rem;
+      @include labels-links-buttons;
     }
   }
+//used mixin so no need for extra icon
+  // &__icon {
+  //   color: $white;
+  //   @include mobile-subheader;
+  //   position: absolute;
+  //   top: 50%; // new code
+  //   transform: translateY(-25%); // new code
+  //   right: 3.5em;
+  //   // bottom: 4.1em;
 
-  &__icon {
-    color: $white;
-    @include mobile-subheader;
-    position: absolute;
-    top: 50%; // new code
-    transform: translateY(-25%); // new code
-    right: 3.5em;
-    // bottom: 4.1em;
-
-    @include tablet-breakpoint {
-      //   bottom: 0.5em;
-      top: 50%; // new code
-      transform: translateY(-50%); // new code
-      right: 1em;
-    }
-  }
+  //   @include tablet-breakpoint {
+  //     //   bottom: 0.5em;
+  //     top: 50%; // new code
+  //     transform: translateY(-50%); // new code
+  //     right: 1em;
+  //   }
+  // }
 }
