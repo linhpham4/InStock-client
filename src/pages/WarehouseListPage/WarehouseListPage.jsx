@@ -9,11 +9,6 @@ function WarehouseListPage() {
   const buttonText = "+ Add New Warehouse";
   const { warehouseName } = useParams();
 
-  const viewDeleteModal = () => {
-    console.log(`success: ${warehouseName}`);
-    console.log(typeof warehouseName);
-  };
-
   return (
     <>
       <main className="section-warehouse-list-page">
@@ -22,7 +17,7 @@ function WarehouseListPage() {
           buttonText={buttonText}
           buttonLink="/warehouse/add"
         />
-        <WarehouseList viewDeleteModal={viewDeleteModal()} />
+        <WarehouseList />
         <div
           className="section-warehouse-list-page__delete-modal"
           style={{ display: !warehouseName ? "none" : "flex" }}

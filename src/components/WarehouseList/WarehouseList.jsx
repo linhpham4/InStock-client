@@ -7,21 +7,19 @@ import chevron from "../../assets/icons/chevron_right-24px.svg";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-const WarehouseList = (viewDeleteModal) => {
+
+const WarehouseList = () => {
   const baseUrl = import.meta.env.VITE_APP_BASE_URL;
-  const { warehouseId } = useParams();
   const [warehouses, setWarehouses] = useState([]);
   async function getWarehouseList() {
     const warehouseList = await axios.get(`${baseUrl}/stock/warehouses`);
     setWarehouses(warehouseList.data);
   }
+
   useEffect(() => {
     getWarehouseList();
   }, []);
-  useEffect(() => {
-    getWarehouseList();
-  }, [warehouseId]);
+
   return (
     <>
       <div className="warehouse__headings">
@@ -72,7 +70,6 @@ const WarehouseList = (viewDeleteModal) => {
               <Link
                 className="warehouse__link-delete"
                 to={`/warehouse/${warehouse.warehouse_name}/${warehouse.id}/delete`}
-                onClick={() => viewDeleteModal(warehouse.warehouse_name)}
               >
                 <img
                   className="warehouse__altimages"
@@ -128,7 +125,6 @@ const WarehouseList = (viewDeleteModal) => {
             <Link
               className="warehouse__link-delete"
               to={`/warehouse/${warehouse.warehouse_name}/${warehouse.id}/delete`}
-              onClick={() => viewDeleteModal(warehouse.warehouse_name)}
             >
               <img src={deleteIcon} alt="delete" />
             </Link>

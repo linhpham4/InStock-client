@@ -20,6 +20,7 @@ function DeleteWarehouseModal({ Warehouse }) {
   const deleteWarehouse = async () => {
     try {
       await axios.delete(`${base_url}/stock/warehouses/${warehouseId}`);
+      await axios.get(`${base_url}/stock/warehouses`);
       alert(`${warehouseName} has been deleted`);
       goBack();
     } catch (error) {
