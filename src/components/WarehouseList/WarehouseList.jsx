@@ -5,11 +5,14 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import chevron from "../../assets/icons/chevron_right-24px.svg";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const WarehouseList = (viewDeleteModal) => {
   const baseUrl = import.meta.env.VITE_APP_BASE_URL;
+
+  const { warehouseId } = useParams()
 
   const [warehouses, setWarehouses] = useState([]);
 
@@ -18,8 +21,13 @@ const WarehouseList = (viewDeleteModal) => {
     setWarehouses(warehouseList.data);
   }
 
+  useEffect(() => {
+    getWarehouseList()
+  }, [])
 
-    getWarehouseList();
+  useEffect(() => {
+    getWarehouseList()
+  }, [warehouseId])
 
 
   return (

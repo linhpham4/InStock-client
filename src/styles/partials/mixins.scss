@@ -136,6 +136,16 @@
   }
 }
 
+@mixin button-instock {
+  color: rgb(16, 149, 78);
+  background-color: rgba(21, 132, 99, 0.07);
+}
+
+@mixin button-outofstock {
+  color: rgb(183, 52, 35);
+  background-color: rgba(201, 69, 21, 0.07);
+}
+
 //text link styling=============================================================
 @mixin text-link {
   color: $instock-indigo;

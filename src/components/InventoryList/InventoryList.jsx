@@ -14,18 +14,21 @@ const InventoryList = () => {
 
   const [inventory, setInventory] = useState([]);
 
-  const { warehouseId } = useParams();
+  const { itemId } = useParams();
 
   async function getInventoryByWarehouse() {
     const inventory = await axios.get(`${baseUrl}/stock/inventories`);
     setInventory(inventory.data);
   }
 
-  getInventoryByWarehouse();
+  useEffect(() => {
+    getInventoryByWarehouse()
+  }, [])
 
   useEffect(() => {
-    getInventoryByWarehouse();
-  }, [warehouseId]);
+    getInventoryByWarehouse()
+  }, [itemId])
+
 
   if (!inventory) {
     return <div>Loading...</div>;
@@ -45,7 +48,7 @@ const InventoryList = () => {
             <p>STATUS</p>
             <img className="inv__icon" src={sortIcon} alt="sort" />
           </div>
-          <div className="inv__title">
+          <div className="inv__title inv__title--padding">
             <p>QTY</p>
             <img className="inv__icon" src={sortIcon} alt="sort" />
           </div>
@@ -72,9 +75,11 @@ const InventoryList = () => {
               <p className="inv__other-info toggle-tabletdesktop">
                 {item.category}
               </p>
-              <p className="inv__name toggle-tabletdesktop">{item.status}</p>
+              <div className="inv__name toggle-tabletdesktop">
+                <button className={`inv__name ${item.status === 'In Stock' ? 'instock' : 'outofstock' }`} >{item.status}</button>
+              </div>
               <div className="inv__container toggle-tabletdesktop">
-                <p className="inv__other-info">{item.quantity}</p>
+                <p className="inv__other-info inv__title--padding">{item.quantity}</p>
               </div>
               <div className="inv__container toggle-tabletdesktop">
                 <p className="inv__other-info">{item.warehouse_name}</p>
@@ -114,7 +119,9 @@ const InventoryList = () => {
               <div className="inv__contact toggle-mobile">
                 <div className="inv__container">
                   <p className="inv__label">STATUS</p>
-                  <p className="inv__name">{item.status}</p>
+                  <div className="inv__name toggle-mobile">
+                    <button className={`inv__name ${item.status === 'In Stock' ? 'instock' : 'outofstock' }`} >{item.status}</button>
+                  </div>
                 </div>
                 <div className="inv__container">
                   <p className="inv__label">QTY</p>

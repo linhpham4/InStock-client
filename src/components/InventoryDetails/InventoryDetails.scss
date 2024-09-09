@@ -141,6 +141,7 @@
   &__status-button {
     margin-bottom: 1rem;
     @include button-base;
+
     & {
       border: none;
       background-color: rgba(243, 217, 212, 0.831);
