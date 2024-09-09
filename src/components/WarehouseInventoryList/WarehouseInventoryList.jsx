@@ -34,7 +34,7 @@ if (!inventory) {
 
     return (
     
-        <main className='inventory__wrapper'>
+        <main>
     
         <div className='inventory__headings'>
             <div className='inventory__title'>
