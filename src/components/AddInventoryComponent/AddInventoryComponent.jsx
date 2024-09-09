@@ -156,7 +156,7 @@ function AddInventoryComponent() {
 
   return (
     <>
-      <form className="addInventory-form" onSubmit={handleSubmit}>
+      <form className="addInventory-form" id="warehouseAdd" onSubmit={handleSubmit}>
         <div className="addInventory-form__container-wrapper">
           <div className="addInventory-form__container addInventory-form__container--1">
             <h3 className="addInventory-form__title">Item Details</h3>
@@ -401,7 +401,7 @@ function AddInventoryComponent() {
           >
             Cancel
           </button>
-          <button className="addInventory-form__button-add" type="submit">
+          <button className="addInventory-form__button-add" form="warehouseAdd" type="submit">
             + Add Item
           </button>
         </div>
