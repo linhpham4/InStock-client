@@ -75,6 +75,7 @@ const WarehouseList = () => {
               <Link
                 className="warehouse__link-delete"
                 to={`/warehouse/${warehouse.warehouse_name}/${warehouse.id}/delete`}
+                onClick={() => window.scrollTo({ top: 0 })}
               >
                 <img
                   className="warehouse__altimages"
@@ -130,6 +131,7 @@ const WarehouseList = () => {
             <Link
               className="warehouse__link-delete"
               to={`/warehouse/${warehouse.warehouse_name}/${warehouse.id}/delete`}
+              onClick={() => window.scrollTo({ top: 0 })}
             >
               <img src={deleteIcon} alt="delete" />
             </Link>
