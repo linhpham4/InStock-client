@@ -11,7 +11,7 @@ import axios from "axios";
 const WarehouseList = () => {
   const baseUrl = import.meta.env.VITE_APP_BASE_URL;
 
-  const warehouseId = useParams()
+  const warehouseId = useParams();
 
   const [warehouses, setWarehouses] = useState([]);
   async function getWarehouseList() {
@@ -77,6 +77,7 @@ const WarehouseList = () => {
               <Link
                 className="warehouse__link-delete"
                 to={`/warehouse/${warehouse.warehouse_name}/${warehouse.id}/delete`}
+                onClick={() => window.scrollTo({ top: 0 })}
               >
                 <img
                   className="warehouse__altimages"
@@ -132,6 +133,7 @@ const WarehouseList = () => {
             <Link
               className="warehouse__link-delete"
               to={`/warehouse/${warehouse.warehouse_name}/${warehouse.id}/delete`}
+              onClick={() => window.scrollTo({ top: 0 })}
             >
               <img src={deleteIcon} alt="delete" />
             </Link>
