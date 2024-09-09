@@ -115,18 +115,9 @@ function InventoryDetails(props) {
                 STATUS:
               </h3>
               <button
-                className="inventory-body__status-button"
-                style={
-                  selectedInventory.status === "In Stock"
-                    ? {
-                        color: "rgb(16, 149, 78)",
-                        backgroundColor: "rgba(227, 235, 227, 0.871)",
-                      }
-                    : {
-                        color: "rgb(183, 52, 35)",
-                        backgroundColor: "rgba(243, 217, 212, 0.831)",
-                      }
-                }
+                className={`inventory-body__status-button ${
+                  selectedInventory.status === "In Stock" ? "inventory-body__status-button--instock" : "inventory-body__status-button--outofstock"
+                }`}
               >
                 {selectedInventory.status.toUpperCase()}
               </button>
