@@ -161,8 +161,13 @@ function EditInventoryComponent() {
     //put request to update item in server
     const editItem = async () => {
       try {
-        await axios.put(`${baseUrl}/stock/inventories/${itemId}`, formData);
-        alert("Item has been successfully updated!");
+        const responses = await axios.get(`${baseUrl}/stock/warehouses`);
+        if (responses.data.find(warehouse => warehouse.id === warehouseKey[warehouseName])) {
+          await axios.put(`${baseUrl}/stock/inventories/${itemId}`, formData);
+          alert("Item has been successfully updated!");
+        } else {
+          alert("Warehouse cannot be found")
+        }
       } catch (error) {
         console.error(error);
       }
