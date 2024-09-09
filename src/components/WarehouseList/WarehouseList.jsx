@@ -23,7 +23,7 @@ const WarehouseList = (viewDeleteModal) => {
     getWarehouseList();
   }, [warehouseId]);
   return (
-    <main>
+    <>
       <div className="warehouse__headings">
         <div className="warehouse__title">
           <p>WAREHOUSE</p>
@@ -141,7 +141,7 @@ const WarehouseList = (viewDeleteModal) => {
           </div>
         </div>
       ))}
-    </main>
+    </>
   );
 };
 export default WarehouseList;
