@@ -6,7 +6,7 @@ import axios from "axios";
 
 function DeleteInventoryModal({ ItemName, ItemId }) {
   const base_url = import.meta.env.VITE_APP_BASE_URL;
-  const { itemName, itemId, warehouseId } = useParams();
+  const { itemName, itemId, warehouseId, warehouseName } = useParams();
 
   // logic to determine if we are on delete modal.  Scrolling is disabled when delete modal active.
   const location = useLocation();
@@ -14,7 +14,7 @@ function DeleteInventoryModal({ ItemName, ItemId }) {
   if (
     location.pathname === `/inventory/${ItemName}/${ItemId}/delete` ||
     location.pathname ===
-      `/warehouse/${warehouseId}/${itemId}/${itemName}/delete`
+      `/warehouse/${warehouseId}/${warehouseName}/${itemId}/${itemName}/delete`
   ) {
     document.body.style.overflow = "hidden";
   } else {
