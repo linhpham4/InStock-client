@@ -1,6 +1,5 @@
 import "./WarehouseDetailsPage.scss";
 import SectionComponent2 from "../../components/SectionComponent2/SectionComponent2";
-("../../components/SectionComponent2/SectionComponent2");
 import WarehouseDetails from "../../components/warehouseDetails/warehouseDetails";
 import WarehouseInventoryList from "../../components/WarehouseInventoryList/WarehouseInventoryList";
 import { useParams } from "react-router-dom";

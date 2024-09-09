@@ -8,27 +8,20 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
 const WarehouseList = (viewDeleteModal) => {
   const baseUrl = import.meta.env.VITE_APP_BASE_URL;
-
-  const [warehouses, setWarehouses] = useState([]);
-
   const { warehouseId } = useParams();
-
+  const [warehouses, setWarehouses] = useState([]);
   async function getWarehouseList() {
     const warehouseList = await axios.get(`${baseUrl}/stock/warehouses`);
     setWarehouses(warehouseList.data);
   }
-
   useEffect(() => {
     getWarehouseList();
   }, []);
-
   useEffect(() => {
     getWarehouseList();
   }, [warehouseId]);
-
   return (
     <main>
       <div className="warehouse__headings">
@@ -52,12 +45,14 @@ const WarehouseList = (viewDeleteModal) => {
           <p className="warehouse__title--padding">ACTIONS</p>
         </div>
       </div>
-
       {warehouses.map((warehouse) => (
         <div key={warehouse.id} className="warehouse">
           <div className="warehouse__card">
             {/* This code will render at tablet/desktop breakpoints */}
-            <Link className="warehouse__link" to={`/warehouse/${warehouse.id}`}>
+            <Link
+              className="warehouse__link toggle-tabletdesktop"
+              to={`/warehouse/${warehouse.id}`}
+            >
               <p className="warehouse__name--blue ">
                 {warehouse.warehouse_name}
               </p>
@@ -93,7 +88,6 @@ const WarehouseList = (viewDeleteModal) => {
               </Link>
             </div>
             {/* ---------------------------------------------------- */}
-
             {/* This code will render at mobile breakpoints */}
             <div className="warehouse__na toggle-mobile">
               <div className="warehouse__container">
@@ -117,7 +111,6 @@ const WarehouseList = (viewDeleteModal) => {
                 <p className="warehouse__address">{warehouse.address}</p>
               </div>
             </div>
-
             <div className="warehouse__contact toggle-mobile">
               <div className="warehouse__container">
                 <p className="warehouse__label">CONTACT NAME</p>
@@ -131,7 +124,6 @@ const WarehouseList = (viewDeleteModal) => {
             </div>
             {/* ---------------------------------------------------- */}
           </div>
-
           <div className="warehouse__icons toggle-mobile">
             <Link
               className="warehouse__link-delete"
@@ -152,5 +144,4 @@ const WarehouseList = (viewDeleteModal) => {
     </main>
   );
 };
-
 export default WarehouseList;
