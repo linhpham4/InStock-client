@@ -3,11 +3,11 @@ import SectionComponent2 from "../../components/SectionComponent2/SectionCompone
 ("../../components/SectionComponent2/SectionComponent2");
 import WarehouseDetails from "../../components/warehouseDetails/warehouseDetails";
 import WarehouseInventoryList from "../../components/WarehouseInventoryList/WarehouseInventoryList";
-import SelectedWarehouse from "../../components/SelectedWarehouse/SelectedWarehouse";
 import { useParams } from "react-router-dom";
+import DeleteInventoryModal from "../../components/DeleteInventoryModal/DeleteInventoryModal";
 
 function WarehouseDetailsPage() {
-  const { warehouseId } = useParams();
+  const { warehouseId, itemId } = useParams();
 
   const swappedWarehouseKey = {
     1: "Manhattan",
@@ -20,19 +20,25 @@ function WarehouseDetailsPage() {
     8: "Boston",
   };
 
-  const warehouseName = swappedWarehouseKey[warehouseId];
+  const swappedWarehouseName = swappedWarehouseKey[warehouseId];
 
   return (
     <>
       <main className="warehouse-details-page">
         <div className="warehouse-details-page__header">
-          <SectionComponent2 title={warehouseName} />
+          <SectionComponent2 title={swappedWarehouseName} />
         </div>
         <div className="warehouse-details-page__sub-header">
           <WarehouseDetails />
         </div>
         <div className="warehouse-details-page__list-main">
           <WarehouseInventoryList />
+        </div>
+        <div
+          className="inventory-list-section__delete-modal"
+          style={{ display: !itemId ? "none" : "flex" }}
+        >
+          <DeleteInventoryModal />
         </div>
       </main>
     </>

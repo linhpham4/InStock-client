@@ -27,6 +27,10 @@ function App() {
             element={<WarehouseDetailsPage />}
           />
           <Route
+            path="/warehouse/:warehouseId/:itemId/:itemName/delete"
+            element={<WarehouseDetailsPage />}
+          />
+          <Route
             path="/warehouse/:warehouseId/Edit"
             element={<WarehouseEditPage />}
           />
