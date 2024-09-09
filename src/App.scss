@@ -28,12 +28,11 @@ main {
   @include tablet-breakpoint {
     margin-left: 2rem;
     margin-right: 2rem;
-    margin-top: -7rem;
+    margin-top: -6rem;
   }
   @include desktop-breakpoint {
     margin-left: 8.125rem;
     margin-right: 8.125rem;
-    margin-top: -7rem;
   }
 }
 
