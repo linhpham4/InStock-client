@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import SelectedWarehouse from "../SelectedWarehouse/SelectedWarehouse";
-import "./warehouseDetails.scss";
-
+import "./WarehouseDetails.scss";
 
 function WarehouseDetails() {
   const { warehouseId } = useParams();
@@ -43,16 +41,43 @@ function WarehouseDetails() {
   }
 
   return (
-    <div className="container">
-      <div className="container__main-content">
-        <SelectedWarehouse selectedWarehouse={selectedWarehouse} />
+    <>
+      <div className="warehouseDetails">
+        <div className="warehouseDetails__location">
+          <h5 className="warehouseDetails__heading">WAREHOUSE ADDRESS</h5>
+          <div className="warehouseDetails__full-address">
+            <p className="warehouseDetails__address">
+              {selectedWarehouse.address},
+            </p>
+            <p className="warehouseDetails__city">
+              {selectedWarehouse.city}, {selectedWarehouse.country}
+            </p>
+          </div>
+        </div>
+
+        <div className="warehouseDetails__point-info">
+          <div className="warehouseDetails__point">
+            <h5 className="warehouseDetails__heading">CONTACT NAME:</h5>
+            <p className="warehouseDetails__contact-name">
+              {selectedWarehouse.contact_name}
+            </p>
+            <p className="warehouseDetails__contact-title">
+              {selectedWarehouse.contact_position}
+            </p>
+          </div>
+          <div className="warehouseDetails__info">
+            <h5 className="warehouseDetails__heading">CONTACT INFORMATION</h5>
+            <p className="warehouseDetails__phone">
+              {selectedWarehouse.contact_phone}
+            </p>
+            <p className="warehouseDetails__email">
+              {selectedWarehouse.contact_email}
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
 export default WarehouseDetails;
-
-
-
-
