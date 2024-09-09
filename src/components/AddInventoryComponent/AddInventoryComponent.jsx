@@ -156,14 +156,6 @@ function AddInventoryComponent() {
 
   return (
     <>
-      <div className="addInventory-header">
-        <div className="addInventory-header__location">
-          <img src={backArrow} alt="back arrow" onClick={handleGoBack} />
-          <h2 className="addInventory-header__heading">
-            Add New Inventory Item
-          </h2>
-        </div>
-      </div>
       <form className="addInventory-form" onSubmit={handleSubmit}>
         <div className="addInventory-form__container-wrapper">
           <div className="addInventory-form__container addInventory-form__container--1">
