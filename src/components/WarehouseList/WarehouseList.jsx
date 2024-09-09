@@ -10,9 +10,7 @@ import axios from "axios";
 
 const WarehouseList = () => {
   const baseUrl = import.meta.env.VITE_APP_BASE_URL;
-
-  const warehouseId = useParams()
-
+  const { warehouseId } = useParams();
   const [warehouses, setWarehouses] = useState([]);
   async function getWarehouseList() {
     const warehouseList = await axios.get(`${baseUrl}/stock/warehouses`);
