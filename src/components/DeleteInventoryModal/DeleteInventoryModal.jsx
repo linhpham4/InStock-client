@@ -24,7 +24,7 @@ function DeleteInventoryModal({ ItemName, ItemId }) {
   const deleteInventoryItem = async () => {
     try {
       await axios.delete(`${base_url}/stock/inventories/${itemId}`);
-      alert(`${ItemName} has been deleted`);
+      alert(`${itemName} has been deleted`);
       goBack();
     } catch (error) {
       console.error(error);
