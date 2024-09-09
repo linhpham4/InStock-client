@@ -23,7 +23,11 @@ function App() {
             element={<WarehouseListPage />}
           />
           <Route
-            path="/warehouse/:warehouseId"
+            path="/warehouse/:warehouseId/:warehouseName"
+            element={<WarehouseDetailsPage />}
+          />
+          <Route
+            path="/warehouse/:warehouseId/:warehouseName/:itemId/:itemName/delete"
             element={<WarehouseDetailsPage />}
           />
           <Route

@@ -4,26 +4,29 @@ import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import chevron from "../../assets/icons/chevron_right-24px.svg";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
-const WarehouseList = (viewDeleteModal) => {
+const WarehouseList = () => {
   const baseUrl = import.meta.env.VITE_APP_BASE_URL;
-
+  const { warehouseId } = useParams();
   const [warehouses, setWarehouses] = useState([]);
-
   async function getWarehouseList() {
     const warehouseList = await axios.get(`${baseUrl}/stock/warehouses`);
     setWarehouses(warehouseList.data);
   }
 
-
+  useEffect(() => {
     getWarehouseList();
+  }, []);
 
+  useEffect(() => {
+    getWarehouseList();
+  }, [warehouseId]);
 
   return (
-    <main>
+    <>
       <div className="warehouse__headings">
         <div className="warehouse__title">
           <p>WAREHOUSE</p>
@@ -45,12 +48,14 @@ const WarehouseList = (viewDeleteModal) => {
           <p className="warehouse__title--padding">ACTIONS</p>
         </div>
       </div>
-
       {warehouses.map((warehouse) => (
         <div key={warehouse.id} className="warehouse">
           <div className="warehouse__card">
             {/* This code will render at tablet/desktop breakpoints */}
-            <Link className="warehouse__link toggle-tabletdesktop" to={`/warehouse/${warehouse.id}`}>
+            <Link
+              className="warehouse__link toggle-tabletdesktop"
+              to={`/warehouse/${warehouse.id}/${warehouse.warehouse_name}`}
+            >
               <p className="warehouse__name--blue ">
                 {warehouse.warehouse_name}
               </p>
@@ -70,7 +75,7 @@ const WarehouseList = (viewDeleteModal) => {
               <Link
                 className="warehouse__link-delete"
                 to={`/warehouse/${warehouse.warehouse_name}/${warehouse.id}/delete`}
-                onClick={() => viewDeleteModal(warehouse.warehouse_name)}
+                onClick={() => window.scrollTo({ top: 0 })}
               >
                 <img
                   className="warehouse__altimages"
@@ -79,21 +84,20 @@ const WarehouseList = (viewDeleteModal) => {
                 />
               </Link>
               <Link
-               className="warehouse__link-edit"
-               to={`/warehouse/${warehouse.id}/edit`}
+                className="warehouse__link-edit"
+                to={`/warehouse/${warehouse.id}/edit`}
               >
-              <img className="images" src={editIcon} alt="edit" />
+                <img className="images" src={editIcon} alt="edit" />
               </Link>
             </div>
             {/* ---------------------------------------------------- */}
-
             {/* This code will render at mobile breakpoints */}
             <div className="warehouse__na toggle-mobile">
               <div className="warehouse__container">
                 <p className="warehouse__label">WAREHOUSE</p>
                 <Link
                   className="warehouse__link"
-                  to={`/warehouse/${warehouse.id}`}
+                  to={`/warehouse/${warehouse.id}/${warehouse.warehouse_name}`}
                 >
                   <p className="warehouse__name--blue">
                     {warehouse.warehouse_name}
@@ -110,7 +114,6 @@ const WarehouseList = (viewDeleteModal) => {
                 <p className="warehouse__address">{warehouse.address}</p>
               </div>
             </div>
-
             <div className="warehouse__contact toggle-mobile">
               <div className="warehouse__container">
                 <p className="warehouse__label">CONTACT NAME</p>
@@ -124,26 +127,24 @@ const WarehouseList = (viewDeleteModal) => {
             </div>
             {/* ---------------------------------------------------- */}
           </div>
-
           <div className="warehouse__icons toggle-mobile">
             <Link
               className="warehouse__link-delete"
               to={`/warehouse/${warehouse.warehouse_name}/${warehouse.id}/delete`}
-              onClick={() => viewDeleteModal(warehouse.warehouse_name)}
+              onClick={() => window.scrollTo({ top: 0 })}
             >
               <img src={deleteIcon} alt="delete" />
             </Link>
             <Link
-               className="warehouse__link-edit"
-               to={`/warehouse/${warehouse.id}/edit`}
-              >
-            <img src={editIcon} alt="edit" />
+              className="warehouse__link-edit"
+              to={`/warehouse/${warehouse.id}/edit`}
+            >
+              <img src={editIcon} alt="edit" />
             </Link>
           </div>
         </div>
       ))}
-    </main>
+    </>
   );
 };
-
 export default WarehouseList;

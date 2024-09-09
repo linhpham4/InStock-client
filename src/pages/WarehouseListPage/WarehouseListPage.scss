@@ -3,19 +3,17 @@
 @use "../../styles/partials/variables.scss" as *;
 
 .section-warehouse-list-page {
-  &__header {
-    box-sizing: border-box;
-  }
-  &__list-main {
-    margin-top: 4rem;
-    @include tablet-breakpoint {
-      margin-top: 7rem;
-    }
-  }
   &__delete-modal {
     position: absolute;
     width: 100%;
     top: 0;
     bottom: 0;
+    margin-left: -1rem;
+    @include tablet-breakpoint {
+      margin-left: -2rem;
+    }
+    @include desktop-breakpoint {
+      margin-left: -8.125rem;
+    }
   }
 }

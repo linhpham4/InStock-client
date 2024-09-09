@@ -91,7 +91,7 @@
   @include mobile-labels-links-buttons;
   padding: 0.5rem 1rem;
   width: 100%;
-  border-radius: 20px;
+  border-radius: 2rem;
   @include tablet-breakpoint {
     @include labels-links-buttons;
     width: auto;
@@ -136,6 +136,22 @@
   }
 }
 
+@mixin button-instock {
+  color: rgb(16, 149, 78);
+  background-color: rgba(21, 132, 99, 0.07);
+  &:hover{ 
+    cursor: auto;
+  }
+}
+
+@mixin button-outofstock {
+  color: rgb(183, 52, 35);
+  background-color: rgba(201, 69, 21, 0.07);
+  &:hover{ 
+    cursor: auto;
+  }
+}
+
 //text link styling=============================================================
 @mixin text-link {
   color: $instock-indigo;
@@ -157,7 +173,7 @@
   padding: 0.5rem 1rem;
   width: 100%;
   border-radius: 20px;
-  margin-top: 0.25rem;
+  // margin-top: 0.25rem;
   border: 1px solid $cloud;
   position: relative;
   @include mobile-labels-links-buttons;
@@ -170,9 +186,9 @@
   &:focus-visible {
     outline-color: $instock-indigo;
   }
-  &:invalid {
-    outline-color: $red;
-  }
+  // &:invalid {
+  //   outline-color: $red;
+  // }
 }
 
 @mixin dropdown {
@@ -185,7 +201,7 @@
 @mixin search-field {
   background-image: url("../../assets/icons/search-24px.svg");
   background-repeat: no-repeat;
-  background-position: 98% 50%;
+  background-position: 96% 50%;
   @include text-field;
 }
 

@@ -18,7 +18,7 @@ function SectionComponent({ title, buttonDisplay, buttonLink }) {
     <>
       <div className="washington-header">
         <div className="washington-header__location">
-            <img className="washington-header__back-icon" src={backArrow} alt="Back Arrow" onClick={(e) => navigate(-1)}/>
+            <button className="washington-header__back-arrow" onClick={(e) => navigate(-1)}></button>
           <h2 className="washington-header__heading">{title}</h2>
         </div>
 

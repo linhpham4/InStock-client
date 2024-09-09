@@ -12,14 +12,12 @@ function InventoryListPage() {
 
   return (
     <>
-      <section className="inventory-list-section">
-        <main className="inventory-list-section__header">
+      <main className="inventory-list-section">
           <SectionComponent
             title={title}
             buttonText={buttonText}
             buttonLink={buttonLink}
           />
-        </main>
         <div className="inventory-list-section__list-main">
           <InventoryList />
         </div>
@@ -29,7 +27,7 @@ function InventoryListPage() {
         >
           <DeleteInventoryModal ItemName={itemName} ItemId={itemId} />
         </div>
-      </section>
+      </main>
     </>
   );
 }
