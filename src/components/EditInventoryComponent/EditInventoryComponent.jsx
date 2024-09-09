@@ -1,10 +1,10 @@
 import "./EditInventoryComponent.scss";
-import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function EditInventoryComponent() {
+  const [warehouses, setWarehouses] = useState("");
   const [warehouseName, setWarehouseName] = useState("");
   const [itemName, setItemName] = useState("");
   const [itemDescription, setItemDescription] = useState("");
@@ -41,9 +41,20 @@ function EditInventoryComponent() {
     }
   };
 
+  const getWarehouses = async () => {
+    const response = await axios.get(`${baseUrl}/stock/warehouses`);
+    setWarehouses(response.data);
+  }
+
   useEffect(() => {
     getItem();
+    getWarehouses();
   }, [itemId]);
+
+  // useEffect(() => {
+  //   getWarehouses();
+  // }, []);
+  console.log(warehouses)
 
   // Convert warehouse name to warehouse ID
   const warehouseKey = {
@@ -364,7 +375,18 @@ function EditInventoryComponent() {
                 <option value="" disabled>
                   Please select
                 </option>
-                <option
+
+                {/* {warehouses.map((warehouse) => (
+                  <option key={warehouse.id}
+                  value={`${warehouse.warehouse_name}`}
+                  {...(`warehouseName` === `${warehouse.warehouse_name}` && { selected: true })}
+                >
+                  {`${warehouse.warehouse_name}`}
+                </option>
+                ))} */}
+
+
+                {/* <option
                   value="Manhattan"
                   {...(warehouseName === "Manhattan" && { selected: true })}
                 >
@@ -411,7 +433,7 @@ function EditInventoryComponent() {
                   {...(warehouseName === "Boston" && { selected: true })}
                 >
                   Boston
-                </option>
+                </option> */}
               </select>
               {errors.warehouseField && (
                 <p className="addInventory-form__error">

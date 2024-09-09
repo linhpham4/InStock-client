@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function AddInventoryComponent() {
+  const [warehouses, setWarehouses] = useState("");
   const [warehouseName, setWarehouseName] = useState("");
   const [itemName, setItemName] = useState("");
   const [itemDescription, setItemDescription] = useState("");
@@ -42,6 +43,15 @@ function AddInventoryComponent() {
     status: stockStatus,
     quantity: itemQuantity,
   };
+
+  const getWarehouses = async () => {
+    const response = await axios.get(`${baseUrl}/stock/warehouses`);
+    setWarehouses(response.data);
+  }
+
+  useEffect(() => {
+    getWarehouses();
+  }, []);
 
   // Function to access choice from radio and assign value
   const statusChange = (event) => {
@@ -137,15 +147,20 @@ function AddInventoryComponent() {
     //post request to add item in server
     const addItem = async () => {
       try {
-        await axios.post(`${baseUrl}/stock/inventories`, formData);
-        alert("Item has been successfully added!");
-        event.target.reset();
-        setItemName("");
-        setItemDescription("");
-        setItemCategory("");
-        setStockStatus("");
-        setItemQuantity("");
-        setWarehouseName("");
+        const responses = await axios.get(`${baseUrl}/stock/warehouses`);
+        if (responses.data.find(warehouse => warehouse.id === warehouseKey[warehouseName])) {
+          await axios.post(`${baseUrl}/stock/inventories`, formData);
+          alert("Item has been successfully added!");
+          event.target.reset();
+          setItemName("");
+          setItemDescription("");
+          setItemCategory("");
+          setStockStatus("");
+          setItemQuantity("");
+          setWarehouseName("");
+        } else {
+          alert("Warehouse cannot be found")
+        }
       } catch (error) {
         console.log(error);
       }
