@@ -79,7 +79,7 @@ const WarehouseInventoryList = () => {
               <div className="inv__name toggle-tabletdesktop">
                 <button
                   className={`inv__name ${
-                    item.status === "In Stock" ? "instock" : "outofstock"
+                    item.status === "In Stock" ? "inv__name--instock" : "inv__name--outofstock"
                   }`}
                 >
                   {item.status}
@@ -134,7 +134,7 @@ const WarehouseInventoryList = () => {
                   <div className="inv__name toggle-mobile">
                     <button
                       className={`inv__name ${
-                        item.status === "In Stock" ? "instock" : "outofstock"
+                        item.status === "In Stock" ? "inv__name--instock" : "inv__name--outofstock"
                       }`}
                     >
                       {item.status}
