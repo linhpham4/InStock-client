@@ -14,19 +14,6 @@ function WarehouseDetailsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const swappedWarehouseKey = {
-    1: "Manhattan",
-    2: "Washington",
-    3: "Jersey",
-    4: "SF",
-    5: "SantaMonica",
-    6: "Seattle",
-    7: "Miami",
-    8: "Boston",
-  };
-
-  const swappedWarehouseName = swappedWarehouseKey[warehouseId];
-
   const getWarehouseDetails = async () => {
     try {
       const results = await axios.get(`${URL}/stock/warehouses/${warehouseId}`);
@@ -53,6 +40,7 @@ function WarehouseDetailsPage() {
     return <div>{error}</div>;
   }
 
+  const swappedWarehouseName = selectedWarehouse.warehouse_name;
   if (!selectedWarehouse) {
     return <div>Loading...</div>;
   }
@@ -60,7 +48,10 @@ function WarehouseDetailsPage() {
     <>
       <main className="warehouse-details-page">
         <div className="warehouse-details-page__header">
-          <SectionComponent2 title={swappedWarehouseName} buttonLink={`/warehouse/${warehouseId}/edit`}/>
+          <SectionComponent2
+            title={swappedWarehouseName}
+            buttonLink={`/warehouse/${warehouseId}/edit`}
+          />
         </div>
         <div className="warehouse-details-page__sub-header">
           <WarehouseDetails />
