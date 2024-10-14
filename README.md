@@ -16,4 +16,4 @@ A scalable inventory management system built in a week by a agile team of 4 soft
 2. Create an __.env__ file in the root of the server directory and declare the port you wish to run the client on (refer to the __.env.sample__ file for variable name)
 3. Run `npm run dev` to start the website
 4. Open the website in your browser
-5. [Install server side here](https://github.com/linhpham4/InStock-client)
+5. [Install server side here](https://github.com/linhpham4/InStock-server)
