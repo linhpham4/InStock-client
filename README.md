@@ -1,4 +1,3 @@
-![](demo.gif)
 ![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 ![](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)
@@ -10,6 +9,8 @@
 
 # InStock
 A scalable inventory management system built in a week by a agile team of 4 software engineering students
+
+https://github.com/user-attachments/assets/15c882fd-9493-4b55-8e19-aba20774c59a
 
 ## Getting Started
 1. Run `npm install` in the project root directory to install dependencies
