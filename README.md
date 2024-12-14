@@ -56,11 +56,11 @@ cp .env.sample .env
 ```
 3. Open the `.env` file and fill in the required environment variables with your specific values.
 4. Repeat the same steps for the server directory.
-- I use 'http://localhost:5173' for the client side .env and '8080' for the server side port.
+- I use 'http://localhost:8080' for the client side variable and '8080' for the server side port.
 
 ### 4. Install Dependencies
 
-Install dependencies for both the server and client:
+Install dependencies for both the server and client root directories:
 
 ```bash
 npm install
@@ -90,19 +90,15 @@ Start both the server and client sides of the application.
 node --watch server.js
 ```
 
-This will start the Express server, typically on `http://localhost:8080` (check the console output for the exact URL and replace port number with the one you chose in the server side .env file).
-
 2. In the client root directory, run:
 
 ```bash
 npm run dev
 ```
 
-This will start the React development server, typically on `http://localhost:5173`
-
 ### 7. Access the Application
 
-Open your web browser and visit `http://localhost:5173/` to view the React frontend. The frontend should now be connected to the Express backend. Check routes in App.jsx to ensure you are using the correct URL.
+Open the application in your browser (usually `http://localhost:5173/`).
 
 ## Additional Information
 
